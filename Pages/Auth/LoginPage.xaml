@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="inventory_mobile_app.Pages.Auth.LoginPage"
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#E96822"
+             Padding="0"
+             >
+    <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90" >
+                <!-- Back Button -->
+                <ImageButton Source="back_icon.png" 
+                         WidthRequest="20" 
+                         HeightRequest="20" 
+                         HorizontalOptions="Start" 
+                         VerticalOptions="Center"
+                         Clicked="OnBackButtonClicked"
+                          />
+
+                <!-- Logo and Title -->
+                <HorizontalStackLayout VerticalOptions="Center" Padding="40,40,10,10">
+                    <Image Source="login_logo.png" WidthRequest="190" HeightRequest="190"/>
+                </HorizontalStackLayout>
+            </Grid>
+            <Label Grid.Row="1" Text="Login" Style="{StaticResource LoginPageLabel}"/>
+
+        <Border x:Name="LoginCard"
+                Grid.Row="2"
+                BackgroundColor="White"
+                Stroke="Transparent"
+                StrokeThickness="0"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,0,0,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40,40,0,0" />
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="5" Padding="30">
+
+                <Label Text="Username or Email" 
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="#0050A2" 
+                       Margin="0,60,0,0"
+                       />
+                <Frame BorderColor="White" Margin="0,0,0,10" BackgroundColor="White" HasShadow="True" Padding="0" CornerRadius="15" HeightRequest="45" HorizontalOptions="FillAndExpand">
+                    <Entry Placeholder="Enter your username or email" 
+                           HeightRequest="45"
+                           FontSize="14"
+                           Margin="10,0"
+                           BackgroundColor="Transparent"
+                           Keyboard="Email"
+                           TextColor="Black"
+                           />
+                </Frame>
+                <Label Text="Password" 
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="#0050A2" />
+                <Frame BorderColor="White" Margin="0,0,0,20" BackgroundColor="White" HasShadow="True" Padding="0" CornerRadius="15" HeightRequest="45" HorizontalOptions="FillAndExpand">
+                    <Entry Placeholder="Enter your password" 
+                       HeightRequest="45"
+                       FontSize="14"
+                       Margin="10,0"
+                       BackgroundColor="Transparent"
+                       TextColor="Black"
+                       IsPassword="True"
+                       />
+                </Frame>
+
+                <Button Text="LOG IN" 
+                        BackgroundColor="#FF6B2C"
+                        TextColor="White"
+                        CornerRadius="22"
+                        FontAttributes="Bold"
+                        HeightRequest="50"
+                        FontSize="16"
+                        HorizontalOptions="FillAndExpand" 
+                        Style="{StaticResource LoginButton}"
+                        />
+                <Label  Text="Don't have an account?" 
+                        FontSize="18"
+                        TextColor="#000"
+                        Margin="0,120,0,0"
+                        HorizontalOptions="Center"
+                       />
+                <Label  Text="SIGN UP" 
+                        FontSize="18"
+                        TextColor="#FF6B2C"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextDecorations="Underline"
+                       />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

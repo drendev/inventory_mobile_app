@@ -57,9 +57,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Poppins-Black.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Poppins-ExtraBold.ttf" />
+	  <None Remove="Resources\Images\back_icon.png" />
+	  <None Remove="Resources\Images\login_logo.png" />
+	  <None Remove="Resources\Images\Main.png" />
+	  <None Remove="Resources\Images\splashscreen.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiFont Include="Resources/Fonts/Poppins-Black.ttf" Alias="PoppinsBlack" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiFont Include="Resources/Fonts/Poppins-Black.ttf" Alias="PoppinsBold" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\Auth\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SplashScreenPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

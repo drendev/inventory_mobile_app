@@ -6,7 +6,14 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new SplashScreenPage();
+        }
+
+        protected override async void OnStart()
+        {
+            await Task.Delay(3000);
+
+            MainPage = new NavigationPage(new MainPage());
         }
     }
 }

@@ -5,11 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:inventory_mobile_app"
     Shell.FlyoutBehavior="Disabled"
-    Title="inventory_mobile_app">
+    Title="inventory_mobile_app"
+    >
 
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"
+        Shell.NavBarIsVisible="False"
+        />
 
 </Shell>
