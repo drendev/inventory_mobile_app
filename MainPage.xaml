@@ -15,7 +15,7 @@
             <Image Source="Main.png" HeightRequest="200" WidthRequest="200" />
             <Button Text="Log in" Style="{StaticResource LoginButton}" Clicked="OnLoginButtonClicked"/>
             <Label Text="or" Style="{StaticResource CenterTextLogIn}"/>
-            <Button Text="Sign up" Style="{StaticResource SignupButton}" />
+            <Button Text="Sign up" Style="{StaticResource SignupButton}" Clicked="HandleSignUp"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

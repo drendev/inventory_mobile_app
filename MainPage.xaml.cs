@@ -15,6 +15,18 @@ namespace inventory_mobile_app
         {
             await Navigation.PushAsync(new LoginPage());
         }
+
+        private async void HandleSignUp(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PushAsync(new SignupPage());
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
     }
 
 }
