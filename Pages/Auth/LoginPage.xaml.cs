@@ -12,4 +12,16 @@ public partial class LoginPage : ContentPage
     {
         await Navigation.PopAsync(); // Go back to the previous page
     }
+
+    private async void HandleSignUp(object sender, EventArgs e)
+    {
+        try
+        {
+            await Navigation.PushAsync(new SignupPage());
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
 }

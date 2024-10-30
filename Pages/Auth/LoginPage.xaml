@@ -87,12 +87,15 @@
                         HorizontalOptions="Center"
                        />
                 <Label  Text="SIGN UP" 
-                        FontSize="18"
-                        TextColor="#FF6B2C"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        TextDecorations="Underline"
-                       />
+                    FontSize="18"
+                    TextColor="#FF6B2C"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="HandleSignUp" />
+                    </Label.GestureRecognizers>
+                </Label>
             </VerticalStackLayout>
         </Border>
     </Grid>

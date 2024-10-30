@@ -152,7 +152,8 @@
                         TextColor="White"
                         CornerRadius="8"
                         HeightRequest="45"
-                        Margin="0,10,0,30"
+                        Margin="0,20,0,30"
+                        Clicked="HandleNext"
                         />
                     </VerticalStackLayout>
                 </Grid>

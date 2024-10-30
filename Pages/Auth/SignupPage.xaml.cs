@@ -11,4 +11,16 @@ public partial class SignupPage : ContentPage
     {
         await Navigation.PopAsync(); // Go back to the previous page
     }
+
+    private async void HandleNext(object sender, EventArgs e)
+    {
+        try
+        {
+            await Navigation.PushAsync(new SetPassword());
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
 }
