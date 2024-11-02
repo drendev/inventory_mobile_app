@@ -1,11 +1,14 @@
+using inventory_mobile_app.ViewModels;
+
 namespace inventory_mobile_app.Pages.Auth;
 
 public partial class SignupPage : ContentPage
 {
-	public SignupPage()
+	public SignupPage(RegisterViewModel registerViewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = registerViewModel;
+    }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {

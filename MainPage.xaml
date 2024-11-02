@@ -4,6 +4,8 @@
              x:Class="inventory_mobile_app.MainPage"
              BackgroundColor="#E96822"
              NavigationPage.HasNavigationBar="False"
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             x:DataType="viewmodel:MainPageViewModel"
              >
 
     <ScrollView>
@@ -14,7 +16,6 @@
             >
             <Image Source="Main.png" HeightRequest="200" WidthRequest="200" />
             <Button Text="Log in" Style="{StaticResource LoginButton}" Clicked="OnLoginButtonClicked"/>
-            <Label Text="or" Style="{StaticResource CenterTextLogIn}"/>
             <Button Text="Sign up" Style="{StaticResource SignupButton}" Clicked="HandleSignUp"/>
         </VerticalStackLayout>
     </ScrollView>

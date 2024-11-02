@@ -4,8 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:inventory_mobile_app"
+    xmlns:pages="clr-namespace:inventory_mobile_app.Pages"
+    xmlns:auth="clr-namespace:inventory_mobile_app.Pages.Auth"
     Shell.FlyoutBehavior="Disabled"
     Title="inventory_mobile_app"
+    Shell.NavBarIsVisible="False"
     >
 
     <ShellContent
@@ -14,5 +17,6 @@
         Route="MainPage"
         Shell.NavBarIsVisible="False"
         />
-
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
+    <ShellContent Route="Category" ContentTemplate="{DataTemplate pages:Category}" />
 </Shell>
