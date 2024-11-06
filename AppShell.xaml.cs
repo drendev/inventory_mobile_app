@@ -11,9 +11,6 @@ namespace inventory_mobile_app
             Routing.RegisterRoute(nameof(Category), typeof(Category));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
-            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-            Routing.RegisterRoute(nameof(ReportsPage), typeof(ReportsPage));
-
         }
     }
 }
