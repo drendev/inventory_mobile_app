@@ -23,11 +23,15 @@
                           />
 
                 <!-- Logo and Title -->
-                <HorizontalStackLayout VerticalOptions="Center" Padding="40,40,10,10">
+                <HorizontalStackLayout VerticalOptions="Center" Padding="80,40,10,10">
                     <Image Source="login_logo.png" WidthRequest="190" HeightRequest="190"/>
                 </HorizontalStackLayout>
             </Grid>
-            <Label Grid.Row="1" Text="Login" Style="{StaticResource LoginPageLabel}"/>
+            <Label 
+                Grid.Row="1" 
+                Text="Login" 
+                Style="{StaticResource LoginPageLabel}"
+                FontFamily="Poppins-Bold"/>
 
         <Border x:Name="LoginCard"
                 Grid.Row="2"
@@ -45,6 +49,7 @@
 
                 <Label Text="Username or Email" 
                        FontAttributes="Bold"
+                       FontFamily="Poppins-SemiBold"
                        FontSize="18"
                        TextColor="#0050A2" 
                        Margin="0,60,0,0"
@@ -53,6 +58,7 @@
                     <Entry Placeholder="Enter your username or email" 
                            HeightRequest="45"
                            FontSize="14"
+                           FontFamily="Poppins-Medium"
                            Text="{Binding LoginModel.Email}"
                            Margin="10,0"
                            BackgroundColor="Transparent"
@@ -62,6 +68,7 @@
                            />
                 </Frame>
                 <Label Text="Password" 
+                       FontFamily="Poppins-SemiBold"
                        FontAttributes="Bold"
                        FontSize="18"
                        TextColor="#0050A2" />
@@ -69,6 +76,7 @@
                     <Entry Placeholder="Enter your password" 
                        HeightRequest="45"
                        FontSize="14"
+                       FontFamily="Poppins-Medium"
                        Text="{Binding LoginModel.Password}"
                        Margin="10,0"
                        BackgroundColor="Transparent"
@@ -92,6 +100,7 @@
                         />
                 <Button x:Name="HiddenButton" IsVisible="False" />
                 <Label  Text="Don't have an account?" 
+                        FontFamily="Poppins-Medium"
                         FontSize="18"
                         TextColor="#000"
                         Margin="0,120,0,0"
@@ -100,6 +109,7 @@
                 <Label  Text="SIGN UP" 
                     FontSize="18"
                     TextColor="#FF6B2C"
+                       FontFamily="Poppins-Medium"
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
                     TextDecorations="Underline">

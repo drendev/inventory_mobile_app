@@ -39,8 +39,15 @@ public partial class LoginPage : ContentPage
 
     private async void OnLoginButtonClicked(object sender, EventArgs e)
     {
-        await (BindingContext as LoginViewModel).LoginCommand.ExecuteAsync(null);
+        //await (BindingContext as LoginViewModel).LoginCommand.ExecuteAsync(null);
 
-        // Unfocus entries after login command is executed
+        try
+        {
+            await Shell.Current.GoToAsync(nameof(HomePage));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 }

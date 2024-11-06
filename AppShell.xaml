@@ -19,4 +19,11 @@
         />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
     <ShellContent Route="Category" ContentTemplate="{DataTemplate pages:Category}" />
+    <ShellContent Route="HomePage" ContentTemplate="{DataTemplate pages:HomePage}" />
+    <ShellContent Route="ReportsPage" ContentTemplate="{DataTemplate pages:ReportsPage}" />
+
+
+
+
+
 </Shell>
