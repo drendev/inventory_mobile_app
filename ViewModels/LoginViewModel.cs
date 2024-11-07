@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using inventory_mobile_app.Models;
+using inventory_mobile_app.Pages;
 using inventory_mobile_app.Services;
 using Microsoft.Maui.Controls;
 using System.Text.Json;
@@ -55,7 +56,7 @@ namespace inventory_mobile_app.ViewModels
             {
                 // Set authentication status if login is successful
                 IsAuthenticated = true;
-                await Shell.Current.GoToAsync(nameof(Category));
+                await Shell.Current.GoToAsync(nameof(HomePage));
             }
 
             IsLoggingIn = false;
