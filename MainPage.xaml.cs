@@ -11,6 +11,7 @@ namespace inventory_mobile_app
         {
             InitializeComponent();
             BindingContext = mainPageViewModel;
+            
         }
 
         // Handle login button click event
@@ -31,6 +32,8 @@ namespace inventory_mobile_app
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }
+
+       
     }
 
 }

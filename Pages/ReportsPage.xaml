@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="inventory_mobile_app.Pages.ReportsPage"
+             Title="ReportsPage"
+              BackgroundColor="#FFF6DF"
+             Padding="0"
+             xmlns:model="clr-namespace:inventory_mobile_app.Models"
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
+
+    <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90" >
+
+            <!-- Logo -->
+            <HorizontalStackLayout VerticalOptions="Center" Padding="10">
+                <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <Label Text="REPORTS"
+               FontSize="24" 
+               FontFamily="Poppins-ExtraBold"
+               FontAttributes="Bold"
+               Padding="70"
+               HorizontalOptions="Center"
+               TextColor="#E76722" />
+
+        <!-- Bottom Navigation Bar -->
+        <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
+                <ImageButton Source="home_icon.png" BackgroundColor="Transparent" HeightRequest="40" Padding="0,7,0,0"  Clicked="OnHomeClicked"/>
+                <Label Text="Home" HorizontalOptions="Center" FontSize="10"  FontFamily="Poppins-Bold" TextColor="#979797" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
+                <ImageButton Grid.Column="1" Source="reports_icon.png" BackgroundColor="Transparent" HeightRequest="40" Padding="0,7,0,0"/>
+                <Label Text="Reports" HorizontalOptions="Center" FontSize="10"  FontFamily="Poppins-Bold" TextColor="#979797" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
+                <ImageButton Grid.Column="2" Source="scan_icon.png" BackgroundColor="Transparent" HeightRequest="40" Padding="0,7,0,0"/>
+                <Label Text="SCAN" HorizontalOptions="Center" FontSize="10"  FontFamily="Poppins-Bold" TextColor="#979797" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+                <ImageButton Grid.Column="3" Source="inventory_icon.png" BackgroundColor="Transparent" HeightRequest="40" Padding="0,7,0,0" />
+                <Label Text="Inventory" HorizontalOptions="Center" FontSize="10"  FontFamily="Poppins-Bold" TextColor="#979797" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
+                <ImageButton Grid.Column="4" Source="settings_icon.png" BackgroundColor="Transparent" HeightRequest="40" Padding="0,10,0,0" />
+                <Label Text="Settings" HorizontalOptions="Center" FontSize="10"  FontFamily="Poppins-Bold" TextColor="#979797" />
+            </StackLayout>
+        </Grid>
+
+    </Grid>
+</ContentPage>

@@ -21,4 +21,11 @@
     <ShellContent Route="SignupPage" ContentTemplate="{DataTemplate auth:SignupPage}" />
     <ShellContent Route="SetPassword" ContentTemplate="{DataTemplate auth:SetPassword}" />
     <ShellContent Route="Category" ContentTemplate="{DataTemplate pages:Category}" />
+    <ShellContent Route="HomePage" ContentTemplate="{DataTemplate pages:HomePage}" />
+    <ShellContent Route="ReportsPage" ContentTemplate="{DataTemplate pages:ReportsPage}" />
+
+
+
+
+
 </Shell>

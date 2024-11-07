@@ -14,7 +14,7 @@
             Spacing="10"
             VerticalOptions="Center"
             >
-            <Image Source="Main.png" HeightRequest="200" WidthRequest="200" />
+            <Image Source="Main.png" HeightRequest="250" WidthRequest="250" />
             <Button Text="Log in" Style="{StaticResource LoginButton}" Clicked="OnLoginButtonClicked"/>
             <Button Text="Sign up" Style="{StaticResource SignupButton}" Clicked="HandleSignUp"/>
         </VerticalStackLayout>
