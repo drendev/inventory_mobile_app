@@ -9,6 +9,17 @@ namespace inventory_mobile_app.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
+        private bool _isLoggingIn;
+        public bool IsLoggingIn
+        {
+            get => _isLoggingIn;
+            set
+            {
+                SetProperty(ref _isLoggingIn, value);
+                LoginCommand.NotifyCanExecuteChanged();
+            }
+        }
+
         [ObservableProperty]
         private LoginModel loginModel;
 
@@ -26,11 +37,29 @@ namespace inventory_mobile_app.ViewModels
             IsAuthenticated = false;
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanExecuteLogin))]
 
         private async Task Login()
         {
-            await clientService.Login(LoginModel);
+            IsLoggingIn = true;
+
+            // Call the login method and check if login was successful
+            bool loginSuccessful = await clientService.Login(LoginModel);
+
+            if (!loginSuccessful)
+            {
+                // Show alert if login failed
+                await Application.Current.MainPage.DisplayAlert("Login Failed", "Invalid username or password", "OK");
+            }
+            else
+            {
+                // Set authentication status if login is successful
+                IsAuthenticated = true;
+                await Shell.Current.GoToAsync(nameof(Category));
+            }
+
+            IsLoggingIn = false;
         }
+        private bool CanExecuteLogin() => !IsLoggingIn;
     }
 }

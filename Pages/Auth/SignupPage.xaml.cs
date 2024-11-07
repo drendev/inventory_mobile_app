@@ -4,22 +4,22 @@ namespace inventory_mobile_app.Pages.Auth;
 
 public partial class SignupPage : ContentPage
 {
-	public SignupPage(RegisterViewModel registerViewModel)
+	public SignupPage(SignupViewModel signUpViewModel)
 	{
 		InitializeComponent();
-        BindingContext = registerViewModel;
+        BindingContext = signUpViewModel;
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync(); // Go back to the previous page
+        await Shell.Current.GoToAsync("//MainPage");
     }
 
     private async void HandleNext(object sender, EventArgs e)
     {
         try
         {
-            await Navigation.PushAsync(new SetPassword());
+            await Shell.Current.GoToAsync("//SetPassword");
         }
         catch (Exception ex)
         {

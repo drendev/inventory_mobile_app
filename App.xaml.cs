@@ -16,18 +16,8 @@ namespace inventory_mobile_app
         private async void StartApp()
         {
             await Task.Delay(2000);
- 
-            var authenticationData = await SecureStorage.Default.GetAsync("Authentication");
 
-            if (!string.IsNullOrEmpty(authenticationData))
-            {
-                MainPage = new AppShell();
-                await Shell.Current.GoToAsync(nameof(Category));
-            }
-            else
-            {
-                MainPage = new AppShell();
-            }
+            MainPage = new AppShell();
         }
     }
 }

@@ -18,5 +18,7 @@
         Shell.NavBarIsVisible="False"
         />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
+    <ShellContent Route="SignupPage" ContentTemplate="{DataTemplate auth:SignupPage}" />
+    <ShellContent Route="SetPassword" ContentTemplate="{DataTemplate auth:SetPassword}" />
     <ShellContent Route="Category" ContentTemplate="{DataTemplate pages:Category}" />
 </Shell>

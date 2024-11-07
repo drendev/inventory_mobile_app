@@ -1,14 +1,17 @@
+using inventory_mobile_app.ViewModels;
+
 namespace inventory_mobile_app.Pages.Auth;
 
 public partial class SetPassword : ContentPage
 {
-	public SetPassword()
+	public SetPassword(SignupViewModel signUpViewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = signUpViewModel;
+    }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync(); // Go back to the previous page
+        await Shell.Current.GoToAsync("//SignupPage");
     }
 }

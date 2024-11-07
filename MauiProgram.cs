@@ -22,26 +22,24 @@ namespace inventory_mobile_app
 
             builder.Services.AddHttpClient("custom-httpclient", httpClient =>
             {
-                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://147.79.74.213" : "https://147.79.74.213";
+                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://drensharp.dev" : "https://drensharp.dev";
                 httpClient.BaseAddress = new Uri(baseAddress);
-            })
-            .ConfigurePrimaryHttpMessageHandler(() =>
-            {
-                var handler = new HttpClientHandler();
-
-                // Disable SSL validation for testing purposes (only in development)
-                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
-
-                return handler;
             });
 
             builder.Services.AddSingleton<ClientService>();
-            builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<CategoryViewModel>();
-            builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<Category>();
+
             builder.Services.AddSingleton<MainPageViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+
             builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginViewModel>();
+
+            builder.Services.AddSingleton<SignupPage>();
+            builder.Services.AddSingleton<SignupViewModel>();
+
+            builder.Services.AddSingleton<SetPassword>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -11,7 +11,7 @@ namespace inventory_mobile_app.ViewModels
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private RegisterModel registerModel;
+        private SignupModel registerModel;
         [ObservableProperty]
         private LoginModel loginModel;
 
@@ -35,7 +35,7 @@ namespace inventory_mobile_app.ViewModels
 
         private async Task Register()
         {
-            await clientService.Register(RegisterModel);
+            await clientService.Signup((SignupModel)RegisterModel);
         }
 
         [RelayCommand]

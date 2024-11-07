@@ -78,19 +78,42 @@
                        />
                 </Frame>
 
-                <Button Text="LOG IN" 
-                        BackgroundColor="#FF6B2C"
-                        TextColor="White"
-                        CornerRadius="22"
-                        FontAttributes="Bold"
-                        HeightRequest="50"
-                        FontSize="16"
-                        HorizontalOptions="FillAndExpand" 
-                        Style="{StaticResource LoginButton}"
-                        Command="{Binding LoginCommand}"
-                        Clicked="OnLoginButtonClicked"
-                        />
-                <Button x:Name="HiddenButton" IsVisible="False" />
+                <Frame 
+                   x:Name="LoginButtonFrame"
+                   BackgroundColor="#FF6B2C"
+                   CornerRadius="22"
+                   HeightRequest="50"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"
+                   BorderColor="Transparent"
+                   Padding="0">
+
+                    <Grid>
+                        <!-- Text Label for "LOG IN" -->
+                        <Label Text="LOG IN"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           IsVisible="{Binding IsLoggingIn, Converter={StaticResource InverseBoolConverter}}" />
+
+                        <!-- Activity Indicator -->
+                        <ActivityIndicator 
+                           IsRunning="True"
+                           Color="White"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           IsVisible="{Binding IsLoggingIn}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+
+                        <!-- Tap Gesture to Handle Button Click -->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LoginCommand}" Tapped="OnLoginButtonTapped"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Frame>
                 <Label  Text="Don't have an account?" 
                         FontSize="18"
                         TextColor="#000"

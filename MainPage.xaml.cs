@@ -23,7 +23,7 @@ namespace inventory_mobile_app
         {
             try
             {
-                await Shell.Current.GoToAsync(nameof(SignupPage));
+                await Shell.Current.GoToAsync("//SignupPage");
 
             }
             catch (Exception ex)
