@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace inventory_mobile_app.Models
 {
-    public class RegisterModel
+    public class SignupModel
     {
         public string? Email { get; set; }
         public string? Password { get; set; }

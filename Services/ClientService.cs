@@ -15,20 +15,21 @@ namespace inventory_mobile_app.Services
             this.httpClientFactory = httpClientFactory;
         }
 
-        public async Task Register(RegisterModel model)
+        public async Task<bool> Signup(SignupModel model)
         {
             var httpClient = httpClientFactory.CreateClient("custom-httpclient");
             var result = await httpClient.PostAsJsonAsync("/register", model);
             if (result.IsSuccessStatusCode)
             {
                 await Shell.Current.DisplayAlert("Alert", "Registration successful", "OK");
+                return true;
             }
 
-            await Shell.Current.DisplayAlert("Alert", result.ReasonPhrase, "Ok");
-            await Shell.Current.GoToAsync(nameof(SignupPage));
+            return false;
+            
         }
 
-        public async Task Login(LoginModel model)
+        public async Task<bool> Login(LoginModel model)
         {
             var httpClient = httpClientFactory.CreateClient("custom-httpclient");
             try
@@ -53,8 +54,7 @@ namespace inventory_mobile_app.Services
 
                         await SecureStorage.Default.SetAsync("Authentication", serializeResponse);
 
-                        // Navigate to Category page upon successful login
-                        await Shell.Current.GoToAsync(nameof(Category));
+                        return true;
                     }
                 }
 
@@ -64,6 +64,8 @@ namespace inventory_mobile_app.Services
                 // Handle any unexpected errors (e.g., network issues)
                 await Shell.Current.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
+
+            return false;
         }
 
         public async Task<Category[]> GetCategoriesData()

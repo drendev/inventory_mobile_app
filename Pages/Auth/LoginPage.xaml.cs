@@ -6,7 +6,10 @@ namespace inventory_mobile_app.Pages.Auth;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage(LoginViewModel loginViewModel)
+    private readonly Color OriginalColor = Color.FromArgb("#FF6B2C");
+    private readonly Color PressedColor = Color.FromArgb("#D9531A");
+
+    public LoginPage(LoginViewModel loginViewModel)
 	{
 		InitializeComponent();
         BindingContext = loginViewModel;
@@ -29,7 +32,7 @@ public partial class LoginPage : ContentPage
     {
         try
         {
-            await Shell.Current.GoToAsync(nameof(SignupPage));
+            await Shell.Current.GoToAsync("//SignupPage");
         }
         catch (Exception ex)
         {
@@ -37,24 +40,13 @@ public partial class LoginPage : ContentPage
         }
     }
 
-    private async void OnLoginButtonClicked(object sender, EventArgs e)
+    private async void OnLoginButtonTapped(object sender, TappedEventArgs e)
     {
-        //await (BindingContext as LoginViewModel).LoginCommand.ExecuteAsync(null);
+        LoginButtonFrame.BackgroundColor = PressedColor;
+        await LoginButtonFrame.ScaleTo(0.95, 50);
+        await LoginButtonFrame.ScaleTo(1, 50);
+        await Task.Delay(100);
 
-        try
-        {
-            var loginViewModel = BindingContext as LoginViewModel;
-            if (loginViewModel?.LoginCommand.CanExecute(null) == true)
-            {
-                await loginViewModel.LoginCommand.ExecuteAsync(null);
-            }
-
-            await Shell.Current.GoToAsync(nameof(HomePage));
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
+        LoginButtonFrame.BackgroundColor = OriginalColor;
     }
-
 }

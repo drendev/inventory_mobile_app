@@ -5,8 +5,9 @@
              Title="SignupPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#FFB800"
+             xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
-             x:DataType="viewmodel:RegisterViewModel"
+             x:DataType="viewmodel:SignupViewModel"
              >
 
     <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -58,8 +59,9 @@
                             Placeholder="Enter full name"
                             BackgroundColor="#F5F5F5"
                             Margin="10, 0"
+                            TextColor="Black"
                             HeightRequest="40"
-                            Text="{Binding RegisterModel.FullName}"
+                            Text="{Binding SignupModel.FullName}"
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -78,7 +80,8 @@
                             BackgroundColor="#F5F5F5"
                             HeightRequest="40"
                             Margin="10, 0"
-                            Text="{Binding RegisterModel.Email}"
+                            TextColor="Black"
+                            Text="{Binding SignupModel.Email}"
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -96,8 +99,9 @@
                             Placeholder="Enter username"
                             BackgroundColor="#F5F5F5"
                             Margin="10, 0"
+                            TextColor="Black"
                             HeightRequest="40"
-                            Text="{Binding RegisterModel.UserName}"
+                            Text="{Binding SignupModel.UserName}"
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -114,9 +118,10 @@
                             x:Name="PositionEntry"
                             Placeholder="Enter position"
                             Margin="10, 0"
+                            TextColor="Black"
                             BackgroundColor="#F5F5F5"
                             HeightRequest="40"
-                            Text="{Binding RegisterModel.Role}"
+                            Text="{Binding SignupModel.Role}"
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -135,8 +140,9 @@
                             BackgroundColor="#F5F5F5"
                             HeightRequest="40"
                             Margin="10, 0"
+                            TextColor="Black"
                             Keyboard="Telephone"
-                            Text="{Binding RegisterModel.PhoneNumber}" 
+                            Text="{Binding SignupModel.PhoneNumber}" 
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -154,7 +160,7 @@
                             TextColor="Black"
                             Margin="10, 0"
                             HeightRequest="40"
-                            Date="{Binding RegisterModel.Birthday}"
+                            Date="{Binding SignupModel.Birthday}"
                             />
                         </Frame>
                     </VerticalStackLayout>
@@ -167,7 +173,6 @@
                         HeightRequest="45"
                         Margin="0,20,0,30"
                         Clicked="HandleNext"
-                        Command="{Binding RegisterCommand}"
                         />
                     </VerticalStackLayout>
                 </Grid>
