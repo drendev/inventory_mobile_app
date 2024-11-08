@@ -488,4 +488,43 @@
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 
+    <Color x:Key="SelectedColor">#0050A2</Color>
+    <Color x:Key="DefaultColor">#979797</Color>
+
+    <Style TargetType="Label" x:Key="MaterialIcon">
+        <Setter Property="FontFamily" Value="MaterialIcon"/>
+        <Setter Property="FontSize" Value="32"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="BootstrapIcon">
+        <Setter Property="FontFamily" Value="BootstrapIcon"/>
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+
+    <Style x:Key="SearchFrameStyle" TargetType="Frame">
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="BorderColor" Value="#E0E0E0" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="-5,0,0,0" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="280" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="Margin" Value="0,25,20,0" />
+    </Style>
+
+    <!-- DatePicker -->
+    <Style x:Key="CustomDatePickerStyle" TargetType="DatePicker">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="Margin" Value="0,10" />
+        <Setter Property="Format" Value="D" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>
+
+
 </ResourceDictionary>

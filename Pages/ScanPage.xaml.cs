@@ -2,12 +2,12 @@ namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
-public partial class HomePage : ContentPage
+public partial class ScanPage : ContentPage
 {
-    public HomePage()
-    {
-        InitializeComponent();
-        BindingContext = App.MainViewModel;
+	public ScanPage()
+	{
+		InitializeComponent();
+        BindingContext = new MainViewModel();
     }
 
     // Home/Dashboard page
@@ -16,9 +16,9 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
+            viewModel.IsScanSelected = true;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 
@@ -36,9 +36,9 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
+            viewModel.IsScanSelected = true;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 
@@ -56,9 +56,9 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
+            viewModel.IsScanSelected = true;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 
@@ -76,9 +76,9 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
+            viewModel.IsScanSelected = true;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 
@@ -98,9 +98,9 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
+            viewModel.IsScanSelected = true;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 

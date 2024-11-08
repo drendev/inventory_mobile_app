@@ -43,6 +43,12 @@ public partial class LoginPage : ContentPage
 
         try
         {
+            var loginViewModel = BindingContext as LoginViewModel;
+            if (loginViewModel?.LoginCommand.CanExecute(null) == true)
+            {
+                await loginViewModel.LoginCommand.ExecuteAsync(null);
+            }
+
             await Shell.Current.GoToAsync(nameof(HomePage));
         }
         catch (Exception ex)
@@ -50,4 +56,5 @@ public partial class LoginPage : ContentPage
             await DisplayAlert("Error", ex.Message, "OK");
         }
     }
+
 }

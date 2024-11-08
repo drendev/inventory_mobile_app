@@ -2,12 +2,12 @@ namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
-public partial class HomePage : ContentPage
+public partial class SettingsPage : ContentPage
 {
-    public HomePage()
+    public SettingsPage()
     {
         InitializeComponent();
-        BindingContext = App.MainViewModel;
+        BindingContext = new MainViewModel();
     }
 
     // Home/Dashboard page
@@ -16,11 +16,11 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//HomePage");
         }
@@ -36,11 +36,11 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//InventoryPage");
         }
@@ -56,11 +56,11 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//ScanPage");
         }
@@ -76,11 +76,11 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//SalesPage");
         }
@@ -98,11 +98,11 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
+            viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//SettingsPage");
         }

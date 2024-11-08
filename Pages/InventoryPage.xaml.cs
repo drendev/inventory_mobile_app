@@ -1,14 +1,63 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
+using Microsoft.Maui.Controls;
 
-public partial class HomePage : ContentPage
+public partial class InventoryPage : ContentPage
 {
-    public HomePage()
-    {
-        InitializeComponent();
-        BindingContext = App.MainViewModel;
+    public int Quantity { get; set; } = 0;
+    public InventoryPage()
+	{
+		InitializeComponent();
+        BindingContext = new MainViewModel();
     }
+
+    void OnAddProductClicked(object sender, EventArgs e)
+    {
+        AddProductModal.IsVisible = true;
+    }
+
+    private void OnCloseModalClicked(object sender, EventArgs e)
+    {
+        AddProductModal.IsVisible = false;
+    }
+
+    void OnSaveProductClicked(object sender, EventArgs e)
+    {
+        var productName = ProductNameEntry.Text;
+        var productDescription = ProductDescriptionEntry.Text;
+        var buyingPrice = BuyingPriceEntry.Text;
+        var sellingPrice = SellingPriceEntry.Text;
+        var expiryDate = ExpiryDatePicker.Date;
+        var productQuantity = ProductQuantityEntry.Text;
+
+        if (!string.IsNullOrWhiteSpace(productName) &&
+            !string.IsNullOrWhiteSpace(productDescription) &&
+            !string.IsNullOrWhiteSpace(buyingPrice) &&
+            !string.IsNullOrWhiteSpace(sellingPrice) &&
+            expiryDate != DateTime.MinValue &&  
+            !string.IsNullOrWhiteSpace(productQuantity))
+        {
+            AddProductModal.IsVisible = false;
+        }
+        else
+        {
+            DisplayAlert("Error", "Please fill in all fields", "OK");
+        }
+    }
+
+    private void OnDateSelected(object sender, DateChangedEventArgs e)
+    {
+        if (e.NewDate != DateTime.MinValue)
+        {
+            PlaceholderLabel.IsVisible = false;
+        }
+        else
+        {
+            PlaceholderLabel.IsVisible = true;
+        }
+    }
+
 
     // Home/Dashboard page
     private async void OnHomeClicked(object sender, EventArgs e)
@@ -16,8 +65,8 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
@@ -36,8 +85,8 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
@@ -56,8 +105,8 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
@@ -76,8 +125,8 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
@@ -98,8 +147,8 @@ public partial class HomePage : ContentPage
         try
         {
             var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;

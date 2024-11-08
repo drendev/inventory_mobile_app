@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.Input;
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Pages.Auth;
 using inventory_mobile_app.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace inventory_mobile_app.ViewModels
@@ -68,6 +70,105 @@ namespace inventory_mobile_app.ViewModels
                 return;
             }
             isAuthenticated = false;
+        }
+
+        public class MainViewModel : INotifyPropertyChanged
+        {
+            private bool isHomeSelected;
+            public bool IsHomeSelected
+            {
+                get => isHomeSelected;
+                set
+                {
+                    if (isHomeSelected != value)
+                    {
+                        isHomeSelected = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+            private bool isInventorySelected;
+            public bool IsInventorySelected
+            {
+                get => isInventorySelected;
+                set
+                {
+                    if (isInventorySelected != value)
+                    {
+                        isInventorySelected = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+            private bool isScanSelected;
+            public bool IsScanSelected
+            {
+                get => isScanSelected;
+                set
+                {
+                    if (isScanSelected != value)
+                    {
+                        isScanSelected = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+            private bool isSalesSelected;
+            public bool IsSalesSelected
+            {
+                get => isSalesSelected;
+                set
+                {
+                    if (isSalesSelected != value)
+                    {
+                        isSalesSelected = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+            private bool isSettingsSelected;
+            public bool IsSettingsSelected
+            {
+                get => isSettingsSelected;
+                set
+                {
+                    if (isSettingsSelected != value)
+                    {
+                        isSettingsSelected = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
+
+            private DateTime _expiryDate = DateTime.Today;
+
+            public DateTime ExpiryDate
+            {
+                get => _expiryDate;
+                set
+                {
+                    if (_expiryDate != value)
+                    {
+                        _expiryDate = value;
+                        OnPropertyChanged(nameof(ExpiryDate)); 
+                    }
+                }
+            }
+
+            public MainViewModel()
+            {
+                IsHomeSelected = true; 
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
     }
