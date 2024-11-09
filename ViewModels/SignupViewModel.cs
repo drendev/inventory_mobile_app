@@ -38,8 +38,7 @@ namespace inventory_mobile_app.ViewModels
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Signup Successful", "You have successfully signed up", "OK");
-                await Shell.Current.GoToAsync(nameof(SignupPage));
+                await Shell.Current.GoToAsync(nameof(LoginPage));
             }
         }
     }

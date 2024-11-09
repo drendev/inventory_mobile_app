@@ -6,7 +6,9 @@
              BackgroundColor="#FFF6DF"
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
-             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             >
 
     <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90" >
@@ -15,8 +17,19 @@
             <HorizontalStackLayout VerticalOptions="Center" Padding="10">
                 <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
             </HorizontalStackLayout>
+            
         </Grid>
-
+        <Grid Grid.Row="0" VerticalOptions="Center">
+            <zxing:CameraBarcodeReaderView
+            x:Name="barcodeReader"
+            BarcodesDetected="BarcodeReader_BarcodesDetected"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            WidthRequest="300"
+            HeightRequest="200"
+            />
+        </Grid>
+        
         <!-- Bottom Navigation Bar -->
         <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
             <Grid.ColumnDefinitions>

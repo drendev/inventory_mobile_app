@@ -67,8 +67,8 @@
                     </VerticalStackLayout>
 
                         <!-- Email -->
-                        <VerticalStackLayout Spacing="8">
-                            <Label 
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
                             Text="Email"
                             TextColor="#0066CC"
                             FontSize="14"
@@ -85,28 +85,7 @@
                             />
                         </Frame>
                     </VerticalStackLayout>
-
-                        <!-- Username -->
-                        <VerticalStackLayout Spacing="8">
-                            <Label 
-                            Text="Username"
-                            TextColor="#0066CC"
-                            FontSize="14"
-                            FontAttributes="Bold"/>
-                        <Frame Style="{StaticResource InputFrame}">
-                            <Entry 
-                            x:Name="UsernameEntry"
-                            Placeholder="Enter username"
-                            BackgroundColor="#F5F5F5"
-                            Margin="10, 0"
-                            TextColor="Black"
-                            HeightRequest="40"
-                            Text="{Binding SignupModel.UserName}"
-                            />
-                        </Frame>
-                    </VerticalStackLayout>
-
-                        <!-- Position -->
+                    <!-- Position -->
                         <VerticalStackLayout Spacing="8">
                             <Label 
                             Text="Position"

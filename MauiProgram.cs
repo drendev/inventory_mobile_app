@@ -3,6 +3,7 @@ using inventory_mobile_app.Pages.Auth;
 using inventory_mobile_app.Services;
 using inventory_mobile_app.ViewModels;
 using Microsoft.Extensions.Logging;
+using ZXing.Net.Maui.Controls;
 
 namespace inventory_mobile_app
 {
@@ -13,6 +14,7 @@ namespace inventory_mobile_app
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -24,8 +26,14 @@ namespace inventory_mobile_app
 
             builder.Services.AddHttpClient("custom-httpclient", httpClient =>
             {
-                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://drensharp.dev" : "https://drensharp.dev";
+                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://217.15.170.62" : "https://217.15.170.62";
                 httpClient.BaseAddress = new Uri(baseAddress);
+            })
+            .ConfigurePrimaryHttpMessageHandler(() =>
+            {
+                var handler = new HttpClientHandler();
+                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+                return handler;
             });
 
             builder.Services.AddSingleton<ClientService>();

@@ -1,5 +1,6 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
+using ZXing;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ScanPage : ContentPage
@@ -8,6 +9,16 @@ public partial class ScanPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new MainViewModel();
+
+
+        RequestCameraPermission();
+
+        barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
+        {
+            TryHarder = true,
+            AutoRotate = true,
+            Formats = ZXing.Net.Maui.BarcodeFormat.Code128,
+        };
     }
 
     // Home/Dashboard page
@@ -90,8 +101,6 @@ public partial class ScanPage : ContentPage
         }
     }
 
-
-
     // Settings page
     private async void OnSettingsClicked(object sender, EventArgs e)
     {
@@ -110,5 +119,30 @@ public partial class ScanPage : ContentPage
         {
             await DisplayAlert("Error", ex.Message, "OK");
         }
+    }
+
+    // Camera permission
+    private async void RequestCameraPermission()
+    {
+        var status = await Permissions.RequestAsync<Permissions.Camera>();
+        if (status != PermissionStatus.Granted)
+        {
+            await DisplayAlert("Camera Permission", "Camera permission is required to scan QR codes.", "OK");
+            return;
+        }
+    }
+
+    // Barcode reader {Not fully functional}
+
+    private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
+    {
+
+        var first = e.Results[0];
+
+        Dispatcher.DispatchAsync(async () =>
+        {
+            await DisplayAlert("Barcode Result", first.Value, "OK");
+        }
+        );
     }
 }

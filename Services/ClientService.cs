@@ -18,7 +18,7 @@ namespace inventory_mobile_app.Services
         public async Task<bool> Signup(SignupModel model)
         {
             var httpClient = httpClientFactory.CreateClient("custom-httpclient");
-            var result = await httpClient.PostAsJsonAsync("/register", model);
+            var result = await httpClient.PostAsJsonAsync("/api/User/signup", model);
             if (result.IsSuccessStatusCode)
             {
                 await Shell.Current.DisplayAlert("Alert", "Registration successful", "OK");
@@ -35,7 +35,7 @@ namespace inventory_mobile_app.Services
             try
             {
                 // Send login request
-                var result = await httpClient.PostAsJsonAsync("/login", model);
+                var result = await httpClient.PostAsJsonAsync("/api/User/login", model);
 
                 if (result.IsSuccessStatusCode)
                 {

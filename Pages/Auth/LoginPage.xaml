@@ -118,7 +118,7 @@
 
                         <!-- Tap Gesture to Handle Button Click -->
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnLoginButtonTapped"/>
+                            <TapGestureRecognizer Command="{Binding LoginCommand}" Tapped="OnLoginButtonTapped"/>
                         </Grid.GestureRecognizers>
                     </Grid>
                 </Frame>
