@@ -48,5 +48,7 @@ public partial class LoginPage : ContentPage
         await Task.Delay(100);
 
         LoginButtonFrame.BackgroundColor = OriginalColor;
+
+        await Shell.Current.GoToAsync(nameof(HomePage));
     }
 }
