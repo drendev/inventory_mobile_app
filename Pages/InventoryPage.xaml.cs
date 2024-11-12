@@ -10,6 +10,7 @@ public partial class InventoryPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new MainViewModel();
+        ExpiryDatePicker.IsVisible = false;
     }
 
     void OnAddProductClicked(object sender, EventArgs e)
@@ -20,6 +21,26 @@ public partial class InventoryPage : ContentPage
     private void OnCloseModalClicked(object sender, EventArgs e)
     {
         AddProductModal.IsVisible = false;
+    }
+
+    void OnEditProductClicked(object sender, EventArgs e)
+    {
+        EditProductModal.IsVisible = true;
+    }
+
+    private void OnCloseEditModalClicked(object sender, EventArgs e)
+    {
+        EditProductModal.IsVisible = false;
+    }
+
+    void OnViewProductClicked(object sender, EventArgs e)
+    {
+        ViewProductModal.IsVisible = true;
+    }
+
+    private void OnCloseViewModalClicked(object sender, EventArgs e)
+    {
+        ViewProductModal.IsVisible = false;
     }
 
     void OnSaveProductClicked(object sender, EventArgs e)
@@ -35,10 +56,34 @@ public partial class InventoryPage : ContentPage
             !string.IsNullOrWhiteSpace(productDescription) &&
             !string.IsNullOrWhiteSpace(buyingPrice) &&
             !string.IsNullOrWhiteSpace(sellingPrice) &&
-            expiryDate != DateTime.MinValue &&  
+            expiryDate != DateTime.MinValue &&
             !string.IsNullOrWhiteSpace(productQuantity))
         {
             AddProductModal.IsVisible = false;
+        }
+        else
+        {
+            DisplayAlert("Error", "Please fill in all fields", "OK");
+        }
+    }
+
+    void OnSaveEditProductClicked(object sender, EventArgs e)
+    {
+        var editedProductName = EditedProductNameEntry.Text;
+        var editedProductDescription = EditedProductDescriptionEntry.Text;
+        var editedBuyingPrice = EditedBuyingPriceEntry.Text;
+        var editedSellingPrice = EditedSellingPriceEntry.Text;
+        //var editedExpiryDate = EditedExpiryDatePicker.Date;
+        var editedProductQuantity = EditedProductQuantityEntry.Text;
+
+        if (!string.IsNullOrWhiteSpace(editedProductName) &&
+            !string.IsNullOrWhiteSpace(editedProductDescription) &&
+            !string.IsNullOrWhiteSpace(editedBuyingPrice) &&
+            !string.IsNullOrWhiteSpace(editedSellingPrice) &&
+            //editedExpiryDate != DateTime.MinValue &&
+            !string.IsNullOrWhiteSpace(editedProductQuantity))
+        {
+            EditProductModal.IsVisible = false;
         }
         else
         {
@@ -50,17 +95,14 @@ public partial class InventoryPage : ContentPage
     {
         if (e.NewDate != DateTime.MinValue)
         {
-            PlaceholderLabel.IsVisible = false;
-        }
-        else
-        {
-            PlaceholderLabel.IsVisible = true;
+            ExpiryDatePicker.IsVisible = true;
+
         }
     }
 
 
-    // Home/Dashboard page
-    private async void OnHomeClicked(object sender, EventArgs e)
+        // Home/Dashboard page
+        private async void OnHomeClicked(object sender, EventArgs e)
     {
         try
         {

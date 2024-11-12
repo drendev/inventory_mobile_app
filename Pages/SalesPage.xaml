@@ -22,9 +22,22 @@
                FontSize="24" 
                FontFamily="Poppins-ExtraBold"
                FontAttributes="Bold"
-               Padding="70"
-               HorizontalOptions="Center"
+               Margin="20,80,10,10"
                TextColor="#E76722" />
+
+        <Button Text="ADD SALES" 
+           BackgroundColor="#E76722"  
+           TextColor="White" 
+           CornerRadius="10"
+           HeightRequest="38"
+           WidthRequest="130"
+           FontSize="16"
+           Padding="6"
+           FontFamily="Poppins-SemiBold"
+           HorizontalOptions="End"
+           VerticalOptions="Start"
+           Margin="0,75,20,0"
+            />  
 
         <!-- Bottom Navigation Bar -->
         <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">

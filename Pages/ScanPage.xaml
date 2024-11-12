@@ -17,19 +17,50 @@
             <HorizontalStackLayout VerticalOptions="Center" Padding="10">
                 <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
             </HorizontalStackLayout>
-            
-        </Grid>
-        <Grid Grid.Row="0" VerticalOptions="Center">
-            <zxing:CameraBarcodeReaderView
-            x:Name="barcodeReader"
-            BarcodesDetected="BarcodeReader_BarcodesDetected"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            WidthRequest="300"
-            HeightRequest="200"
-            />
         </Grid>
         
+        <Label Text="SCAN BARCODE"
+            FontSize="30"
+            FontFamily="Poppins-ExtraBold"
+            FontAttributes="Bold"
+            Margin="0,70"
+            HorizontalOptions="Center"
+            TextColor="#E76722" />
+
+        <Grid Grid.Row="0" VerticalOptions="FillAndExpand" Margin="0,120,0,0">
+            <Frame CornerRadius="20" 
+                Padding="0"
+                WidthRequest="350"
+                HeightRequest="550"  
+                HasShadow="False"
+                BackgroundColor="Transparent">
+
+                <zxing:CameraBarcodeReaderView
+            x:Name="barcodeReader"
+            BarcodesDetected="BarcodeReader_BarcodesDetected"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            WidthRequest="350"
+            HeightRequest="550"  
+            />
+            </Frame>
+        </Grid>
+
+        <Grid Grid.Row="1" VerticalOptions="Center">
+            <Button Text="SCAN" 
+            BackgroundColor="#E76722"  
+            TextColor="White" 
+            CornerRadius="10"
+            HeightRequest="38"
+            WidthRequest="150"
+            FontSize="16"
+            Padding="6"
+            FontFamily="Poppins-SemiBold"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="0,20,0,20" />
+        </Grid>
+
         <!-- Bottom Navigation Bar -->
         <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
             <Grid.ColumnDefinitions>

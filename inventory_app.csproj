@@ -69,6 +69,7 @@
 	  <None Remove="Resources\Images\back_icon.png" />
 	  <None Remove="Resources\Images\login_logo.png" />
 	  <None Remove="Resources\Images\Main.png" />
+	  <None Remove="Resources\Images\product1.png" />
 	  <None Remove="Resources\Images\register_logo.png" />
 	  <None Remove="Resources\Images\splashscreen.png" />
 	</ItemGroup>
