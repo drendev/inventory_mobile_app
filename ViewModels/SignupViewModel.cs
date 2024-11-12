@@ -10,13 +10,22 @@ namespace inventory_mobile_app.ViewModels
 {
     public partial class SignupViewModel : ObservableObject
     {
+        private bool _isSignup;
+        public bool IsSignup
+        {
+            get => _isSignup;
+            set
+            {
+                SetProperty(ref _isSignup, value);
+                SignupCommand.NotifyCanExecuteChanged();
+            }
+        }
+
         [ObservableProperty]
         private SignupModel signupModel;
 
         [ObservableProperty]
-        private string userName;
-        [ObservableProperty]
-        private bool isAuthenticated;
+        private List<string> availablePositions;
 
         private readonly ClientService clientService;
 
@@ -24,12 +33,13 @@ namespace inventory_mobile_app.ViewModels
         {
             this.clientService = clientService;
             SignupModel = new();
-            IsAuthenticated = false;
+            AvailablePositions = new List<string> { "Manager", "Staff", "Supervisor", "Inventory Clerk" };
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanExecuteSignup))]
         private async Task Signup()
         {
+            IsSignup = true;
             bool signUpSuccessful = await clientService.Signup(SignupModel);
 
             if (!signUpSuccessful)
@@ -40,6 +50,9 @@ namespace inventory_mobile_app.ViewModels
             {
                 await Shell.Current.GoToAsync(nameof(LoginPage));
             }
+
+            IsSignup = false;
         }
+        private bool CanExecuteSignup() => !IsSignup;
     }
 }

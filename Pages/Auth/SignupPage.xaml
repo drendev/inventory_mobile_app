@@ -36,9 +36,10 @@
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="30,30,0,0"/>
             </Border.StrokeShape>
+            <ScrollView HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
             <Grid RowSpacing="20" Padding="24,24,24,24">
                     <VerticalStackLayout Spacing="10">
-                        <Label 
+                    <Label 
                         Text="Create Account"
                         TextColor="#0066CC"
                         FontSize="18"
@@ -46,27 +47,7 @@
                         HorizontalOptions="Center"
                         />
 
-                        <!-- Full Name -->
-                        <VerticalStackLayout Spacing="8">
-                            <Label 
-                            Text="Full Name"
-                            TextColor="#0066CC"
-                            FontSize="14"
-                            FontAttributes="Bold"/>
-                        <Frame Style="{StaticResource InputFrame}">
-                            <Entry 
-                            x:Name="FullNameEntry"
-                            Placeholder="Enter full name"
-                            BackgroundColor="#F5F5F5"
-                            Margin="10, 0"
-                            TextColor="Black"
-                            HeightRequest="40"
-                            Text="{Binding SignupModel.FullName}"
-                            />
-                        </Frame>
-                    </VerticalStackLayout>
-
-                        <!-- Email -->
+                    <!-- Email -->
                     <VerticalStackLayout Spacing="8">
                         <Label 
                             Text="Email"
@@ -74,6 +55,7 @@
                             FontSize="14"
                             FontAttributes="Bold"/>
                         <Frame Style="{StaticResource InputFrame}">
+                            <VerticalStackLayout>
                             <Entry 
                             x:Name="EmailEntry"
                             Placeholder="Enter email"
@@ -83,27 +65,100 @@
                             TextColor="Black"
                             Text="{Binding SignupModel.Email}"
                             />
+                            </VerticalStackLayout>
                         </Frame>
                     </VerticalStackLayout>
-                    <!-- Position -->
-                        <VerticalStackLayout Spacing="8">
-                            <Label 
-                            Text="Position"
+
+                    <!-- Passsword -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+                            Text="Password"
                             TextColor="#0066CC"
                             FontSize="14"
                             FontAttributes="Bold"/>
                         <Frame Style="{StaticResource InputFrame}">
-                            <Entry 
-                            x:Name="PositionEntry"
-                            Placeholder="Enter position"
-                            Margin="10, 0"
-                            TextColor="Black"
+                            <VerticalStackLayout>
+                                <Entry 
+                            x:Name="Password"
+                            Placeholder="Password"
                             BackgroundColor="#F5F5F5"
                             HeightRequest="40"
-                            Text="{Binding SignupModel.Role}"
+                            Margin="10, 0"
+                            TextColor="Black"
+                            IsPassword="True"
+                            Text="{Binding SignupModel.Password}"
                             />
+                            </VerticalStackLayout>
                         </Frame>
                     </VerticalStackLayout>
+
+                    <!-- Passsword -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+                            Text="Confirm Password"
+                            TextColor="#0066CC"
+                            FontSize="14"
+                            FontAttributes="Bold"/>
+                        <Frame Style="{StaticResource InputFrame}">
+                            <VerticalStackLayout>
+                                <Entry 
+                            x:Name="ConfirmPassword"
+                            Placeholder="Confirm Password"
+                            BackgroundColor="#F5F5F5"
+                            HeightRequest="40"
+                            Margin="10, 0"
+                            TextColor="Black"
+                            IsPassword="True"
+                            Text="{Binding SignupModel.ConfirmPassword}"
+                            />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Full Name -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+                            Text="Full Name"
+                            TextColor="#0066CC"
+                            FontSize="14"
+                            FontAttributes="Bold"/>
+                        <Frame Style="{StaticResource InputFrame}">
+                            <VerticalStackLayout>
+                                <Entry 
+                            x:Name="FullNameEntry"
+                            Placeholder="Enter full name"
+                            BackgroundColor="#F5F5F5"
+                            Margin="10, 0"
+                            TextColor="Black"
+                            HeightRequest="40"
+                            Text="{Binding SignupModel.FullName}"
+                            />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <!-- Position -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label 
+                                Text="Position"
+                                TextColor="#0066CC"
+                                FontSize="14"
+                                FontAttributes="Bold"/>
+                            <Frame Style="{StaticResource InputFrame}">
+                                <VerticalStackLayout>
+                                    <Picker
+                                        Title="Select position"
+                                        ItemsSource="{Binding AvailablePositions}"
+                                        SelectedItem="{Binding SignupModel.Role}"
+                                        Margin="10, 0"
+                                        BackgroundColor="Transparent"
+                                        HorizontalOptions="FillAndExpand"
+                                        TextColor="Black"
+                                        TitleColor="LightGray"
+                                        HeightRequest="40"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </VerticalStackLayout>
 
                         <!-- Mobile Number -->
                         <VerticalStackLayout Spacing="8">
@@ -113,6 +168,7 @@
                             FontSize="14"
                             FontAttributes="Bold"/>
                         <Frame Style="{StaticResource InputFrame}">
+                            <VerticalStackLayout>
                             <Entry 
                             x:Name="MobileEntry"
                             Placeholder="Enter mobile number"
@@ -123,6 +179,7 @@
                             Keyboard="Telephone"
                             Text="{Binding SignupModel.PhoneNumber}" 
                             />
+                            </VerticalStackLayout>
                         </Frame>
                     </VerticalStackLayout>
 
@@ -134,6 +191,7 @@
                             FontSize="14"
                             FontAttributes="Bold"/>
                         <Frame Style="{StaticResource InputFrame}">
+                            <VerticalStackLayout>
                             <DatePicker 
                             x:Name="DateOfBirthPicker"
                             TextColor="Black"
@@ -141,20 +199,51 @@
                             HeightRequest="40"
                             Date="{Binding SignupModel.Birthday}"
                             />
+                            </VerticalStackLayout>
                         </Frame>
                     </VerticalStackLayout>
 
-                        <Button 
-                        Text="NEXT"
-                        BackgroundColor="#FFB800"
-                        TextColor="White"
-                        CornerRadius="8"
-                        HeightRequest="45"
-                        Margin="0,20,0,30"
-                        Clicked="HandleNext"
-                        />
+                        <Grid>
+                            <Frame 
+                               x:Name="SignupButtonFrame"
+                               BackgroundColor="#FF6B2C"
+                               CornerRadius="22"
+                               HeightRequest="50"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Center"
+                               BorderColor="Transparent"
+                               Padding="0">
+
+                                <Grid>
+                                    <!-- Text Label for "LOG IN" -->
+                                    <Label Text="SIGN UP"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       IsVisible="{Binding IsSignup, Converter={StaticResource InverseBoolConverter}}" />
+
+                                    <!-- Activity Indicator -->
+                                    <ActivityIndicator 
+                                       IsRunning="True"
+                                       Color="White"
+                                       WidthRequest="30"
+                                       HeightRequest="30"
+                                       IsVisible="{Binding IsSignup}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+
+                                    <!-- Tap Gesture to Handle Button Click -->
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SignupCommand}" Tapped="OnSignupButtonTapped"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </Frame>
+                        </Grid>
                     </VerticalStackLayout>
                 </Grid>
+            </ScrollView>
         </Border>
     </Grid>
 </ContentPage>

@@ -27,6 +27,15 @@ namespace inventory_mobile_app
                     handler.PlatformView.BackgroundTintList = ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
                 }
             });
+
+            Microsoft.Maui.Handlers.PickerHandler.Mapper.AppendToMapping(nameof(Picker), (handler, view) =>
+            {
+                if (view is Picker)
+                {
+                    // Remove underline
+                    handler.PlatformView.BackgroundTintList = ColorStateList.ValueOf(Android.Graphics.Color.Transparent);
+                }
+            });
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();

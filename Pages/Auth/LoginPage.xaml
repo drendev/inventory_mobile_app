@@ -54,24 +54,27 @@
                        TextColor="#0050A2" 
                        Margin="0,60,0,0"
                        />
-                <Frame BorderColor="White" Margin="0,0,0,10" BackgroundColor="White" HasShadow="True" Padding="0" CornerRadius="15" HeightRequest="45" HorizontalOptions="FillAndExpand">
-                    <Entry Placeholder="Enter your username or email" 
-                           HeightRequest="45"
-                           FontSize="14"
-                           FontFamily="Poppins-Medium"
-                           Text="{Binding LoginModel.Email}"
-                           Margin="10,0"
-                           BackgroundColor="Transparent"
-                           Keyboard="Email"
-                           TextColor="Black"
-                           x:Name="Email"
-                           />
-                </Frame>
+                <Grid>
+                    <Frame BorderColor="White" Margin="0,0,0,10" BackgroundColor="White" HasShadow="True" Padding="0" CornerRadius="15" HeightRequest="45" HorizontalOptions="FillAndExpand">
+                        <Entry Placeholder="Enter your username or email" 
+                               HeightRequest="45"
+                               FontSize="14"
+                               FontFamily="Poppins-Medium"
+                               Text="{Binding LoginModel.Email}"
+                               Margin="10,0"
+                               BackgroundColor="Transparent"
+                               Keyboard="Email"
+                               TextColor="Black"
+                               x:Name="Email"
+                               />
+                    </Frame>
+                </Grid>
                 <Label Text="Password" 
                        FontFamily="Poppins-SemiBold"
                        FontAttributes="Bold"
                        FontSize="18"
                        TextColor="#0050A2" />
+                <Grid>
                 <Frame BorderColor="White" Margin="0,0,0,20" BackgroundColor="White" HasShadow="True" Padding="0" CornerRadius="15" HeightRequest="45" HorizontalOptions="FillAndExpand">
                     <Entry Placeholder="Enter your password" 
                        HeightRequest="45"
@@ -85,7 +88,8 @@
                        x:Name="Password"
                        />
                 </Frame>
-
+                </Grid>
+                <Grid>
                 <Frame 
                    x:Name="LoginButtonFrame"
                    BackgroundColor="#FF6B2C"
@@ -122,6 +126,7 @@
                         </Grid.GestureRecognizers>
                     </Grid>
                 </Frame>
+                </Grid>
                 <Label  Text="Don't have an account?" 
                         FontFamily="Poppins-Medium"
                         FontSize="18"
