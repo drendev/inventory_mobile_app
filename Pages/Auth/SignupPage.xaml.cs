@@ -19,11 +19,6 @@ public partial class SignupPage : ContentPage
         await Shell.Current.GoToAsync("//MainPage");
     }
 
-    private async void HandleNext(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//SetPassword");
-    }
-
     private async void OnSignupButtonTapped(object sender, TappedEventArgs e)
     {
         SignupButtonFrame.BackgroundColor = PressedColor;

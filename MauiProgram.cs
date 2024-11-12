@@ -49,7 +49,7 @@ namespace inventory_mobile_app
             builder.Services.AddSingleton<SignupPage>();
             builder.Services.AddSingleton<SignupViewModel>();
 
-            builder.Services.AddSingleton<SetPassword>();
+            builder.Services.AddSingleton<InventoryPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
