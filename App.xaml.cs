@@ -11,8 +11,9 @@ namespace inventory_mobile_app
         {
             InitializeComponent();
 
+            MainViewModel = new MainViewModel();
             MainPage = new SplashScreenPage();
-
+            
             StartApp();
         }
 
@@ -20,13 +21,7 @@ namespace inventory_mobile_app
         {
             await Task.Delay(2000);
 
-            var authenticationData = await SecureStorage.Default.GetAsync("Authentication");
             MainPage = new AppShell();
-
-            if (!string.IsNullOrEmpty(authenticationData))
-            {
-                await Shell.Current.GoToAsync(nameof(HomePage));
-            }
         }
     }
 }
