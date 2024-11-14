@@ -5,9 +5,9 @@ using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ScanPage : ContentPage
 {
-	public ScanPage()
-	{
-		InitializeComponent();
+    public ScanPage()
+    {
+        InitializeComponent();
         BindingContext = new MainViewModel();
 
 
@@ -19,6 +19,16 @@ public partial class ScanPage : ContentPage
             AutoRotate = true,
             Formats = ZXing.Net.Maui.BarcodeFormat.Code128,
         };
+    }
+
+    void OnScanProductClicked(object sender, EventArgs e)
+    {
+        ScanProductModal.IsVisible = true;
+    }
+
+    private void OnCloseScanProductClicked(object sender, EventArgs e)
+    {
+        ScanProductModal.IsVisible = false;
     }
 
     // Home/Dashboard page
@@ -81,25 +91,7 @@ public partial class ScanPage : ContentPage
         }
     }
 
-    // Sales page
-    private async void OnSalesClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = true;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//SalesPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
+ 
 
     // Settings page
     private async void OnSettingsClicked(object sender, EventArgs e)

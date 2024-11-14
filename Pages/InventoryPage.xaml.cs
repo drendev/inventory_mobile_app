@@ -26,6 +26,7 @@ public partial class InventoryPage : ContentPage
     void OnEditProductClicked(object sender, EventArgs e)
     {
         EditProductModal.IsVisible = true;
+        EditProductButton.IsEnabled = true;
     }
 
     private void OnCloseEditModalClicked(object sender, EventArgs e)
@@ -41,6 +42,38 @@ public partial class InventoryPage : ContentPage
     private void OnCloseViewModalClicked(object sender, EventArgs e)
     {
         ViewProductModal.IsVisible = false;
+    }
+
+    void OnRemoveProductClicked(object sender, EventArgs e)
+    {
+        RemoveProductModal.IsVisible = true;
+        EditProductModal.IsVisible = false;
+        EditProductButton.IsEnabled = false;
+    }
+
+    private void OnCloseDeleteModalClicked(object sender, EventArgs e)
+    {
+        RemoveProductModal.IsVisible = false;
+        EditProductButton.IsEnabled = true;
+    }
+
+    void OnYesRemoveClicked(object sender, EventArgs e)
+    {
+        RemoveProductSuccessfullyModal.IsVisible = true;
+    }
+
+    private void OnCancelRemoveModalClicked(object sender, EventArgs e)
+    {
+        RemoveProductSuccessfullyModal.IsVisible = false;
+        RemoveProductModal.IsVisible = false; 
+        EditProductButton.IsEnabled = true;
+    }
+
+    private void OnCloseSuccessRemoveModalClicked(object sender, EventArgs e)
+    {
+        RemoveProductSuccessfullyModal.IsVisible = false;
+        RemoveProductModal.IsVisible = false; 
+        EditProductButton.IsEnabled = true;
     }
 
     void OnSaveProductClicked(object sender, EventArgs e)
@@ -154,26 +187,6 @@ public partial class InventoryPage : ContentPage
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//ScanPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Sales page
-    private async void OnSalesClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//SalesPage");
         }
         catch (Exception ex)
         {

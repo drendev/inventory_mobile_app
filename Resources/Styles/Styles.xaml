@@ -526,5 +526,18 @@
         <Setter Property="TextColor" Value="Black" />
     </Style>
 
+    <Style x:Key="ModalShadow" TargetType="BoxView">
+        <Setter Property="Color" Value="Gray"/>
+        <Setter Property="Opacity" Value="0.1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="WidthRequest" Value="325"/>
+        <Setter Property="HeightRequest" Value="205"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+        <Setter Property="Margin" Value="60,58,60,0"/>
+        <Setter Property="TranslationX" Value="0"/>
+        <Setter Property="TranslationY" Value="0"/>
+    </Style>
+
 
 </ResourceDictionary>

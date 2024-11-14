@@ -7,27 +7,32 @@
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
 
-    <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90" >
+    <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
-            <!-- Logo -->
+        <!-- Logo and Header -->
+        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90">
             <HorizontalStackLayout VerticalOptions="Center" Padding="10">
                 <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
             </HorizontalStackLayout>
         </Grid>
 
-        <Label Text="SETTINGS"
-           FontSize="24" 
-           FontFamily="Poppins-ExtraBold"
-           FontAttributes="Bold"
-           Padding="70"
-           HorizontalOptions="Center"
-           TextColor="#E76722" />
+        <!-- Scrollable Content -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20">
+                <Label Text="SETTINGS"
+                       FontSize="24"
+                       Margin="50"
+                       FontFamily="Poppins-ExtraBold"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="#E76722" />
+
+            </VerticalStackLayout>
+        </ScrollView>
 
         <!-- Bottom Navigation Bar -->
         <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -143,43 +148,8 @@
                 </Label>
             </StackLayout>
 
+
             <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Sales Icon Label -->
-                <Label Text="{x:Static model:Icons.SalesIcon}"
-         Style="{StaticResource MaterialIcon}"
-         HorizontalOptions="Center"
-         Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSalesClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Sales Text Label -->
-                <Label Text="Sales"
-         HorizontalOptions="Center"
-         FontSize="10"
-         FontFamily="Poppins-Bold"
-         TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-
-            <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
                 <!-- Settings Icon Label -->
                 <Label Text="{x:Static model:Icons.SettingsIcon}"
          Style="{StaticResource MaterialIcon}"

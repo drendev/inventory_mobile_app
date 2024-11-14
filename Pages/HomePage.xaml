@@ -8,17 +8,20 @@
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
 
-    <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20" HeightRequest="90" >
+    <Grid RowDefinitions="*, Auto">
 
-            <!-- Logo -->
-            <HorizontalStackLayout VerticalOptions="Center" Padding="10">
-                <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
-            </HorizontalStackLayout>
-        </Grid>
+        <ScrollView Grid.Row="0">
+            <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                    <!-- Logo at the Top -->
+                    <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Margin="30,10,10,0">
+                        <Image Source="pages_logo.png" 
+                   Aspect="AspectFit" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" />
+                    </Grid>
 
-        <Label Text="DASHBOARD"
+                    <Label Text="DASHBOARD"
                    FontSize="24" 
                    FontFamily="Poppins-ExtraBold"
                    FontAttributes="Bold"
@@ -26,262 +29,265 @@
                    HorizontalOptions="Center"
                    TextColor="#E76722" />
 
-            <VerticalStackLayout Spacing="15" Padding="20,110,20,20">
+                    <VerticalStackLayout Spacing="15" Padding="20,110,20,20">
 
-                <!-- Statistics Grid -->
-                <Grid ColumnDefinitions="*,*" 
+                        <!-- Statistics Grid -->
+                        <Grid ColumnDefinitions="*,*" 
                   RowDefinitions="Auto,Auto"
                   ColumnSpacing="15"
                   RowSpacing="15">
 
-                    <!-- Total Products -->
-                    <Frame Grid.Row="0" Grid.Column="0"
+                            <!-- Total Products -->
+                            <Frame Grid.Row="0" Grid.Column="0"
                        BackgroundColor="White"
                        CornerRadius="10"
                        Padding="20,10,0,0"
                        HasShadow="True"
                        BorderColor="White"
                        HeightRequest="90">
-                        <VerticalStackLayout Spacing="0">
-                            <Label Text="Total Products"
+                                <VerticalStackLayout Spacing="0">
+                                    <Label Text="Total Products"
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                            <Label Text="108"
+                                    <Label Text="108"
                                FontSize="32"
                                FontFamily="Poppins-SemiBold"
                                    Margin="0,-5"
                                TextColor="#E76722"/>
-                        </VerticalStackLayout>
-                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
 
-                    <!-- Total Categories -->
-                    <Frame Grid.Row="0" Grid.Column="1"
+                            <!-- Total Categories -->
+                            <Frame Grid.Row="0" Grid.Column="1"
                        BackgroundColor="White"
                        CornerRadius="10"
                        Padding="20,10,0,0"
                        HasShadow="True"
                        BorderColor="White">
-                        <VerticalStackLayout Spacing="0">
-                            <Label Text="Total Categories"
+                                <VerticalStackLayout Spacing="0">
+                                    <Label Text="Total Categories"
                                 TextColor="#E76722"
                                 FontFamily="Poppins-Medium"
                                 FontSize="14"/>
-                            <Label Text="14"
+                                    <Label Text="14"
                                FontSize="32"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
                                TextColor="#E76722"/>
-                        </VerticalStackLayout>
-                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
 
-                    <!-- Top Selling -->
-                    <Frame Grid.Row="1" Grid.Column="0"
+                            <!-- Top Selling -->
+                            <Frame Grid.Row="1" Grid.Column="0"
                        BackgroundColor="White"
                        CornerRadius="10"
                        Padding="20,10,0,0"
                        HasShadow="True"
                        BorderColor="White">
-                        <VerticalStackLayout Spacing="0">
-                            <Label Text="Top Selling"
+                                <VerticalStackLayout Spacing="0">
+                                    <Label Text="Top Selling"
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                            <Label Text="9"
+                                    <Label Text="9"
                                FontSize="30"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
                                TextColor="#E76722"/>
-                            <Label Text="Products"
+                                    <Label Text="Products"
                                 Margin="0,-10,0,0"
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                        </VerticalStackLayout>
-                    </Frame>
+                                </VerticalStackLayout>
+                            </Frame>
 
-                    <!-- Low Stocks -->
-                    <Frame Grid.Row="1" Grid.Column="1"
+                            <!-- Low Stocks -->
+                            <Frame Grid.Row="1" Grid.Column="1"
                        BackgroundColor="White"
                        CornerRadius="10"
                        Padding="20,10"
                        HasShadow="True"
                        BorderColor="White">
-                        <VerticalStackLayout Spacing="0">
-                            <Label Text="Low Stocks"
+                                <VerticalStackLayout Spacing="0">
+                                    <Label Text="Low Stocks"
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                            <Label Text="10"
+                                    <Label Text="10"
                                FontSize="30"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
                                FontAttributes="Bold"
                                TextColor="#E76722"/>
-                            <Label Text="Products"
+                                    <Label Text="Products"
                                Margin="0,-10,0,0"
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                        </VerticalStackLayout>
-                    </Frame>
-                </Grid>
-
-                <!-- Availability Report -->
-                <Frame BackgroundColor="White"
-       CornerRadius="10"
-       Padding="15"
-       HasShadow="True"
-       BorderColor="White">
-                    <VerticalStackLayout Spacing="5">
-                        <Label Text="Availability Report"
-               TextColor="#E76722"
-               FontFamily="Poppins-SemiBold"
-               FontSize="16"
-               FontAttributes="Bold"/>
-                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
-                            <!-- Chart -->
-                            <GraphicsView Grid.Column="0"
-                          x:Name="AvailabilityChart"
-                          HeightRequest="130"/>
-
-                            <!-- Legend -->
-                            <VerticalStackLayout Grid.Column="1" 
-                                 Spacing="10" 
-                                 VerticalOptions="Center">
-                                <HorizontalStackLayout Spacing="5">
-                                    <BoxView Color="#FFD700"
-                             WidthRequest="16"
-                             HeightRequest="12"
-                             VerticalOptions="Center"/>
-                                    <Label Text="IN-STOCK"
-                           FontSize="12"
-                           VerticalOptions="Center"
-                           FontFamily="Poppins-Bold"
-                           TextColor="#4F4F4F"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout Spacing="6">
-                                    <BoxView Color="#FF6B35"
-                             WidthRequest="16"
-                             HeightRequest="12"
-                             VerticalOptions="Center"/>
-                                    <Label Text="LOW STOCK"
-                           FontSize="12"
-                           VerticalOptions="Center"
-                           FontFamily="Poppins-Bold"
-                           TextColor="#4F4F4F"/>
-                                </HorizontalStackLayout>
-                                <HorizontalStackLayout Spacing="5">
-                                    <BoxView Color="#FF0000"
-                             WidthRequest="16"
-                             HeightRequest="12"
-                             VerticalOptions="Center"/>
-                                    <Label Text="OUT OF STOCK"
-                           FontSize="12"
-                           VerticalOptions="Center"
-                           FontFamily="Poppins-Bold"
-                           TextColor="#4F4F4F"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
                         </Grid>
-                    </VerticalStackLayout>
-                </Frame>
 
-                <!-- Stock Report -->
-                <Frame BackgroundColor="White"
-                   CornerRadius="10"
-                   Padding="15"
-                   HasShadow="True"
-                   BorderColor="White">
-                    <VerticalStackLayout Spacing="10">
-                        <Label Text="Stock Report"
+                        <!-- Availability Report -->
+                        <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           Padding="15"
+                           HasShadow="True"
+                           BorderColor="White"> 
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="Availability Report"
+                                   TextColor="#E76722"
+                                   FontFamily="Poppins-SemiBold"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+                                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                                    <!-- Chart -->
+                                    <GraphicsView Grid.Column="0"
+                                      x:Name="AvailabilityChart"
+                                      HeightRequest="130"/>
+
+                                    <!-- Legend -->
+                                    <VerticalStackLayout Grid.Column="1" 
+                                         Spacing="10" 
+                                         VerticalOptions="Center">
+                                                <HorizontalStackLayout Spacing="5">
+                                            <BoxView Color="#FFD700"
+                                             WidthRequest="16"
+                                             HeightRequest="12"
+                                             VerticalOptions="Center"/>
+                                                    
+                                            <Label Text="IN-STOCK"
+                                               FontSize="12"
+                                               VerticalOptions="Center"
+                                               FontFamily="Poppins-Bold"
+                                               TextColor="#4F4F4F"/>
+                                                   
+                                        </HorizontalStackLayout>
+                                                <HorizontalStackLayout Spacing="6">
+                                            <BoxView Color="#FF6B35"
+                                         WidthRequest="16"
+                                         HeightRequest="12"
+                                         VerticalOptions="Center"/>
+                                            <Label Text="LOW STOCK"
+                                       FontSize="12"
+                                       VerticalOptions="Center"
+                                       FontFamily="Poppins-Bold"
+                                       TextColor="#4F4F4F"/>
+                                        </HorizontalStackLayout>
+                                                <HorizontalStackLayout Spacing="5">
+                                            <BoxView Color="#FF0000"
+                                         WidthRequest="16"
+                                         HeightRequest="12"
+                                         VerticalOptions="Center"/>
+                                            <Label Text="OUT OF STOCK"
+                                       FontSize="12"
+                                       VerticalOptions="Center"
+                                       FontFamily="Poppins-Bold"
+                                       TextColor="#4F4F4F"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Stock Report -->
+                        <Frame BackgroundColor="White"
+                       CornerRadius="10"
+                       Padding="15"
+                       HasShadow="True"
+                       BorderColor="White">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="Stock Report"
                            TextColor="#E76722"
                            FontSize="16"
                            Margin="0,0,0,-5"
                            FontFamily="Poppins-SemiBold"/>
 
-                        <!-- Header -->
-                        <VerticalStackLayout Spacing="0">
-                            <!-- Top Border -->
-                            <BoxView HeightRequest="1"
-                            BackgroundColor="#979797"
-                            Opacity="0.4"/>
+                                <!-- Header -->
+                                <VerticalStackLayout Spacing="0">
+                                    <!-- Top Border -->
+                                    <BoxView HeightRequest="1"
+                                    BackgroundColor="#979797"
+                                    Opacity="0.4"/>
 
-                            <!-- Header Grid -->
-                            <Grid ColumnDefinitions="*,Auto" 
-                              RowSpacing="15"
-                              Padding="0,2">
-                                <Label Text="PRODUCT"
-                               Grid.Column="0"
-                               TextColor="#E76722"
-                               FontSize="14"
-                               FontFamily="Poppins-Bold"/>
-                                <Label Text="STATUS"
-                               Grid.Column="1"
-                               TextColor="#E76722"
-                               FontSize="14"
-                               FontFamily="Poppins-Bold"/>
-                            </Grid>
+                                    <!-- Header Grid -->
+                                    <Grid ColumnDefinitions="*,Auto" 
+                                      RowSpacing="15"
+                                      Padding="0,2">
+                                        <Label Text="PRODUCT"
+                                       Grid.Column="0"
+                                       TextColor="#E76722"
+                                       FontSize="14"
+                                       FontFamily="Poppins-Bold"/>
+                                        <Label Text="STATUS"
+                                       Grid.Column="1"
+                                       TextColor="#E76722"
+                                       FontSize="14"
+                                       FontFamily="Poppins-Bold"/>
+                                    </Grid>
 
-                            <!-- Bottom Border -->
-                            <BoxView HeightRequest="1"
+                                    <!-- Bottom Border -->
+                                    <BoxView HeightRequest="1"
                               BackgroundColor="#979797"
                               Opacity="0.4"/>
-                        </VerticalStackLayout>
+                                </VerticalStackLayout>
 
-                        <!-- Products List -->
-                        <VerticalStackLayout Spacing="10">
-                            <!-- DELIMONDO -->
-                            <Grid ColumnDefinitions="*,Auto">
-                                <Label Text="DELIMONDO CORNED BEEF"
+                                <!-- Products List -->
+                                <VerticalStackLayout Spacing="10">
+                                    <!-- DELIMONDO -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="DELIMONDO CORNED BEEF"
                                    Grid.Column="0"
                                    FontSize="14"
                                    TextColor="#666666"
                                        FontFamily="Poppins-SemiBold"
                                    VerticalOptions="Center"/>
-                                <Frame Grid.Column="1"
+                                        <Frame Grid.Column="1"
                                    BackgroundColor="#FFD8C2"
                                    Padding="12,6"
                                    CornerRadius="15"
                                    HasShadow="True"
                                    BorderColor="Transparent">
-                                    <Label Text="LOW STOCK"
+                                            <Label Text="LOW STOCK"
                                        TextColor="#EE5100"
                                        FontSize="10"
                                        FontFamily="Poppins-SemiBold"/>
-                                </Frame>
-                            </Grid>
+                                        </Frame>
+                                    </Grid>
 
-                            <!-- GARDENIA -->
-                            <Grid ColumnDefinitions="*,Auto">
-                                <Label Text="GARDENIA CLASSIC"
+                                    <!-- GARDENIA -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="GARDENIA CLASSIC"
                                    Grid.Column="0"
                                    FontSize="14"
                                    TextColor="#666666"
                                    FontFamily="Poppins-SemiBold"
                                    VerticalOptions="Center"/>
-                                <Frame Grid.Column="1"
+                                        <Frame Grid.Column="1"
                                    BackgroundColor="#FFE5E5"
                                    Padding="12,6"
                                    CornerRadius="15"
                                    HasShadow="True"
                                    BorderColor="Transparent">
-                                    <Label Text="OUT OF STOCK"
+                                            <Label Text="OUT OF STOCK"
                                        TextColor="#FF0000"
                                        FontSize="10"
                                        FontFamily="Poppins-SemiBold"/>
-                                </Frame>
-                            </Grid>
-                        </VerticalStackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
                     </VerticalStackLayout>
-                </Frame>
-            </VerticalStackLayout>
-       
-        
+                </Grid>
+            </Grid>
+        </ScrollView>
+
         <!-- Bottom Navigation Bar -->
         <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -322,11 +328,11 @@
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
-                    <!-- Inventory Icon Label -->
-                    <Label Text="{x:Static model:Icons.InventoryIcon}"
+            <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
+                <!-- Inventory Icon Label -->
+                <Label Text="{x:Static model:Icons.InventoryIcon}"
                 Style="{StaticResource MaterialIcon}"
                 HorizontalOptions="Center"
                 Padding="0,7,0,0">
@@ -334,36 +340,36 @@
                         <TapGestureRecognizer Tapped="OnInventoryClicked" />
                     </Label.GestureRecognizers>
                     <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
-                    <!-- Inventory Text Label -->
-                    <Label Text="Inventory"
+                <!-- Inventory Text Label -->
+                <Label Text="Inventory"
                 HorizontalOptions="Center"
                 FontSize="10"
                 FontFamily="Poppins-Bold"
                 TextColor="#979797">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                </StackLayout>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
 
 
-                <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
-                    <!-- Scan Icon Label -->
-                    <Label Text="{x:Static model:Icons.BarcodeIcon}"
+            <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
+                <!-- Scan Icon Label -->
+                <Label Text="{x:Static model:Icons.BarcodeIcon}"
                 Style="{StaticResource BootstrapIcon}"
                 HorizontalOptions="Center"
                 Padding="0,7,0,0">
@@ -371,71 +377,36 @@
                         <TapGestureRecognizer Tapped="OnScanClicked" />
                     </Label.GestureRecognizers>
                     <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
-                    <!-- Scan Text Label -->
-                    <Label Text="SCAN"
+                <!-- Scan Text Label -->
+                <Label Text="SCAN"
                 HorizontalOptions="Center"
                 FontSize="10"
                 FontFamily="Poppins-Bold"
                 TextColor="#979797">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                </StackLayout>
-
-                <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
-                    <!-- Sales Icon Label -->
-                    <Label Text="{x:Static model:Icons.SalesIcon}"
-                 Style="{StaticResource MaterialIcon}"
-                 HorizontalOptions="Center"
-                 Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSalesClicked" />
-                    </Label.GestureRecognizers>
                     <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
 
-                    <!-- Sales Text Label -->
-                    <Label Text="Sales"
-                 HorizontalOptions="Center"
-                 FontSize="10"
-                 FontFamily="Poppins-Bold"
-                 TextColor="#979797">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                </StackLayout>
 
-                <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
-                    <!-- Settings Icon Label -->
-                    <Label Text="{x:Static model:Icons.SettingsIcon}"
+            <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
+                <!-- Settings Icon Label -->
+                <Label Text="{x:Static model:Icons.SettingsIcon}"
                  Style="{StaticResource MaterialIcon}"
                  HorizontalOptions="Center"
                  Padding="0,7,0,0">
@@ -443,33 +414,32 @@
                         <TapGestureRecognizer Tapped="OnSettingsClicked" />
                     </Label.GestureRecognizers>
                     <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
-                    <!-- Settings Text Label -->
-                    <Label Text="Settings"
+                <!-- Settings Text Label -->
+                <Label Text="Settings"
                  HorizontalOptions="Center"
                  FontSize="10"
                  FontFamily="Poppins-Bold"
                  TextColor="#979797">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
-                                <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
-                                <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-                </StackLayout>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
         </Grid>
 
     </Grid>
-         </ScrollView>
 </ContentPage>
