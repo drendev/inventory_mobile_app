@@ -106,8 +106,8 @@
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            TextColor="White"
-                           FontAttributes="Bold"
                            FontSize="16"
+                           FontFamily="Poppins-Bold"
                            IsVisible="{Binding IsLoggingIn, Converter={StaticResource InverseBoolConverter}}" />
 
                         <!-- Activity Indicator -->

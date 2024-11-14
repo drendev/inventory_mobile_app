@@ -9,6 +9,7 @@ public partial class ScanPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new MainViewModel();
+        ExpiryDatePicker.IsVisible = false;
 
 
         RequestCameraPermission();
@@ -24,11 +25,112 @@ public partial class ScanPage : ContentPage
     void OnScanProductClicked(object sender, EventArgs e)
     {
         ScanProductModal.IsVisible = true;
+        ScanButton.IsEnabled = false;
     }
 
     private void OnCloseScanProductClicked(object sender, EventArgs e)
     {
         ScanProductModal.IsVisible = false;
+        ScanButton.IsEnabled = true;
+    }
+
+
+    void OnScanNotExistClicked(object sender, EventArgs e)
+    {
+        ScanNotExistModal.IsVisible = true;
+        ScanButton.IsEnabled = false; 
+    }
+
+    private void OnCloseScanNotExistClicked(object sender, EventArgs e)
+    {
+        ScanNotExistModal.IsVisible = false;
+        AddedProductSuccessfullyModal.IsVisible = false;
+        ScanButton.IsEnabled = true; 
+    }
+
+    private void OnAddStockClicked(object sender, EventArgs e)
+    {
+        AddStockModal.IsVisible = true;
+        SoldStockModal.IsVisible = false;
+        ScanProductModal.IsVisible = false;
+        ScanButton.IsEnabled = false; 
+    }
+
+    private void OnSoldStockClicked(object sender, EventArgs e)
+    {
+        SoldStockModal.IsVisible = true;
+        AddStockModal.IsVisible = false;
+        ScanProductModal.IsVisible = false;
+        ScanButton.IsEnabled = false; 
+    }
+
+    private void OnCloseAddStockModalClicked(object sender, EventArgs e)
+    {
+        AddStockModal.IsVisible = false;
+        ScanButton.IsEnabled = true;
+    }
+
+        private void OnCloseSoldStockModalClicked(object sender, EventArgs e)
+    {
+        SoldStockModal.IsVisible = false;
+        ScanButton.IsEnabled = true; 
+    }
+
+    void OnAddProductClicked(object sender, EventArgs e)
+    {
+        AddProductModal.IsVisible = true;
+        ScanNotExistModal.IsVisible = false;
+        ScanProductModal.IsVisible = false;
+        AddedProductSuccessfullyModal.IsVisible = false;
+        ScanButton.IsEnabled = false; 
+    }
+
+    private void OnCloseModalClicked(object sender, EventArgs e)
+    {
+        AddProductModal.IsVisible = false;
+        AddedProductSuccessfullyModal.IsVisible = false;
+        ScanButton.IsEnabled = true; 
+    }
+
+    private void OnCloseSuccessAddedClicked(object sender, EventArgs e)
+    {
+        AddedProductSuccessfullyModal.IsVisible = false;
+        ScanButton.IsEnabled = true; 
+    }
+
+
+    void OnSaveProductClicked(object sender, EventArgs e)
+    {
+        var productName = ProductNameEntry.Text;
+        var productDescription = ProductDescriptionEntry.Text;
+        var buyingPrice = BuyingPriceEntry.Text;
+        var sellingPrice = SellingPriceEntry.Text;
+        var expiryDate = ExpiryDatePicker.Date;
+        var productQuantity = ProductQuantityEntry.Text;
+
+        if (!string.IsNullOrWhiteSpace(productName) &&
+            !string.IsNullOrWhiteSpace(productDescription) &&
+            !string.IsNullOrWhiteSpace(buyingPrice) &&
+            !string.IsNullOrWhiteSpace(sellingPrice) &&
+            expiryDate != DateTime.MinValue &&
+            !string.IsNullOrWhiteSpace(productQuantity))
+        {
+            AddProductModal.IsVisible = false;
+            AddedProductSuccessfullyModal.IsVisible = true;
+        }
+        else
+        {
+            DisplayAlert("Error", "Please fill in all fields", "OK");
+        }
+    }
+
+    private void OnDateSelected(object sender, DateChangedEventArgs e)
+    {
+        if (e.NewDate != DateTime.MinValue)
+        {
+            ExpiryDatePicker.IsVisible = true;
+
+        }
     }
 
     // Home/Dashboard page

@@ -10,18 +10,10 @@ public partial class InventoryPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = new MainViewModel();
-        ExpiryDatePicker.IsVisible = false;
+       
     }
 
-    void OnAddProductClicked(object sender, EventArgs e)
-    {
-        AddProductModal.IsVisible = true;
-    }
-
-    private void OnCloseModalClicked(object sender, EventArgs e)
-    {
-        AddProductModal.IsVisible = false;
-    }
+   
 
     void OnEditProductClicked(object sender, EventArgs e)
     {
@@ -76,29 +68,7 @@ public partial class InventoryPage : ContentPage
         EditProductButton.IsEnabled = true;
     }
 
-    void OnSaveProductClicked(object sender, EventArgs e)
-    {
-        var productName = ProductNameEntry.Text;
-        var productDescription = ProductDescriptionEntry.Text;
-        var buyingPrice = BuyingPriceEntry.Text;
-        var sellingPrice = SellingPriceEntry.Text;
-        var expiryDate = ExpiryDatePicker.Date;
-        var productQuantity = ProductQuantityEntry.Text;
-
-        if (!string.IsNullOrWhiteSpace(productName) &&
-            !string.IsNullOrWhiteSpace(productDescription) &&
-            !string.IsNullOrWhiteSpace(buyingPrice) &&
-            !string.IsNullOrWhiteSpace(sellingPrice) &&
-            expiryDate != DateTime.MinValue &&
-            !string.IsNullOrWhiteSpace(productQuantity))
-        {
-            AddProductModal.IsVisible = false;
-        }
-        else
-        {
-            DisplayAlert("Error", "Please fill in all fields", "OK");
-        }
-    }
+   
 
     void OnSaveEditProductClicked(object sender, EventArgs e)
     {
@@ -121,15 +91,6 @@ public partial class InventoryPage : ContentPage
         else
         {
             DisplayAlert("Error", "Please fill in all fields", "OK");
-        }
-    }
-
-    private void OnDateSelected(object sender, DateChangedEventArgs e)
-    {
-        if (e.NewDate != DateTime.MinValue)
-        {
-            ExpiryDatePicker.IsVisible = true;
-
         }
     }
 
