@@ -68,6 +68,18 @@ namespace inventory_mobile_app.Services
             return false;
         }
 
+        public async Task<List<ProductList>> GetProductListsAsync()
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null) return null;
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            var result = await httpClient.GetFromJsonAsync<List<ProductList>>("/api/Product/get");
+            return result;
+        }
+
         public async Task<Category[]> GetCategoriesData()
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");

@@ -193,8 +193,6 @@ public partial class ScanPage : ContentPage
         }
     }
 
- 
-
     // Settings page
     private async void OnSettingsClicked(object sender, EventArgs e)
     {

@@ -13,8 +13,6 @@ public partial class InventoryPage : ContentPage
        
     }
 
-   
-
     void OnEditProductClicked(object sender, EventArgs e)
     {
         EditProductModal.IsVisible = true;

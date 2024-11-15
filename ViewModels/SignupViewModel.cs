@@ -37,9 +37,11 @@ namespace inventory_mobile_app.ViewModels
         }
 
         [RelayCommand(CanExecute = nameof(CanExecuteSignup))]
+
         private async Task Signup()
         {
             IsSignup = true;
+
             bool signUpSuccessful = await clientService.Signup(SignupModel);
 
             if (!signUpSuccessful)
