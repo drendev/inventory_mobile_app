@@ -71,13 +71,45 @@ namespace inventory_mobile_app.Services
         public async Task<List<ProductList>> GetProductListsAsync()
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
-            if (serializedLoginResponseInStorage is null) return null;
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+                return null;
+            }
 
             string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
             var httpClient = httpClientFactory.CreateClient("custom-httpclient");
             httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            var result = await httpClient.GetFromJsonAsync<List<ProductList>>("/api/Product/get");
-            return result;
+
+            try
+            {
+                var response = await httpClient.GetStringAsync("/api/Product/get");
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var apiResponse = JsonSerializer.Deserialize<ProductListResponse>(response, options);
+
+                if (apiResponse == null)
+                {
+                    await Shell.Current.DisplayAlert("Error", "Failed to deserialize response.", "OK");
+                    return new List<ProductList>();
+                }
+
+                if (apiResponse.Products != null && apiResponse.Products.Any())
+                {
+                    return apiResponse.Products;
+                }
+
+                return new List<ProductList>();
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while fetching products: {ex.Message}", "OK");
+                return new List<ProductList>();
+            }
         }
 
         public async Task<Category[]> GetCategoriesData()

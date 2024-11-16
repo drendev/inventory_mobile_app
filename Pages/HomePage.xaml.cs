@@ -86,7 +86,7 @@ public partial class HomePage : ContentPage
             viewModel.IsSalesSelected = false;
             viewModel.IsSettingsSelected = false;
 
-            await Shell.Current.GoToAsync("//InventoryPage");
+            await Shell.Current.GoToAsync("//Inventory");
         }
         catch (Exception ex)
         {

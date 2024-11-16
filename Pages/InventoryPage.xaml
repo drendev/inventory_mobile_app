@@ -6,7 +6,8 @@
              BackgroundColor="#FFF6DF"
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
-             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             >
 
     <Grid RowDefinitions="*, Auto">
         <ScrollView Grid.Row="0">
@@ -39,7 +40,6 @@
 
 
                     <VerticalStackLayout Spacing="15" Margin="20,130,20,20">
-
                         <!-- Product Grid -->
                         <Grid ColumnDefinitions="*,*" 
                     RowDefinitions="Auto,Auto"

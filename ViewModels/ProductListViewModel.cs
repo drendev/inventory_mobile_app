@@ -2,6 +2,7 @@
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace inventory_mobile_app.ViewModels
 {
@@ -9,25 +10,52 @@ namespace inventory_mobile_app.ViewModels
     {
         private readonly ClientService clientService;
 
+        // ObservableCollection to store products
         public ObservableCollection<ProductList> Products { get; set; } = new ObservableCollection<ProductList>();
 
         public ProductListViewModel(ClientService clientService)
         {
             this.clientService = clientService;
-            LoadProductList();
+            Initialize();
         }
 
-        private async Task LoadProductList()
+        // Initialize async method
+        private async void Initialize()
         {
-            var response = await clientService.GetProductListsAsync();
-            Products?.Clear();
-            if (response != null && response.Any())
+            await LoadProductList();
+        }
+
+        public async Task LoadProductList()
+        {
+            try
             {
-                foreach (var product in response)
+                // Fetch the product list from the service
+                var response = await clientService.GetProductListsAsync();
+
+                // Clear existing products
+                Products.Clear();
+
+                if (response != null && response.Any())
                 {
-                    Products.Add(product);
+                    // Add the products to the ObservableCollection
+                    foreach (var product in response)
+                    {
+                        Products.Add(product);
+                    }
+                }
+                else
+                {
+                    // Provide a detailed message for debugging
+                    string errorMessage = response == null ? "The response is null." : "The response contains no products.";
+                    await Shell.Current.DisplayAlert("Error", $"An error occurred while fetching products: {errorMessage}", "OK");
                 }
             }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during data fetching
+                await Shell.Current.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }
         }
+
     }
 }
