@@ -26,6 +26,7 @@ public partial class LoginPage : ContentPage
 
         Email.Text = string.Empty;
         Password.Text = string.Empty;
+
     }
 
     private async void HandleSignUp(object sender, EventArgs e)

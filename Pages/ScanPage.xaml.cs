@@ -5,7 +5,7 @@ using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ScanPage : ContentPage
 {
-    public ScanPage()
+    public ScanPage(ScannerViewModel scannerViewModel)
     {
         InitializeComponent();
         BindingContext = new MainViewModel();
@@ -22,6 +22,20 @@ public partial class ScanPage : ContentPage
         };
     }
 
+    // Barcode reader {Not fully functional}
+
+    private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
+    {
+
+        var first = e.Results[0];
+
+        Dispatcher.DispatchAsync(async () =>
+        {
+            await DisplayAlert("Barcode Result", first.Value, "OK");
+        }
+        );
+    }
+
     void OnScanProductClicked(object sender, EventArgs e)
     {
         ScanProductModal.IsVisible = true;
@@ -33,7 +47,6 @@ public partial class ScanPage : ContentPage
         ScanProductModal.IsVisible = false;
         ScanButton.IsEnabled = true;
     }
-
 
     void OnScanNotExistClicked(object sender, EventArgs e)
     {
@@ -222,19 +235,5 @@ public partial class ScanPage : ContentPage
             await DisplayAlert("Camera Permission", "Camera permission is required to scan QR codes.", "OK");
             return;
         }
-    }
-
-    // Barcode reader {Not fully functional}
-
-    private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
-    {
-
-        var first = e.Results[0];
-
-        Dispatcher.DispatchAsync(async () =>
-        {
-            await DisplayAlert("Barcode Result", first.Value, "OK");
-        }
-        );
     }
 }

@@ -26,7 +26,6 @@ namespace inventory_mobile_app.Services
             }
 
             return false;
-            
         }
 
         public async Task<bool> Login(LoginModel model)
