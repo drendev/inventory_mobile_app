@@ -40,62 +40,46 @@
 
 
                     <VerticalStackLayout Spacing="15" Margin="20,130,20,20">
-                        <!-- Product Grid -->
-                        <Grid ColumnDefinitions="*,*" 
-                    RowDefinitions="Auto,Auto"
-                    ColumnSpacing="15"
-                    RowSpacing="15">
+                        <CollectionView ItemsSource="{Binding Products}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="2" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:ProductList">
+                                    <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True" BackgroundColor="White">
+                                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                                            <!-- Product Image -->
+                                            <Image Source="product1.png" 
+                               Grid.Row="0" Grid.ColumnSpan="2"
+                               WidthRequest="100" HeightRequest="100" 
+                               VerticalOptions="Center" HorizontalOptions="Center" />
 
-                            <Frame Grid.Row="0" Grid.Column="0"
-                       BackgroundColor="White"
-                       CornerRadius="10"
-                       Padding="0,5,0,0"
-                       HasShadow="True"
-                       BorderColor="White"
-                       HeightRequest="240">
+                                            <!-- Product Name -->
+                                            <Label Text="{Binding ProductName}" 
+                               Grid.Row="1" Grid.ColumnSpan="2"
+                               FontAttributes="Bold" FontSize="14" 
+                               HorizontalOptions="Center" TextColor="#E76722" />
 
-                                <VerticalStackLayout HorizontalOptions="Center">
+                                            <!-- Description -->
+                                            <Label Text="{Binding Description}" 
+                               Grid.Row="2" Grid.Column="0"
+                               FontSize="12" TextColor="#4F4F4F" 
+                               VerticalOptions="Start" HorizontalOptions="Start" />
 
-                                    <!-- Product Image -->
-                                    <Image Source="product1.png" 
-                               WidthRequest="100" 
-                               HeightRequest="100" 
-                               VerticalOptions="Center" 
+                                            <!-- Stock -->
+                                            <Label Text="{Binding Stock}" 
+                               Grid.Row="2" Grid.Column="1"
+                               FontSize="12" TextColor="#4F4F4F" 
+                               VerticalOptions="Start" HorizontalOptions="End" />
+
+                                            <!-- In-Stock Indicator -->
+                                            <Label Text="IN-STOCK" 
+                               Grid.Row="3" Grid.ColumnSpan="2"
+                               FontSize="14" TextColor="#80AA04" 
                                HorizontalOptions="Center" />
 
-                                    <!-- Product Name -->
-                                    <Label Text="PRODUCT NAME" 
-                               FontAttributes="Bold" 
-                               FontSize="14"
-                               FontFamily="Poppins-ExtraBold"
-                               TextColor="#E76722"
-                               Margin="0,0,0,-5"
-                               HorizontalOptions="Center" />
-
-                                    <!-- Product Details -->
-                                    <Label Text="Description"
-                               FontSize="12"
-                               FontFamily="Poppins-SemiBold"        
-                               TextColor="#4F4F4F"
-                               HorizontalOptions="Center" />
-
-                                    <!-- Product Quantity -->
-                                    <Label Text="QUANTITY: 5" 
-                               FontSize="12" 
-                               FontFamily="Poppins-SemiBold"        
-                               TextColor="#4F4F4F"
-                               HorizontalOptions="Center" />
-
-                                    <!-- Stock Status -->
-                                    <Label Text="IN-STOCK" 
-                               FontSize="14"
-                               FontFamily="Poppins-Bold"  
-                               TextColor="#80AA04"
-                               HorizontalOptions="Center" />
-
-
-                                    <!-- View Button -->
-                                    <Button Text="VIEW" 
+                                            <!-- View Button -->
+                                            <Button Text="VIEW" 
                                 BackgroundColor="#E76722"
                                 TextColor="White"
                                 FontSize="13"
@@ -105,13 +89,14 @@
                                 Padding="3"
                                 Margin="5"
                                 CornerRadius="5" 
-                                HorizontalOptions="Center" 
-                                Clicked="OnViewProductClicked"/>
-
-
-                                </VerticalStackLayout>
-                            </Frame>
-                        </Grid>
+                                HorizontalOptions="Center"
+                                Grid.Row="4" Grid.ColumnSpan="2"
+                                Clicked="OnViewProductClicked" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
                     </VerticalStackLayout>
 
 

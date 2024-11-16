@@ -102,7 +102,7 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//HomePage");
@@ -122,7 +122,7 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//InventoryPage");
@@ -142,7 +142,7 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//ScanPage");
@@ -164,7 +164,7 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//SettingsPage");
