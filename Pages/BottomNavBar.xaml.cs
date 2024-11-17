@@ -1,13 +1,17 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
-using static inventory_mobile_app.ViewModels.MainPageViewModel;
+using inventory_mobile_app.Models;
+using System.ComponentModel;
 
-public partial class SalesPage : ContentPage
+public partial class BottomNavBar : ContentView
 {
-	public SalesPage()
-	{
-		InitializeComponent();
-        BindingContext = new MainViewModel();
+    private readonly BottomNavBarViewModel bottomNavBarViewModel;
+
+    public BottomNavBar()
+    {
+        InitializeComponent();
+        bottomNavBarViewModel = new BottomNavBarViewModel();
+        BindingContext = bottomNavBarViewModel;
     }
 
     // Home/Dashboard page
@@ -15,18 +19,18 @@ public partial class SalesPage : ContentPage
     {
         try
         {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
+            var viewModel = (BottomNavBarViewModel)BindingContext;
+            viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = true;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//HomePage");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
     }
 
@@ -35,18 +39,18 @@ public partial class SalesPage : ContentPage
     {
         try
         {
-            var viewModel = BindingContext as MainViewModel;
+            var viewModel = (BottomNavBarViewModel)BindingContext;
             viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = false;
+            viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = true;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//InventoryPage");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
     }
 
@@ -55,18 +59,19 @@ public partial class SalesPage : ContentPage
     {
         try
         {
-            var viewModel = BindingContext as MainViewModel;
+            var viewModel = (BottomNavBarViewModel)BindingContext;
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = true;
+            viewModel.IsScanSelected = true;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
+
 
             await Shell.Current.GoToAsync("//ScanPage");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
     }
 
@@ -75,40 +80,40 @@ public partial class SalesPage : ContentPage
     {
         try
         {
-            var viewModel = BindingContext as MainViewModel;
+            var viewModel = (BottomNavBarViewModel)BindingContext;
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
             viewModel.IsHistorySelected = true;
             viewModel.IsSettingsSelected = false;
 
+
             await Shell.Current.GoToAsync("//HistoryPage");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
     }
-
-
 
     // Settings page
     private async void OnSettingsClicked(object sender, EventArgs e)
     {
         try
         {
-            var viewModel = BindingContext as MainViewModel;
+            var viewModel = (BottomNavBarViewModel)BindingContext;
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = true;
-            viewModel.IsSettingsSelected = false;
+            viewModel.IsHistorySelected = false;
+            viewModel.IsSettingsSelected = true;
+
 
             await Shell.Current.GoToAsync("//SettingsPage");
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
         }
     }
 }

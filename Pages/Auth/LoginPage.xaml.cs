@@ -1,4 +1,4 @@
-
+ 
 using inventory_mobile_app.ViewModels;
 using Microsoft.Maui.Platform;
 

@@ -10,7 +10,6 @@ public partial class InventoryPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = productListViewModel;
-       
     }
 
     void OnEditProductClicked(object sender, EventArgs e)
@@ -89,107 +88,6 @@ public partial class InventoryPage : ContentPage
         else
         {
             DisplayAlert("Error", "Please fill in all fields", "OK");
-        }
-    }
-
-
-        // Home/Dashboard page
-        private async void OnHomeClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//HomePage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Inventory page
-    private async void OnInventoryClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//InventoryPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Scan page
-    private async void OnScanClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//ScanPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // History page
-    private async void OnHistoryClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//HistoryPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Settings page
-    private async void OnSettingsClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//SettingsPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
         }
     }
 }

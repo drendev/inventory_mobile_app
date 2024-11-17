@@ -5,7 +5,8 @@
              Title="SettingsPage"             BackgroundColor="#FFF6DF"
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
-             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels">
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
 
     <Grid RowDefinitions="*, Auto">
 
@@ -44,7 +45,7 @@
                                     Padding="5"
                                     HeightRequest="50">
                                     <Grid>
-                                    <Label Text="ADMIN PROFILE"
+                                        <Label Text="ADMIN PROFILE"
                                     FontSize="20"
                                     FontFamily="Poppins-ExtraBold"
                                     HorizontalOptions="Center"
@@ -52,14 +53,14 @@
                                     Padding="10,5"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center" />
-                                    <Label Text="{x:Static model:Icons.EditIcon}"
+                                        <Label Text="{x:Static model:Icons.EditIcon}"
                                    Style="{StaticResource MaterialIcon}"
                                    HorizontalOptions="EndAndExpand"
                                    VerticalOptions="Center"
                                    Padding="0,0,25,0"
                                    TextColor="White"
                                    FontSize="24"/>
-                                   </Grid>
+                                    </Grid>
                                 </Frame>
 
                                 <VerticalStackLayout Padding="30,20,0,25" >
@@ -111,7 +112,7 @@
                                      Padding="5"
                                      HeightRequest="50">
                                     <Grid>
-                                    <Label Text="ACCOUNT"
+                                        <Label Text="ACCOUNT"
                                      FontSize="20"
                                      FontFamily="Poppins-ExtraBold"
                                      HorizontalOptions="Center"
@@ -119,7 +120,7 @@
                                      Padding="10,5"
                                      VerticalTextAlignment="Center"
                                      HorizontalTextAlignment="Center" />
-                                    <Label Text="{x:Static model:Icons.EditIcon}"
+                                        <Label Text="{x:Static model:Icons.EditIcon}"
                                     Style="{StaticResource MaterialIcon}"
                                     HorizontalOptions="EndAndExpand"
                                     VerticalOptions="Center"
@@ -169,7 +170,7 @@
                                            TextColor="#4F4F4F"
                                            VerticalTextAlignment="Center" />
                                     </Frame>
-                                </VerticalStackLayout>  
+                                </VerticalStackLayout>
 
                             </VerticalStackLayout>
                         </Frame>
@@ -217,7 +218,7 @@
                                     HorizontalTextAlignment="Center" />
 
                                 </StackLayout>
-                                
+
                             </Frame>
                         </Grid>
 
@@ -225,200 +226,6 @@
                 </Grid>
             </Grid>
         </ScrollView>
-
-        <!-- Bottom Navigation Bar -->
-        <Grid Grid.Row="2" BackgroundColor="White" HeightRequest="60" VerticalOptions="End">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Home Icon Label -->
-                <Label Text="{x:Static model:Icons.HomeIcon}"
-       Style="{StaticResource MaterialIcon}"
-       HorizontalOptions="Center"
-       Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnHomeClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Home Text Label -->
-                <Label Text="Home"
-       HorizontalOptions="Center"
-       FontSize="10"
-       FontFamily="Poppins-Bold"
-       TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-
-            <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Inventory Icon Label -->
-                <Label Text="{x:Static model:Icons.InventoryIcon}"
-        Style="{StaticResource MaterialIcon}"
-        HorizontalOptions="Center"
-        Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnInventoryClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Inventory Text Label -->
-                <Label Text="Inventory"
-        HorizontalOptions="Center"
-        FontSize="10"
-        FontFamily="Poppins-Bold"
-        TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-
-
-            <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Scan Icon Label -->
-                <Label Text="{x:Static model:Icons.BarcodeIcon}"
-        Style="{StaticResource BootstrapIcon}"
-        HorizontalOptions="Center"
-        Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnScanClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Scan Text Label -->
-                <Label Text="SCAN"
-        HorizontalOptions="Center"
-        FontSize="10"
-        FontFamily="Poppins-Bold"
-        TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-
-            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- History Icon Label -->
-                <Label Text="{x:Static model:Icons.HistoryIcon}"
-                 Style="{StaticResource MaterialIcon}"
-                 HorizontalOptions="Center"
-                 Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnHistoryClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- History Text Label -->
-                <Label Text="History"
-                     HorizontalOptions="Center"
-                     FontSize="10"
-                     FontFamily="Poppins-Bold"
-                     TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-            
-
-            <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Settings Icon Label -->
-                <Label Text="{x:Static model:Icons.SettingsIcon}"
-         Style="{StaticResource MaterialIcon}"
-         HorizontalOptions="Center"
-         Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSettingsClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Settings Text Label -->
-                <Label Text="Settings"
-         HorizontalOptions="Center"
-         FontSize="10"
-         FontFamily="Poppins-Bold"
-         TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
-        </Grid>
+        <pages:BottomNavBar Grid.Row="1" />
     </Grid>
-    
-    
 </ContentPage>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="inventory_mobile_app.Pages.HistoryPage"
+             Title="HistoryPage"
+              BackgroundColor="#FFF6DF"
+              Padding="0"
+              xmlns:model="clr-namespace:inventory_mobile_app.Models"
+              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+              xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
+
+    <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+        <!-- Logo and Header -->
+        <Grid Grid.Row="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="10" HeightRequest="90">
+            <HorizontalStackLayout VerticalOptions="Center" Padding="10">
+                <Image Source="pages_logo.png" WidthRequest="360" HeightRequest="250" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- Scrollable Content -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20">
+                <Grid>
+                    <Label Text="HISTORY"
+                   FontSize="24" 
+                   FontFamily="Poppins-ExtraBold"
+                   FontAttributes="Bold"
+                   Margin="10,60,10,10"
+                   TextColor="#E76722" />
+
+                    <Button Text="VIEW STOCKS" 
+               BackgroundColor="#E76722"  
+               TextColor="White" 
+               CornerRadius="10"
+               HeightRequest="35"
+               WidthRequest="130"
+               FontSize="14"
+               Padding="6"
+               FontFamily="Poppins-SemiBold"
+               HorizontalOptions="End"
+               VerticalOptions="Start"
+               Margin="0,60,0,0"/>
+                </Grid>
+
+                <VerticalStackLayout Spacing="15" Padding="10,0,0,10">
+                    <Grid ColumnDefinitions="*,*" 
+                    RowDefinitions="Auto,Auto"
+                    ColumnSpacing="10"
+                    RowSpacing="0">
+
+                        <!-- Current Stocks-->
+                        <Frame Grid.Row="0" Grid.Column="0"
+                         BackgroundColor="White"
+                         CornerRadius="10"
+                         Padding="20,5,0,5"
+                         HasShadow="True"
+                         BorderColor="White">
+                            <VerticalStackLayout Spacing="-5">
+                                <Label Text="Current Stocks"
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"
+                                 FontSize="14"/>
+                                <Label Text="5,400"
+                                 FontSize="32"
+                                 FontFamily="Poppins-Bold"
+                                  Margin="0,-5"
+                                 TextColor="#4F4F4F"/>
+                                <Label Text="24 Products"
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"
+                                 FontSize="12"/>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Weekly Stock -->
+                        <Frame Grid.Row="0" Grid.Column="1"
+                         BackgroundColor="White"
+                         CornerRadius="10"
+                         Padding="20,5,0,5"
+                         HasShadow="True"
+                         BorderColor="White">
+                            <VerticalStackLayout Spacing="-5">
+                                <Label Text="Weekly Stocks"
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"
+                                 FontSize="14"/>
+                                <Label Text="32,500"
+                                 FontSize="32"
+                                 FontFamily="Poppins-Bold"
+                                  Margin="0,-5"
+                                 TextColor="#4F4F4F"/>
+                                <Label Text="156 Products"
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"
+                                 FontSize="12"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                    <!-- Search Bar -->
+                    <Frame BackgroundColor="White"
+                       CornerRadius="10"
+                       Padding="10"
+                       HasShadow="True"
+                       BorderColor="#E5E5E5"
+                       VerticalOptions="Start"
+                       Margin="0">
+                        <VerticalStackLayout Spacing="5">
+                            <!-- Label for Recent Stock Changes -->
+                            <Label Text="RECENT STOCK CHANGES"
+                               FontSize="14"
+                               FontFamily="Poppins-SemiBold"
+                               TextColor="#4F4F4F"
+                               HorizontalOptions="Start" />
+
+                            <!-- Search Bar -->
+                            <Frame BackgroundColor="#F5F5F5"
+                               CornerRadius="10"
+                               HeightRequest="30"
+                               Padding="0"
+                               VerticalOptions="Start">
+                                <Grid ColumnDefinitions="Auto,*,Auto"
+                                VerticalOptions="Center">
+                                    <!-- SearchBar -->
+                                    <SearchBar Placeholder="Search inventory..."
+                                       BackgroundColor="Transparent"
+                                       FontFamily="Poppins-Regular"
+                                       FontSize="14"
+                                       HorizontalOptions="FillAndExpand"
+                                       Margin="0" />
+                                </Grid>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </Frame>
+                    <CollectionView ItemsSource="{Binding StockHistory}" Margin="10">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#FFFBEA">
+                                    <StackLayout>
+                                        <!-- Header -->
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <Label Text="Stock Adjustment" 
+                                       TextColor="White" 
+                                       BackgroundColor="Red" 
+                                       FontAttributes="Bold" 
+                                       Padding="5,0" />
+                                            <Label Text="11:12" 
+                                       HorizontalOptions="EndAndExpand" 
+                                       VerticalOptions="Center" />
+                                        </StackLayout>
+
+                                        <!-- Product Name -->
+                                        <Label Text="Product Name" 
+                                       FontAttributes="Bold" 
+                                       FontSize="16" 
+                                       TextColor="Black" 
+                                       Margin="0,5,0,0" />
+
+                                        <!-- Adjusted By and Date -->
+                                        <Label Text="Adjusted By: {Binding AdjustedBy}" 
+                                           FontSize="14" 
+                                           TextColor="Gray" />
+                                        <Label Text="Date: {Binding Date}" 
+                                           FontSize="14" 
+                                           TextColor="Gray" />
+
+                                        <!-- Stock Changes -->
+                                        <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                                            <Label Text="10 Units" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="{Binding ChangeColor}" />
+                                            <Label Text="Current: {Binding CurrentUnits}" 
+                                       FontSize="16" 
+                                       HorizontalOptions="EndAndExpand" 
+                                       VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <pages:BottomNavBar Grid.Row="1" />
+    </Grid>
+
+</ContentPage>
