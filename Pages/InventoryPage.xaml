@@ -434,20 +434,20 @@
                                        VerticalOptions="Center"
                                        TextColor="#0050A2"/>
                                         <Frame CornerRadius="10"
-                           BorderColor="Transparent"
-                           BackgroundColor="#EEEEEE" 
-                           Padding="0"
-                           HeightRequest="32" 
-                           VerticalOptions="Center">
-                                            <Entry Text="test}" 
-                           FontSize="13" 
-                           FontFamily="Poppins-Regular"
-                           HeightRequest="42" 
-                           WidthRequest="180"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Center"
-                           Margin="10,0"
-                           IsEnabled="False"/>
+                                       BorderColor="Transparent"
+                                       BackgroundColor="#EEEEEE" 
+                                       Padding="0"
+                                       HeightRequest="32" 
+                                       VerticalOptions="Center">
+                                            <Entry Text="{Binding ProductId}" 
+                                               FontSize="13" 
+                                               FontFamily="Poppins-Regular"
+                                               HeightRequest="42" 
+                                               WidthRequest="180"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center"
+                                               Margin="10,0"
+                                               IsEnabled="False"/>
                                         </Frame>
                                     </HorizontalStackLayout>
 
@@ -456,24 +456,24 @@
                                         <Frame Padding="0" BorderColor="Gray" HasShadow="False" HeightRequest="80" WidthRequest="80" BackgroundColor="Transparent" Margin="70,0,0,0">
                                             <Grid>
                                                 <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
-                               VerticalOptions="Start" HorizontalOptions="End"
-                               IsVisible="True" />
+                                                   VerticalOptions="Start" HorizontalOptions="End"
+                                                   IsVisible="{Binding IsImagePlaceholderVisible}" />
                                             </Grid>
                                         </Frame>
                                         <Label Text="Upload Product Image Here" VerticalOptions="Center" HorizontalOptions="Center"
-                       FontAttributes="Bold" TextColor="Gray"
-                       Padding="10"
-                       FontSize="12"
-                       WidthRequest="120"
-                       IsVisible="True">
+                                           FontAttributes="Bold" TextColor="Gray"
+                                           Padding="10"
+                                           FontSize="12"
+                                           WidthRequest="120"
+                                           IsVisible="{Binding IsImagePlaceholderVisible}">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer />
                                             </Label.GestureRecognizers>
                                         </Label>
 
                                         <!-- Image view to display the selected image -->
-                                        <Image VerticalOptions="FillAndExpand" 
-                       HorizontalOptions="FillAndExpand" IsVisible="True" />
+                                        <Image Source="{Binding SelectedImageSource}" VerticalOptions="FillAndExpand" 
+                                            HorizontalOptions="FillAndExpand" IsVisible="{Binding IsImageSelected}" />
                                     </HorizontalStackLayout>
 
                                     <!-- Product Name Entry -->
