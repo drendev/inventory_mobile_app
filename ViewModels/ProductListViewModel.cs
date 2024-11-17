@@ -2,7 +2,9 @@
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace inventory_mobile_app.ViewModels
 {
@@ -56,6 +58,5 @@ namespace inventory_mobile_app.ViewModels
                 await Shell.Current.DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
             }
         }
-
     }
 }
