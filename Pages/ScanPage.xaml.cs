@@ -155,7 +155,7 @@ public partial class ScanPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = true;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//HomePage");
@@ -175,7 +175,7 @@ public partial class ScanPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = true;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//InventoryPage");
@@ -195,10 +195,30 @@ public partial class ScanPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = true;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//ScanPage");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    // History page
+    private async void OnHistoryClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var viewModel = BindingContext as MainViewModel;
+            viewModel.IsHomeSelected = false;
+            viewModel.IsInventorySelected = false;
+            viewModel.IsScanSelected = true;
+            viewModel.IsHistorySelected = false;
+            viewModel.IsSettingsSelected = false;
+
+            await Shell.Current.GoToAsync("//HistoryPage");
         }
         catch (Exception ex)
         {
@@ -215,7 +235,7 @@ public partial class ScanPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = true;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//SettingsPage");

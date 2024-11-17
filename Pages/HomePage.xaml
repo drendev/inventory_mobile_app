@@ -292,6 +292,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
@@ -404,12 +405,48 @@
             </StackLayout>
 
 
+            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+                <!-- History Icon Label -->
+                <Label Text="{x:Static model:Icons.HistoryIcon}"
+                Style="{StaticResource MaterialIcon}"
+                HorizontalOptions="Center"
+                Padding="0,7,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHistoryClicked" />
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <!-- History Text Label -->
+                <Label Text="History"
+                    HorizontalOptions="Center"
+                    FontSize="10"
+                    FontFamily="Poppins-Bold"
+                    TextColor="#979797">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
+
             <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
                 <!-- Settings Icon Label -->
                 <Label Text="{x:Static model:Icons.SettingsIcon}"
-                 Style="{StaticResource MaterialIcon}"
-                 HorizontalOptions="Center"
-                 Padding="0,7,0,0">
+                    Style="{StaticResource MaterialIcon}"
+                    HorizontalOptions="Center"
+                    Padding="0,7,0,0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnSettingsClicked" />
                     </Label.GestureRecognizers>
@@ -425,10 +462,10 @@
 
                 <!-- Settings Text Label -->
                 <Label Text="Settings"
-                 HorizontalOptions="Center"
-                 FontSize="10"
-                 FontFamily="Poppins-Bold"
-                 TextColor="#979797">
+                    HorizontalOptions="Center"
+                    FontSize="10"
+                    FontFamily="Poppins-Bold"
+                    TextColor="#979797">
                     <Label.Triggers>
                         <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
                             <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
@@ -439,6 +476,7 @@
                     </Label.Triggers>
                 </Label>
             </StackLayout>
+            
         </Grid>
 
     </Grid>

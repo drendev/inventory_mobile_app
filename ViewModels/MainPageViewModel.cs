@@ -116,19 +116,21 @@ namespace inventory_mobile_app.ViewModels
                 }
             }
 
-            private bool isSalesSelected;
-            public bool IsSalesSelected
+            private bool isHistorySelected;
+            public bool IsHistorySelected
             {
-                get => isSalesSelected;
+                get => isHistorySelected;
                 set
                 {
-                    if (isSalesSelected != value)
+                    if (isHistorySelected != value)
                     {
-                        isSalesSelected = value;
+                        isHistorySelected = value;
                         OnPropertyChanged();
                     }
                 }
             }
+
+        
 
             private bool isSettingsSelected;
             public bool IsSettingsSelected

@@ -158,41 +158,7 @@
                 </Label>
             </StackLayout>
 
-            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
-                <!-- Sales Icon Label -->
-                <Label Text="{x:Static model:Icons.SalesIcon}"
-         Style="{StaticResource MaterialIcon}"
-         HorizontalOptions="Center"
-         Padding="0,7,0,0">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSalesClicked" />
-                    </Label.GestureRecognizers>
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <!-- Sales Text Label -->
-                <Label Text="Sales"
-         HorizontalOptions="Center"
-         FontSize="10"
-         FontFamily="Poppins-Bold"
-         TextColor="#979797">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="True">
-                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
-                        </DataTrigger>
-                        <DataTrigger TargetType="Label" Binding="{Binding IsSalesSelected}" Value="False">
-                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-            </StackLayout>
+           
 
             <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
                 <!-- Settings Icon Label -->

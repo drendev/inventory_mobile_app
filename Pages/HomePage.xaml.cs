@@ -20,7 +20,7 @@ public partial class HomePage : ContentPage
         float centerY = dirtyRect.Height / 2;
         float radius = Math.Min(centerX, centerY) * 0.8f;
 
-        // Sample data: adjust as needed
+        // Sample data
         float total = 67f;
         float inStockAngle = (60f / total) * 360f;
         float lowStockAngle = (5f / total) * 360f;
@@ -63,7 +63,7 @@ public partial class HomePage : ContentPage
             viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//HomePage");
@@ -83,7 +83,7 @@ public partial class HomePage : ContentPage
             viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//InventoryPage");
@@ -103,7 +103,7 @@ public partial class HomePage : ContentPage
             viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//ScanPage");
@@ -114,8 +114,8 @@ public partial class HomePage : ContentPage
         }
     }
 
-    // Sales page
-    private async void OnSalesClicked(object sender, EventArgs e)
+    // History page
+    private async void OnHistoryClicked(object sender, EventArgs e)
     {
         try
         {
@@ -123,10 +123,10 @@ public partial class HomePage : ContentPage
             viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
-            await Shell.Current.GoToAsync("//SalesPage");
+            await Shell.Current.GoToAsync("//HistoryPage");
         }
         catch (Exception ex)
         {
@@ -145,7 +145,7 @@ public partial class HomePage : ContentPage
             viewModel.IsHomeSelected = true;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//SettingsPage");

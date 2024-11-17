@@ -15,5 +15,8 @@ namespace inventory_mobile_app.Models
         public static string SettingsIcon = "\ue8b8";
         public static string SearchIcon = "\ue8b6";
         public static string CloseIcon = "\ue5cd";
+        public static string HistoryIcon = "\ue889";
+        public static string LogoutIcon = "\ue9ba";
+        public static string EditIcon = "\ue3c9";
     }
 }

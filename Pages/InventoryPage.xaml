@@ -406,12 +406,12 @@
                                     <HorizontalStackLayout Spacing="10">
                                         <!-- Close Icon Label -->
                                         <Label Text="{x:Static model:Icons.CloseIcon}"
-                           Style="{StaticResource MaterialIcon}"
-                           TextColor="Gray"
-                           FontSize="30"
-                           VerticalOptions="Start"
-                           HorizontalOptions="Start"
-                           Margin="0">
+                                           Style="{StaticResource MaterialIcon}"
+                                           TextColor="Gray"
+                                           FontSize="30"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="Start"
+                                           Margin="0">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Tapped="OnCloseEditModalClicked" />
                                             </Label.GestureRecognizers>
@@ -419,20 +419,20 @@
 
                                         <!-- Title Label -->
                                         <Label Text="EDIT PRODUCT" 
-                           FontSize="20" 
-                           FontFamily="Poppins-ExtraBold"
-                           HorizontalOptions="Center" 
-                           TextColor="#E76722"
-                           Margin="45,0,0,-10"/>
+                                           FontSize="20" 
+                                           FontFamily="Poppins-ExtraBold"
+                                           HorizontalOptions="Center" 
+                                           TextColor="#E76722"
+                                           Margin="45,0,0,-10"/>
                                     </HorizontalStackLayout>
 
                                     <!-- Product ID Entry (Read-Only) -->
                                     <HorizontalStackLayout Spacing="35" Margin="0,0,0,0">
                                         <Label Text="PRODUCT ID" 
-                           FontSize="13"
-                           FontFamily="Poppins-Bold"
-                           VerticalOptions="Center"
-                           TextColor="#0050A2"/>
+                                       FontSize="13"
+                                       FontFamily="Poppins-Bold"
+                                       VerticalOptions="Center"
+                                       TextColor="#0050A2"/>
                                         <Frame CornerRadius="10"
                            BorderColor="Transparent"
                            BackgroundColor="#EEEEEE" 
@@ -479,74 +479,74 @@
                                     <!-- Product Name Entry -->
                                     <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
                                         <Label Text="PRODUCT NAME" 
-                       FontSize="13"
-                       FontFamily="Poppins-Bold"
-                       VerticalOptions="Center"
-                       TextColor="#0050A2"/>
+                                       FontSize="13"
+                                       FontFamily="Poppins-Bold"
+                                       VerticalOptions="Center"
+                                       TextColor="#0050A2"/>
                                         <Frame CornerRadius="10"
-                       BorderColor="Transparent"
-                       BackgroundColor="#EEEEEE" 
-                       Padding="0"
-                       HeightRequest="32" 
-                       VerticalOptions="Center">
+                                           BorderColor="Transparent"
+                                           BackgroundColor="#EEEEEE" 
+                                           Padding="0"
+                                           HeightRequest="32" 
+                                           VerticalOptions="Center">
                                             <Entry x:Name="EditedProductNameEntry" 
-                           Placeholder="Enter product name" 
-                           FontSize="13" 
-                           FontFamily="Poppins-Regular"
-                           HeightRequest="42" 
-                           WidthRequest="180"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Center"
-                           Margin="10,0"/>
+                                               Placeholder="Enter product name" 
+                                               FontSize="13" 
+                                               FontFamily="Poppins-Regular"
+                                               HeightRequest="42" 
+                                               WidthRequest="180"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Center"
+                                               Margin="10,0"/>
                                         </Frame>
                                     </HorizontalStackLayout>
 
                                     <!-- Product Description Entry -->
                                     <HorizontalStackLayout Spacing="28" Margin="0,10,0,0">
                                         <Label Text="DESCRIPTION" 
-                       FontSize="13"
-                       FontFamily="Poppins-Bold"
-                       VerticalOptions="Start"
-                       TextColor="#0050A2"/>
+                                           FontSize="13"
+                                           FontFamily="Poppins-Bold"
+                                           VerticalOptions="Start"
+                                           TextColor="#0050A2"/>
                                         <Frame CornerRadius="10"
-                       BorderColor="Transparent"
-                       BackgroundColor="#EEEEEE"
-                       Padding="0"
-                       WidthRequest="200" 
-                       VerticalOptions="Center">
+                                           BorderColor="Transparent"
+                                           BackgroundColor="#EEEEEE"
+                                           Padding="0"
+                                           WidthRequest="200" 
+                                           VerticalOptions="Center">
                                             <Editor x:Name="EditedProductDescriptionEntry"
-                            Placeholder="Product Description" 
-                            FontSize="13" 
-                            FontFamily="Poppins-Regular" 
-                            HeightRequest="75"
-                            Margin="5,0"
-                            VerticalTextAlignment="Start"/>
+                                        Placeholder="Product Description" 
+                                        FontSize="13" 
+                                        FontFamily="Poppins-Regular" 
+                                        HeightRequest="75"
+                                        Margin="5,0"
+                                        VerticalTextAlignment="Start"/>
                                         </Frame>
                                     </HorizontalStackLayout>
 
                                     <!-- Buying Price Entry -->
                                     <HorizontalStackLayout Spacing="24" Margin="0,5,0,0">
                                         <Label Text="BUYING PRICE" 
-                       FontSize="13"
-                       FontFamily="Poppins-Bold"
-                       VerticalOptions="Center"
-                       TextColor="#0050A2"/>
+                                       FontSize="13"
+                                       FontFamily="Poppins-Bold"
+                                       VerticalOptions="Center"
+                                       TextColor="#0050A2"/>
                                         <Frame CornerRadius="10"
-                       BorderColor="Transparent"
-                       BackgroundColor="#EEEEEE" 
-                       Padding="0"
-                       HeightRequest="32" 
-                       VerticalOptions="Center">
+                                       BorderColor="Transparent"
+                                       BackgroundColor="#EEEEEE" 
+                                       Padding="0"
+                                       HeightRequest="32" 
+                                       VerticalOptions="Center">
                                             <Entry x:Name="EditedBuyingPriceEntry"
-                           Placeholder="Enter Buying Price" 
-                           FontSize="13" 
-                           FontFamily="Poppins-Regular"
-                           HeightRequest="42" 
-                           WidthRequest="180"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Center"
-                           Margin="10,0"
-                           Keyboard="Numeric"/>
+                                           Placeholder="Enter Buying Price" 
+                                           FontSize="13" 
+                                           FontFamily="Poppins-Regular"
+                                           HeightRequest="42" 
+                                           WidthRequest="180"
+                                           HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="Center"
+                                           Margin="10,0"
+                                           Keyboard="Numeric"/>
                                         </Frame>
                                     </HorizontalStackLayout>
 
@@ -658,6 +658,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <StackLayout Grid.Column="0" Orientation="Vertical" HorizontalOptions="Center">
@@ -681,10 +682,10 @@
 
                     <!-- Home Text Label -->
                     <Label Text="Home"
-       HorizontalOptions="Center"
-       FontSize="10"
-       FontFamily="Poppins-Bold"
-       TextColor="#979797">
+                       HorizontalOptions="Center"
+                       FontSize="10"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#979797">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
@@ -699,9 +700,9 @@
                 <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="Center">
                     <!-- Inventory Icon Label -->
                     <Label Text="{x:Static model:Icons.InventoryIcon}"
-        Style="{StaticResource MaterialIcon}"
-        HorizontalOptions="Center"
-        Padding="0,7,0,0">
+                    Style="{StaticResource MaterialIcon}"
+                    HorizontalOptions="Center"
+                    Padding="0,7,0,0">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnInventoryClicked" />
                         </Label.GestureRecognizers>
@@ -717,10 +718,10 @@
 
                     <!-- Inventory Text Label -->
                     <Label Text="Inventory"
-        HorizontalOptions="Center"
-        FontSize="10"
-        FontFamily="Poppins-Bold"
-        TextColor="#979797">
+                        HorizontalOptions="Center"
+                        FontSize="10"
+                        FontFamily="Poppins-Bold"
+                        TextColor="#979797">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
@@ -736,9 +737,9 @@
                 <StackLayout Grid.Column="2" Orientation="Vertical" HorizontalOptions="Center">
                     <!-- Scan Icon Label -->
                     <Label Text="{x:Static model:Icons.BarcodeIcon}"
-        Style="{StaticResource BootstrapIcon}"
-        HorizontalOptions="Center"
-        Padding="0,7,0,0">
+                        Style="{StaticResource BootstrapIcon}"
+                        HorizontalOptions="Center"
+                        Padding="0,7,0,0">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnScanClicked" />
                         </Label.GestureRecognizers>
@@ -754,10 +755,10 @@
 
                     <!-- Scan Text Label -->
                     <Label Text="SCAN"
-        HorizontalOptions="Center"
-        FontSize="10"
-        FontFamily="Poppins-Bold"
-        TextColor="#979797">
+                HorizontalOptions="Center"
+                FontSize="10"
+                FontFamily="Poppins-Bold"
+                TextColor="#979797">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
@@ -770,7 +771,43 @@
                 </StackLayout>
 
 
-                <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+            <StackLayout Grid.Column="3" Orientation="Vertical" HorizontalOptions="Center">
+                <!-- History Icon Label -->
+                <Label Text="{x:Static model:Icons.HistoryIcon}"
+                Style="{StaticResource MaterialIcon}"
+                HorizontalOptions="Center"
+                Padding="0,7,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnHistoryClicked" />
+                    </Label.GestureRecognizers>
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <!-- History Text Label -->
+                <Label Text="History"
+                HorizontalOptions="Center"
+                FontSize="10"
+                FontFamily="Poppins-Bold"
+                TextColor="#979797">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="True">
+                            <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsHistorySelected}" Value="False">
+                            <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </StackLayout>
+            
+            <StackLayout Grid.Column="4" Orientation="Vertical" HorizontalOptions="Center">
                     <!-- Settings Icon Label -->
                     <Label Text="{x:Static model:Icons.SettingsIcon}"
          Style="{StaticResource MaterialIcon}"

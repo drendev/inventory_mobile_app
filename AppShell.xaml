@@ -23,7 +23,7 @@
     <ShellContent Route="HomePage" ContentTemplate="{DataTemplate pages:HomePage}" />
     <ShellContent Route="ScanPage" ContentTemplate="{DataTemplate pages:ScanPage}" />
     <ShellContent Route="InventoryPage" ContentTemplate="{DataTemplate pages:InventoryPage}" />
-    <ShellContent Route="SalesPage" ContentTemplate="{DataTemplate pages:SalesPage}" />
+    <ShellContent Route="HistoryPage" ContentTemplate="{DataTemplate pages:HistoryPage}" />
     <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate pages:SettingsPage}" />
     
     <ShellContent Route="Inventory" ContentTemplate="{DataTemplate pages:Inventory}" />

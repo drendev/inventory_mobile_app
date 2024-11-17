@@ -54,6 +54,7 @@ namespace inventory_mobile_app
             builder.Services.AddSingleton<ProductListViewModel>();
             builder.Services.AddSingleton<Inventory>();
 
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
