@@ -7,6 +7,7 @@
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             x:DataType="viewmodel:ProductListViewModel"
              >
 
     <Grid RowDefinitions="*, Auto">
@@ -55,7 +56,7 @@
                                VerticalOptions="Center" HorizontalOptions="Center" />
 
                                             <!-- Product Name -->
-                                            <Label Text="{Binding ProductName}" 
+                                            <Label Text="{Binding ProductName}"
                                Grid.Row="1" Grid.ColumnSpan="2"
                                FontAttributes="Bold" FontSize="14" 
                                HorizontalOptions="Center" TextColor="#E76722" />
@@ -438,7 +439,7 @@
                            Padding="0"
                            HeightRequest="32" 
                            VerticalOptions="Center">
-                                            <Entry Text="{Binding ProductId}" 
+                                            <Entry Text="test}" 
                            FontSize="13" 
                            FontFamily="Poppins-Regular"
                            HeightRequest="42" 
@@ -456,7 +457,7 @@
                                             <Grid>
                                                 <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
                                VerticalOptions="Start" HorizontalOptions="End"
-                               IsVisible="{Binding IsImagePlaceholderVisible}" />
+                               IsVisible="True" />
                                             </Grid>
                                         </Frame>
                                         <Label Text="Upload Product Image Here" VerticalOptions="Center" HorizontalOptions="Center"
@@ -464,15 +465,15 @@
                        Padding="10"
                        FontSize="12"
                        WidthRequest="120"
-                       IsVisible="{Binding IsImagePlaceholderVisible}">
+                       IsVisible="True">
                                             <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding BrowseImageCommand}" />
+                                                <TapGestureRecognizer />
                                             </Label.GestureRecognizers>
                                         </Label>
 
                                         <!-- Image view to display the selected image -->
-                                        <Image Source="{Binding SelectedImageSource}" VerticalOptions="FillAndExpand" 
-                       HorizontalOptions="FillAndExpand" IsVisible="{Binding IsImageSelected}" />
+                                        <Image VerticalOptions="FillAndExpand" 
+                       HorizontalOptions="FillAndExpand" IsVisible="True" />
                                     </HorizontalStackLayout>
 
                                     <!-- Product Name Entry -->
@@ -591,7 +592,7 @@
                                    HeightRequest="32" 
                                    VerticalOptions="Center">
 
-                                            <DatePicker Date="{Binding ExpiryDate}"
+                                            <DatePicker
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     BackgroundColor="Transparent"
@@ -641,7 +642,7 @@
                             HorizontalOptions="Center" 
                             Padding="10,2,10,0"
                             Margin="0,15,0,0"
-                            Command="{Binding SaveEditCommand}"/>
+                            />
                                 </StackLayout>
                             </ScrollView>
                         </Frame>
@@ -669,10 +670,10 @@
                             <TapGestureRecognizer Tapped="OnHomeClicked" />
                         </Label.GestureRecognizers>
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -685,10 +686,10 @@
        FontFamily="Poppins-Bold"
        TextColor="#979797">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsHomeSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -705,10 +706,10 @@
                             <TapGestureRecognizer Tapped="OnInventoryClicked" />
                         </Label.GestureRecognizers>
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -721,10 +722,10 @@
         FontFamily="Poppins-Bold"
         TextColor="#979797">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsInventorySelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -742,10 +743,10 @@
                             <TapGestureRecognizer Tapped="OnScanClicked" />
                         </Label.GestureRecognizers>
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -758,10 +759,10 @@
         FontFamily="Poppins-Bold"
         TextColor="#979797">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsScanSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -779,10 +780,10 @@
                             <TapGestureRecognizer Tapped="OnSettingsClicked" />
                         </Label.GestureRecognizers>
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>
@@ -795,10 +796,10 @@
          FontFamily="Poppins-Bold"
          TextColor="#979797">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="True">
+                            <DataTrigger TargetType="Label" Value="True">
                                 <Setter Property="TextColor" Value="{StaticResource SelectedColor}" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsSettingsSelected}" Value="False">
+                            <DataTrigger TargetType="Label" Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource DefaultColor}" />
                             </DataTrigger>
                         </Label.Triggers>

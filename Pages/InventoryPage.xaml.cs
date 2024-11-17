@@ -6,10 +6,10 @@ using Microsoft.Maui.Controls;
 public partial class InventoryPage : ContentPage
 {
     public int Quantity { get; set; } = 0;
-    public InventoryPage()
+    public InventoryPage(ProductListViewModel productListViewModel)
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = productListViewModel;
        
     }
 
@@ -102,7 +102,6 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//HomePage");
@@ -122,7 +121,6 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//InventoryPage");
@@ -142,7 +140,6 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//ScanPage");
@@ -164,7 +161,6 @@ public partial class InventoryPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = true;
             viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = false;
 
             await Shell.Current.GoToAsync("//SettingsPage");
