@@ -1,5 +1,6 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
+using System.Diagnostics;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class SettingsPage : ContentPage
@@ -8,6 +9,11 @@ public partial class SettingsPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new MainViewModel();
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//LoginPage");
     }
 
     // Home/Dashboard page
@@ -19,7 +25,7 @@ public partial class SettingsPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//HomePage");
@@ -39,7 +45,7 @@ public partial class SettingsPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//InventoryPage");
@@ -59,7 +65,7 @@ public partial class SettingsPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//ScanPage");
@@ -70,8 +76,8 @@ public partial class SettingsPage : ContentPage
         }
     }
 
-    // Sales page
-    private async void OnSalesClicked(object sender, EventArgs e)
+    // History page
+    private async void OnHistoryClicked(object sender, EventArgs e)
     {
         try
         {
@@ -79,10 +85,10 @@ public partial class SettingsPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = true;
 
-            await Shell.Current.GoToAsync("//SalesPage");
+            await Shell.Current.GoToAsync("//HistoryPage");
         }
         catch (Exception ex)
         {
@@ -101,7 +107,7 @@ public partial class SettingsPage : ContentPage
             viewModel.IsHomeSelected = false;
             viewModel.IsInventorySelected = false;
             viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
+            viewModel.IsHistorySelected = false;
             viewModel.IsSettingsSelected = true;
 
             await Shell.Current.GoToAsync("//SettingsPage");
