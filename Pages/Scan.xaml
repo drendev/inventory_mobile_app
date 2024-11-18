@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="inventory_mobile_app.Pages.Scan"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             xmlns:model="clr-namespace:inventory_mobile_app.Models"
+             xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+                x:DataType="viewmodel:ScannerViewModel"
+             Title="Scan">
+    <VerticalStackLayout>
+        <zxing:CameraBarcodeReaderView
+            x:Name="barcodeReader"
+            BarcodesDetected="BarcodeReader_BarcodesDetected"
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="350"
+            HeightRequest="550"/>
+    </VerticalStackLayout>
+</ContentPage>

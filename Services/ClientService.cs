@@ -111,6 +111,77 @@ namespace inventory_mobile_app.Services
             }
         }
 
+        public async Task<ProductList> GetProductAsync(string productId)
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+                return null;
+            }
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var response = await httpClient.GetStringAsync($"/api/Product/get/{productId}");
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var apiResponse = JsonSerializer.Deserialize<ProductResponse>(response, options);
+
+                if (apiResponse.Product == null)
+                {
+                    return null;
+                }
+
+
+                return apiResponse.Product;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while fetching products: {ex.Message}", "OK");
+                return new ProductList();
+            }
+        }
+
+        public async Task<bool> AddStock(StockModel model)
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+                return false;
+            }
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var result = await httpClient.PostAsJsonAsync("/api/Product/addstock", model);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    await Shell.Current.DisplayAlert("Alert", "Stock added successfully", "OK");
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while adding stock: {ex.Message}", "OK");
+                return false;
+            }
+        }
+
         public async Task<Category[]> GetCategoriesData()
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");

@@ -27,7 +27,7 @@
     <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate pages:SettingsPage}" />
     
     <ShellContent Route="Inventory" ContentTemplate="{DataTemplate pages:Inventory}" />
-
+    <ShellContent Route="Scan" ContentTemplate="{DataTemplate pages:Scan}" />
 
 
 

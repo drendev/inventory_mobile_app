@@ -17,6 +17,7 @@ namespace inventory_mobile_app
             Routing.RegisterRoute(nameof(InventoryPage), typeof(InventoryPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             Routing.RegisterRoute(nameof(Inventory), typeof(Inventory));
+            Routing.RegisterRoute(nameof(Scan), typeof(Scan));
         }
     }
 }
