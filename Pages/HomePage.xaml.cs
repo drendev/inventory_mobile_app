@@ -1,6 +1,5 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
-using static inventory_mobile_app.ViewModels.MainPageViewModel;
 using Microsoft.Maui.Graphics;
 
 public partial class HomePage : ContentPage
@@ -20,7 +19,7 @@ public partial class HomePage : ContentPage
         float centerY = dirtyRect.Height / 2;
         float radius = Math.Min(centerX, centerY) * 0.8f;
 
-        // Sample data: adjust as needed
+        // Sample data
         float total = 67f;
         float inStockAngle = (60f / total) * 360f;
         float lowStockAngle = (5f / total) * 360f;
@@ -53,106 +52,4 @@ public partial class HomePage : ContentPage
     }
 }
 
-
-    // Home/Dashboard page
-    private async void OnHomeClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//HomePage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Inventory page
-    private async void OnInventoryClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//InventoryPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Scan page
-    private async void OnScanClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//ScanPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Sales page
-    private async void OnSalesClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//SalesPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-
-
-    // Settings page
-    private async void OnSettingsClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = BindingContext as MainViewModel;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsSalesSelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//SettingsPage");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
 }

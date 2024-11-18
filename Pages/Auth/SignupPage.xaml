@@ -23,11 +23,11 @@
                   />
 
             <!-- Logo and Title -->
-            <HorizontalStackLayout VerticalOptions="Center" Padding="40,40,10,10">
+            <HorizontalStackLayout VerticalOptions="Center" Padding="80,40,10,10">
                 <Image Source="register_logo.png" WidthRequest="190" HeightRequest="190"/>
             </HorizontalStackLayout>
         </Grid>
-        <Label Grid.Row="1" Text="Sign Up" Style="{StaticResource LoginPageLabel}"/>
+        <Label Grid.Row="1" Text="Sign Up" Style="{StaticResource LoginPageLabel}" FontFamily="Poppins-Bold"/>
         
         <!-- White Background Section with Top Rounded Corners -->
         <Border Grid.Row="2"
@@ -43,7 +43,7 @@
                         Text="Create Account"
                         TextColor="#0066CC"
                         FontSize="18"
-                        FontAttributes="Bold"
+                        FontFamily="Poppins-Bold"
                         HorizontalOptions="Center"
                         />
 
@@ -53,7 +53,7 @@
                             Text="Email"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                             <Entry 
@@ -75,7 +75,7 @@
                             Text="Password"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                                 <Entry 
@@ -98,7 +98,7 @@
                             Text="Confirm Password"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                                 <Entry 
@@ -121,7 +121,7 @@
                             Text="Full Name"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                                 <Entry 
@@ -143,7 +143,7 @@
                                 Text="Position"
                                 TextColor="#0066CC"
                                 FontSize="14"
-                                FontAttributes="Bold"/>
+                                FontFamily="Poppins-SemiBold"/>
                             <Frame Style="{StaticResource InputFrame}">
                                 <VerticalStackLayout>
                                     <Picker
@@ -166,7 +166,7 @@
                             Text="Mobile Number"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                             <Entry 
@@ -189,7 +189,7 @@
                             Text="Date of Birth"
                             TextColor="#0066CC"
                             FontSize="14"
-                            FontAttributes="Bold"/>
+                            FontFamily="Poppins-SemiBold"/>
                         <Frame Style="{StaticResource InputFrame}">
                             <VerticalStackLayout>
                             <DatePicker 
@@ -220,7 +220,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        TextColor="White"
-                                       FontAttributes="Bold"
+                                       FontFamily="Poppins-Bold"
                                        FontSize="16"
                                        IsVisible="{Binding IsSignup, Converter={StaticResource InverseBoolConverter}}" />
 

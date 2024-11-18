@@ -47,7 +47,7 @@
 
             <VerticalStackLayout Spacing="5" Padding="30">
 
-                <Label Text="Username or Email" 
+                <Label Text="Email" 
                        FontAttributes="Bold"
                        FontFamily="Poppins-SemiBold"
                        FontSize="18"
