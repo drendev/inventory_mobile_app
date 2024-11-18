@@ -11,79 +11,39 @@ namespace inventory_mobile_app.ViewModels
     public class BottomNavBarViewModel : INotifyPropertyChanged
     {
 
-        private bool isHomeSelected;
-        public bool IsHomeSelected
+        private string selectedTab;
+        public string SelectedTab
         {
-            get => isHomeSelected;
+            get => selectedTab;
             set
             {
-                if (isHomeSelected != value)
+                if (selectedTab != value)
                 {
-                    isHomeSelected = value;
+                    selectedTab = value;
+                    OnPropertyChanged(nameof(SelectedTab));
                     OnPropertyChanged(nameof(IsHomeSelected));
-                }
-            }
-        }
-
-        private bool isInventorySelected;
-        public bool IsInventorySelected
-        {
-            get => isInventorySelected;
-            set
-            {
-                if (isInventorySelected != value)
-                {
-                    isInventorySelected = value;
                     OnPropertyChanged(nameof(IsInventorySelected));
-                }
-            }
-        }
-
-        private bool isScanSelected;
-        public bool IsScanSelected
-        {
-            get => isScanSelected;
-            set
-            {
-                if (isScanSelected != value)
-                {
-                    isScanSelected = value;
                     OnPropertyChanged(nameof(IsScanSelected));
-                }
-            }
-        }
-
-        private bool isHistorySelected;
-        public bool IsHistorySelected
-        {
-            get => isHistorySelected;
-            set
-            {
-                if (isHistorySelected != value)
-                {
-                    isHistorySelected = value;
                     OnPropertyChanged(nameof(IsHistorySelected));
-                }
-            }
-        }
-
-        private bool isSettingsSelected;
-        public bool IsSettingsSelected
-        {
-            get => isSettingsSelected;
-            set
-            {
-                if (isSettingsSelected != value)
-                {
-                    isSettingsSelected = value;
                     OnPropertyChanged(nameof(IsSettingsSelected));
                 }
             }
         }
 
+        public bool IsHomeSelected => SelectedTab == "Home";
+        public bool IsInventorySelected => SelectedTab == "Inventory";
+        public bool IsScanSelected => SelectedTab == "Scan";
+        public bool IsHistorySelected => SelectedTab == "History";
+        public bool IsSettingsSelected => SelectedTab == "Settings";
+
+        public BottomNavBarViewModel()
+        {
+            SelectedTab = "Home";
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

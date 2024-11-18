@@ -539,5 +539,18 @@
         <Setter Property="TranslationY" Value="0"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="TabIconStyle">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+    <Style TargetType="Label" x:Key="TabTitleStyle">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+    <Style TargetType="StackLayout" x:Key="TabContainerStyle">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
 
 </ResourceDictionary>

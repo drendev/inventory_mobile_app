@@ -74,78 +74,7 @@ namespace inventory_mobile_app.ViewModels
 
         public class MainViewModel : INotifyPropertyChanged
         {
-            private bool isHomeSelected;
-            public bool IsHomeSelected
-            {
-                get => isHomeSelected;
-                set
-                {
-                    if (isHomeSelected != value)
-                    {
-                        isHomeSelected = value;
-                        OnPropertyChanged();
-                    }
-                }
-            }
-
-            private bool isInventorySelected;
-            public bool IsInventorySelected
-            {
-                get => isInventorySelected;
-                set
-                {
-                    if (isInventorySelected != value)
-                    {
-                        isInventorySelected = value;
-                        OnPropertyChanged();
-                    }
-                }
-            }
-
-            private bool isScanSelected;
-            public bool IsScanSelected
-            {
-                get => isScanSelected;
-                set
-                {
-                    if (isScanSelected != value)
-                    {
-                        isScanSelected = value;
-                        OnPropertyChanged();
-                    }
-                }
-            }
-
-            private bool isHistorySelected;
-            public bool IsHistorySelected
-            {
-                get => isHistorySelected;
-                set
-                {
-                    if (isHistorySelected != value)
-                    {
-                        isHistorySelected = value;
-                        OnPropertyChanged();
-                    }
-                }
-            }
-
         
-
-            private bool isSettingsSelected;
-            public bool IsSettingsSelected
-            {
-                get => isSettingsSelected;
-                set
-                {
-                    if (isSettingsSelected != value)
-                    {
-                        isSettingsSelected = value;
-                        OnPropertyChanged();
-                    }
-                }
-            }
-
             private DateTime _expiryDate = DateTime.Today;
 
             public DateTime ExpiryDate
@@ -161,10 +90,10 @@ namespace inventory_mobile_app.ViewModels
                 }
             }
 
-            public MainViewModel()
-            {
-                IsHomeSelected = true; 
-            }
+            //public MainViewModel()
+            //{
+            //    IsHomeSelected = true; 
+            //}
 
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -9,4 +9,16 @@ public partial class HistoryPage : ContentPage
 		InitializeComponent();
         BindingContext = App.MainViewModel;
     }
+
+    private async void OnViewStocksClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            await Shell.Current.GoToAsync("//ViewStocksPage");
+        }
+        catch (Exception ex)
+        {
+            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
 }

@@ -2,6 +2,7 @@ namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
 using inventory_mobile_app.Models;
 using System.ComponentModel;
+using System.Diagnostics;
 
 public partial class BottomNavBar : ContentView
 {
@@ -14,102 +15,24 @@ public partial class BottomNavBar : ContentView
         BindingContext = bottomNavBarViewModel;
     }
 
-    // Home/Dashboard page
-    private async void OnHomeClicked(object sender, EventArgs e)
+    private async void OnTabClicked(object sender, EventArgs e)
     {
         try
         {
-            var viewModel = (BottomNavBarViewModel)BindingContext;
-            viewModel.IsHomeSelected = true;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
+            var tappedView = sender as View;
+            var selectedTab = tappedView?.BindingContext as string ?? (tappedView as StackLayout)?.GestureRecognizers
+                .OfType<TapGestureRecognizer>()
+                .FirstOrDefault()
+                ?.CommandParameter as string;
 
-            await Shell.Current.GoToAsync("//HomePage");
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
+            if (!string.IsNullOrEmpty(selectedTab))
+            {
+                bottomNavBarViewModel.SelectedTab = selectedTab;
+                Debug.WriteLine($"SelectedTab updated to: {bottomNavBarViewModel.SelectedTab}");
+                await Task.Delay(150);
 
-    // Inventory page
-    private async void OnInventoryClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = (BottomNavBarViewModel)BindingContext;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = true;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-            await Shell.Current.GoToAsync("//InventoryPage");
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Scan page
-    private async void OnScanClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = (BottomNavBarViewModel)BindingContext;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = true;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = false;
-
-
-            await Shell.Current.GoToAsync("//ScanPage");
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // History page
-    private async void OnHistoryClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = (BottomNavBarViewModel)BindingContext;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = true;
-            viewModel.IsSettingsSelected = false;
-
-
-            await Shell.Current.GoToAsync("//HistoryPage");
-        }
-        catch (Exception ex)
-        {
-            await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
-        }
-    }
-
-    // Settings page
-    private async void OnSettingsClicked(object sender, EventArgs e)
-    {
-        try
-        {
-            var viewModel = (BottomNavBarViewModel)BindingContext;
-            viewModel.IsHomeSelected = false;
-            viewModel.IsInventorySelected = false;
-            viewModel.IsScanSelected = false;
-            viewModel.IsHistorySelected = false;
-            viewModel.IsSettingsSelected = true;
-
-
-            await Shell.Current.GoToAsync("//SettingsPage");
+                await Shell.Current.GoToAsync($"//{selectedTab}Page");
+            }
         }
         catch (Exception ex)
         {

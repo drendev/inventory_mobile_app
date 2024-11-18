@@ -17,6 +17,9 @@ namespace inventory_mobile_app.Models
         public static string CloseIcon = "\ue5cd";
         public static string HistoryIcon = "\ue889";
         public static string LogoutIcon = "\ue9ba";
-        public static string EditIcon = "\ue3c9";
+        public static string EditIcon = "\ue3c9"; 
+        public static string BackIcon = "\ue5c4";
+        public static string CalendarIcon = "\ue935";
+        public static string TimeIcon = "\ue8b5";
     }
 }

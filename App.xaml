@@ -12,6 +12,8 @@
             </ResourceDictionary.MergedDictionaries>
             <services:InverseBoolean x:Key="InverseBoolConverter" />
         </ResourceDictionary>
+        
+        
 
     </Application.Resources>
 </Application>

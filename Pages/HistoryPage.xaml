@@ -40,7 +40,8 @@
                FontFamily="Poppins-SemiBold"
                HorizontalOptions="End"
                VerticalOptions="Start"
-               Margin="0,60,0,0"/>
+               Margin="0,60,0,0"
+               Clicked="OnViewStocksClicked"/>
                 </Grid>
 
                 <VerticalStackLayout Spacing="15" Padding="10,0,0,10">
@@ -117,7 +118,7 @@
                             <Frame BackgroundColor="#F5F5F5"
                                CornerRadius="10"
                                HeightRequest="30"
-                               Padding="0"
+                               Padding="-10"
                                VerticalOptions="Start">
                                 <Grid ColumnDefinitions="Auto,*,Auto"
                                 VerticalOptions="Center">
@@ -132,59 +133,71 @@
                             </Frame>
                         </VerticalStackLayout>
                     </Frame>
-                    <CollectionView ItemsSource="{Binding StockHistory}" Margin="10">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="5" BackgroundColor="#FFFBEA">
-                                    <StackLayout>
-                                        <!-- Header -->
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Label Text="Stock Adjustment" 
-                                       TextColor="White" 
-                                       BackgroundColor="Red" 
-                                       FontAttributes="Bold" 
-                                       Padding="5,0" />
-                                            <Label Text="11:12" 
-                                       HorizontalOptions="EndAndExpand" 
-                                       VerticalOptions="Center" />
-                                        </StackLayout>
 
-                                        <!-- Product Name -->
-                                        <Label Text="Product Name" 
-                                       FontAttributes="Bold" 
-                                       FontSize="16" 
-                                       TextColor="Black" 
-                                       Margin="0,5,0,0" />
-
-                                        <!-- Adjusted By and Date -->
-                                        <Label Text="Adjusted By: {Binding AdjustedBy}" 
-                                           FontSize="14" 
-                                           TextColor="Gray" />
-                                        <Label Text="Date: {Binding Date}" 
-                                           FontSize="14" 
-                                           TextColor="Gray" />
-
-                                        <!-- Stock Changes -->
-                                        <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
-                                            <Label Text="10 Units" 
-                                       FontSize="16" 
-                                       FontAttributes="Bold" 
-                                       TextColor="{Binding ChangeColor}" />
-                                            <Label Text="Current: {Binding CurrentUnits}" 
-                                       FontSize="16" 
-                                       HorizontalOptions="EndAndExpand" 
-                                       VerticalOptions="Center" />
-                                        </StackLayout>
-                                    </StackLayout>
+                    <Frame HasShadow="True"
+                        BorderColor="#FFFFFF" 
+                        CornerRadius="10" 
+                        Padding="13" 
+                        Margin="0" 
+                        BackgroundColor="#FFFFFF">
+                        <StackLayout>
+                            <!-- Header -->
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                <Frame Grid.Column="1"
+                                BackgroundColor="#FFD8C2"
+                                Padding="8,5"
+                                CornerRadius="15"
+                                HasShadow="True"
+                                BorderColor="Transparent">
+                                    <Label Text="Stock Sold"
+                                    TextColor="#EE5100"
+                                    FontSize="11"
+                                    FontFamily="Poppins-Medium"/>
                                 </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                <Label Text="11:12" 
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="Center"
+                                FontFamily="Poppins-Medium"/>
+                            </StackLayout>
+
+                            <!-- Product Name -->
+                            <Label Text="Product Name" 
+                                FontFamily="Poppins-Bold" 
+                                FontSize="16" 
+                                TextColor="Black" 
+                                Margin="0,5,0,0" />
+
+                            <!-- Adjusted By and Date -->
+                            <Label Text="Adjusted By: Gene" 
+                                FontSize="14" 
+                                TextColor="#4F4F4F"
+                                   FontFamily="Poppins-Medium"/>
+                            <Label Text="Date: 11/13/2024" 
+                                    FontSize="14" 
+                                    TextColor="#4F4F4F"
+                                   FontFamily="Poppins-Medium"/>
+
+                            <BoxView Color="#D3D3D3" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,5,0,0" />
+                            
+                            <!-- Stock Changes -->
+                            <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                                <Label Text="-10 Units" 
+                                FontSize="16" 
+                                FontFamily="Poppins-Bold" 
+                                TextColor="#EE5100" />
+                                <Label Text="Current: 95 Units" 
+                                FontSize="16" 
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="Center"
+                                FontFamily="Poppins-Bold"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
 
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
-        <pages:BottomNavBar Grid.Row="1" />
+        <pages:BottomNavBar Grid.Row="2" />
     </Grid>
 
 </ContentPage>
