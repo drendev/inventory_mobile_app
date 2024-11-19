@@ -27,11 +27,13 @@ public partial class InventoryPage : ContentPage
     {
         EditProductModal.IsVisible = true;
         EditProductButton.IsEnabled = true;
+        ViewProductModal.IsVisible = false;
     }
 
     private void OnCloseEditModalClicked(object sender, EventArgs e)
     {
         EditProductModal.IsVisible = false;
+        ViewProductModal.IsVisible = false;
     }
 
     void OnViewProductClicked(object sender, EventArgs e)

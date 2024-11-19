@@ -72,7 +72,6 @@
               Padding="15" 
               CornerRadius="10" 
               WidthRequest="310" 
-              HeightRequest="470" 
               BackgroundColor="White" 
               VerticalOptions="CenterAndExpand"
               HasShadow="True"
@@ -103,11 +102,14 @@
 
                     <!-- Product Name -->
                     <Label Text="{Binding Product.ProductName}" 
-                 FontSize="22"
+                 FontSize="23"
                  FontFamily="Poppins-ExtraBold"
                  TextColor="#E76722"
                  Margin="5"
-                 HorizontalOptions="Center" />
+                 HorizontalOptions="Center"
+                 HorizontalTextAlignment="Center"
+                 VerticalTextAlignment="Center"
+                 TextTransform="Uppercase"  />
 
                     <!-- Product Description -->
                     <Label Text="{Binding Product.Description, StringFormat='DESCRIPTION: {0}'}" 
@@ -115,7 +117,9 @@
                  FontFamily="Poppins-SemiBold"
                  TextColor="#4F4F4F"
                  Margin="0,-5,0,5"
-                 HorizontalOptions="Center"/>
+                 HorizontalTextAlignment="Center"
+                 VerticalTextAlignment="Center"
+                 TextTransform="Uppercase"/>
 
                     <!-- Product ID -->
                     <Label Text="{Binding Product.ProductId, StringFormat='PRODUCT ID: {0}'}" 

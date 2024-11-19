@@ -59,7 +59,7 @@
                                 </VerticalStackLayout>
                             </Frame>
 
-                            <!-- Total Categories -->
+                            <!-- Total Stocks -->
                             <Frame Grid.Row="0" Grid.Column="1"
                        BackgroundColor="White"
                        CornerRadius="10"
@@ -67,11 +67,11 @@
                        HasShadow="True"
                        BorderColor="White">
                                 <VerticalStackLayout Spacing="0">
-                                    <Label Text="Total Categories"
+                                    <Label Text="Total Stocks"
                                 TextColor="#E76722"
                                 FontFamily="Poppins-Medium"
                                 FontSize="14"/>
-                                    <Label Text="14"
+                                    <Label Text="4500"
                                FontSize="32"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"

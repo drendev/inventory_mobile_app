@@ -44,7 +44,7 @@
                Clicked="OnViewStocksClicked"/>
                 </Grid>
 
-                <VerticalStackLayout Spacing="15" Padding="10,0,0,10">
+                <VerticalStackLayout Spacing="15" Padding="0,0,0,10">
                     <Grid ColumnDefinitions="*,*" 
                     RowDefinitions="Auto,Auto"
                     ColumnSpacing="10"

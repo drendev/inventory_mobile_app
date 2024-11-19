@@ -59,72 +59,101 @@
                    HorizontalOptions="Start" 
                    VerticalOptions="Center" />
                 </Grid>
-                
-                <VerticalStackLayout Spacing="10" Padding="10,0,0,0">
+
+                <VerticalStackLayout Spacing="10" Padding="0">
+                    <!-- Stock Status Frame -->
                     <Frame BackgroundColor="#FDEBD7"
-                        CornerRadius="3"
-                        Padding="10,5,10,2"
-                        HasShadow="True"
-                        BorderColor="#FDEBD7">
+               CornerRadius="3"
+               Padding="10,5,10,0"
+               HasShadow="True"
+               BorderColor="#FDEBD7">
                         <VerticalStackLayout>
                             <Label Text="STOCK STATUS"
-                   TextColor="#4F4F4F"
-                   FontSize="22"
-                   Margin="0"
-                   FontFamily="Poppins-ExtraBold" />
+                       TextColor="#4F4F4F"
+                       FontSize="22"
+                       Margin="0"
+                       FontFamily="Poppins-ExtraBold" />
 
+                            <!-- Date and Time Info -->
                             <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" Spacing="5">
-                                <!-- Calendar Icon -->
                                 <Label Text="{x:Static model:Icons.CalendarIcon}" 
-                                   Style="{StaticResource MaterialIcon}" 
-                                   FontSize="16" 
-                                   FontAttributes="Bold"
-                                   TextColor="#4F4F4F" 
-                                   VerticalOptions="Center" />
-                                <!-- Date -->
+                           Style="{StaticResource MaterialIcon}" 
+                           FontSize="16" 
+                           FontAttributes="Bold"
+                           TextColor="#4F4F4F" 
+                           VerticalOptions="Center" />
                                 <Label Text="11/12/2024" 
-                                   FontSize="12" 
-                                   FontFamily="Poppins-SemiBold" 
-                                   TextColor="#4F4F4F" 
-                                   VerticalOptions="Center" />
+                           FontSize="12" 
+                           FontFamily="Poppins-SemiBold" 
+                           TextColor="#4F4F4F" 
+                           VerticalOptions="Center" />
 
-                                <!-- Calendar Icon -->
                                 <Label Text="{x:Static model:Icons.TimeIcon}" 
-                                Style="{StaticResource MaterialIcon}" 
-                                FontSize="16" 
-                                FontAttributes="Bold"
-                                TextColor="#4F4F4F" 
-                                VerticalOptions="Center"
-                                Margin="10,0,0,0"/>
-                                <!-- Date -->
+                           Style="{StaticResource MaterialIcon}" 
+                           FontSize="16" 
+                           FontAttributes="Bold"
+                           TextColor="#4F4F4F" 
+                           VerticalOptions="Center"
+                           Margin="10,0,0,0" />
                                 <Label Text="12:30" 
-                                FontSize="12" 
-                                FontFamily="Poppins-SemiBold" 
-                                TextColor="#4F4F4F" 
-                                VerticalOptions="Center" />
-                                
+                           FontSize="12" 
+                           FontFamily="Poppins-SemiBold" 
+                           TextColor="#4F4F4F" 
+                           VerticalOptions="Center" />
                             </StackLayout>
-                            <VerticalStackLayout VerticalOptions="End" Margin="0,10,0,0" Spacing="10">
-                                <HorizontalStackLayout HorizontalOptions="Start" Spacing="20">
-                                    <Label Text="All Items" 
-                                   FontSize="12" 
-                                   FontFamily="Poppins-Bold" 
-                                   TextColor="#4F4F4F" 
-                                   VerticalOptions="Center" />
-                                    <Label Text="Low Stock" 
-                                            FontSize="12" 
-                                            FontFamily="Poppins-Bold" 
-                                            TextColor="#4F4F4F" 
-                                            VerticalOptions="Center" />
-                                    <Label Text="Out of Stock" 
-                                        FontSize="12" 
-                                        FontFamily="Poppins-Bold" 
-                                        TextColor="#4F4F4F" 
-                                        VerticalOptions="Center" />
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
+
+                            <!-- Tab Buttons -->
+                            <HorizontalStackLayout HorizontalOptions="Start"  Spacing="25">
+                                <!-- All Items Tab -->
+                                <VerticalStackLayout>
+                                    <Button Text="All Items" 
+                                    FontSize="12" 
+                                    FontFamily="Poppins-Bold" 
+                                    TextColor="#4F4F4F" 
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnTabClicked"
+                                    CommandParameter="All" 
+                                    Padding="10,0,10,-15" />
+                                    <BoxView x:Name="AllItemsBorder" 
+                                 HeightRequest="2" 
+                                 BackgroundColor="#E76722" 
+                                 IsVisible="True" />
+                                </VerticalStackLayout>
+
+                                <!-- Low Stock Tab -->
+                                <VerticalStackLayout>
+                                    <Button Text="Low Stock" 
+                                    FontSize="12" 
+                                    FontFamily="Poppins-Bold" 
+                                    TextColor="#4F4F4F" 
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnTabClicked"
+                                    CommandParameter="LowStock"
+                                    Padding="10,0,10,-15"/>
+                                    <BoxView x:Name="LowStockBorder" 
+                                     HeightRequest="2" 
+                                     BackgroundColor="#E76722" 
+                                     IsVisible="False" />
+                                </VerticalStackLayout>
+
+                                <!-- Out of Stock Tab -->
+                                <VerticalStackLayout>
+                                    <Button Text="Out of Stock" 
+                                    FontSize="12" 
+                                    FontFamily="Poppins-Bold" 
+                                    TextColor="#4F4F4F" 
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnTabClicked"
+                                    CommandParameter="OutOfStock"
+                                    Padding="10,0,10,-15"/>
+                                    <BoxView x:Name="OutOfStockBorder" 
+                                     HeightRequest="2" 
+                                     BackgroundColor="#E76722" 
+                                     IsVisible="False" />
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+
                         </VerticalStackLayout>
-                    
                     </Frame>
 
                     <!-- Search Bar -->
@@ -146,6 +175,265 @@
                                 Margin="0" />
                         </Grid>
                     </Frame>
+
+                    <ContentView x:Name="AllItemsContent" IsVisible="True">
+                        <Frame HasShadow="True"
+                             BorderColor="#FFFFFF" 
+                             CornerRadius="15" 
+                             Padding="13" 
+                             Margin="0" 
+                             BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
+                                    <!-- Product Name -->
+                                    <Label Text="Product Name" 
+                                 FontFamily="Poppins-Bold" 
+                                 FontSize="18" 
+                                 TextColor="#070707" 
+                                 TextTransform="Uppercase"/>
+
+                                    <!-- View Product Icon -->
+                                    <Image 
+                                     Source="view_product_icon.png" 
+                                     HeightRequest="32" 
+                                     WidthRequest="32" 
+                                     VerticalOptions="Center" 
+                                     HorizontalOptions="End" 
+                                     Grid.Column="2" />
+                                </Grid>
+                                <!-- Product ID -->
+                                <Label Text="ID #" 
+                                 FontSize="14" 
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"/>
+
+                                <HorizontalStackLayout Spacing="20" Margin="0,5,0,0">
+                                    <VerticalStackLayout>
+                                        <Label Text="Current Stock"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                        <Label Text="45 units"
+                                            FontSize="14" 
+                                            TextColor="#070707"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Label Text="Min. Required"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                        <Label Text="15 units"
+                                       FontSize="14" 
+                                        TextColor="#070707"
+                                        FontFamily="Poppins-ExtraBold"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout>
+                                        <Label Text="Last Updated" 
+                                       FontSize="12" 
+                                        TextColor="#4F4F4F"
+                                        FontFamily="Poppins-Medium"/>
+                                        <Label Text="11/12/2024"
+                                       FontSize="14" 
+                                        TextColor="#070707"
+                                        FontFamily="Poppins-ExtraBold"/>
+                                    </VerticalStackLayout>
+                                </HorizontalStackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ContentView>
+
+                    <ContentView x:Name="LowStockContent" IsVisible="False">
+                        <Grid>
+                            <!-- Left Border -->
+                            <BoxView 
+                                BackgroundColor="#E76722" 
+                                WidthRequest="35" 
+                                HorizontalOptions="Start" 
+                                VerticalOptions="FillAndExpand"
+                                CornerRadius="18"/>
+                            <Frame HasShadow="True"
+                             BorderColor="#FFFFFF" 
+                             CornerRadius="15" 
+                             Padding="13" 
+                             Margin="5,0,0,0" 
+                             BackgroundColor="#FFFFFF">
+
+                                <StackLayout>
+                                    <!-- Product Name -->
+                                    <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,*,Auto">
+                                        <Label Text="Product Name" 
+                                     FontFamily="Poppins-Bold" 
+                                     FontSize="18" 
+                                     TextColor="#070707" 
+                                     TextTransform="Uppercase"/>
+                                        <Label Text="{x:Static model:Icons.LowStockIcon}" 
+                                                Style="{StaticResource BootstrapIcon}" 
+                                                FontSize="16" 
+                                                TextColor="#E76722"
+                                                VerticalOptions="Center"
+                                                Margin="7,0,0,3"
+                                               Grid.Column="1" />
+
+                                        <!-- View Product Icon -->
+                                        <Image 
+                                        Source="view_product_icon.png" 
+                                        HeightRequest="32" 
+                                        WidthRequest="32" 
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="End" 
+                                        Grid.Column="2" />
+                                    </Grid>
+
+                                    <!-- Product ID -->
+                                    <Label Text="ID #" 
+                                 FontSize="14" 
+                                 TextColor="#4F4F4F"
+                                 FontFamily="Poppins-Medium"/>
+
+                                    <HorizontalStackLayout Spacing="20" Margin="0,5,0,0">
+                                        <VerticalStackLayout>
+                                            <Label Text="Current Stock"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                            <Label Text="5 units"
+                                            FontSize="14" 
+                                            TextColor="#E76722"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout>
+                                            <Label Text="Min. Required"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                            <Label Text="15 units"
+                                           FontSize="14" 
+                                            TextColor="#070707"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout>
+                                            <Label Text="Last Updated" 
+                                       FontSize="12" 
+                                        TextColor="#4F4F4F"
+                                        FontFamily="Poppins-Medium"/>
+                                            <Label Text="11/12/2024"
+                                           FontSize="14" 
+                                            TextColor="#070707"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ContentView>
+                   
+
+                    <ContentView x:Name="OutOfStockContent" IsVisible="False">
+                        <Grid>
+                            <!-- Left Border -->
+                            <BoxView 
+                                BackgroundColor="#D40404" 
+                                WidthRequest="35" 
+                                HorizontalOptions="Start" 
+                                VerticalOptions="FillAndExpand"
+                                CornerRadius="18"/>
+                            <Frame HasShadow="True"
+                             BorderColor="#FFFFFF" 
+                             CornerRadius="15" 
+                             Padding="13" 
+                             Margin="5,0,0,0" 
+                             BackgroundColor="#FFFFFF">
+
+                                <StackLayout>
+                                    <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,*,Auto">
+                                        <!-- Product Name -->
+                                        <Label 
+                                        Text="Product Name" 
+                                        FontFamily="Poppins-Bold" 
+                                        FontSize="18" 
+                                        TextColor="#070707" 
+                                        TextTransform="Uppercase" 
+                                        Grid.Column="0" />
+
+                                        <!-- Out of Stock Icon -->
+                                        <Label 
+                                        Text="{x:Static model:Icons.OutOfStockIcon}" 
+                                        Style="{StaticResource MaterialIcon}" 
+                                        FontSize="18" 
+                                        FontAttributes="Bold"
+                                        TextColor="#D40404"
+                                        VerticalOptions="Center"
+                                        Margin="5,0,0,5" 
+                                        Grid.Column="1" />
+
+                                        <!-- View Product Icon -->
+                                        <Image 
+                                        Source="view_product_icon.png" 
+                                        HeightRequest="32" 
+                                        WidthRequest="32" 
+                                        VerticalOptions="Center" 
+                                        HorizontalOptions="End" 
+                                        Grid.Column="2" />
+                                    </Grid>
+                                    <!-- Product ID -->
+                                    <Label Text="ID #" 
+                                     FontSize="14" 
+                                     TextColor="#4F4F4F"
+                                     FontFamily="Poppins-Medium"/>
+
+                                    <HorizontalStackLayout Spacing="20" Margin="0,5,0,0">
+                                        <VerticalStackLayout>
+                                            <Label Text="Current Stock"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                            <Label Text="0 units"
+                                            FontSize="14" 
+                                            TextColor="#D40404"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout>
+                                            <Label Text="Min. Required"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F"
+                                           FontFamily="Poppins-Medium"/>
+                                            <Label Text="15 units"
+                                           FontSize="14" 
+                                            TextColor="#070707"
+                                            FontFamily="Poppins-ExtraBold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout>
+                                            <Label Text="Last Updated" 
+                                               FontSize="12" 
+                                                TextColor="#4F4F4F"
+                                                FontFamily="Poppins-Medium"/>
+                                            <Label Text="11/12/2024"
+                                               FontSize="14" 
+                                                TextColor="#070707"
+                                                FontFamily="Poppins-ExtraBold"/>
+                                            
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                        <Frame Margin="0,2,0,0"
+                                             BackgroundColor="#D40404"
+                                             Padding="8,3"
+                                             CornerRadius="8"
+                                             HasShadow="True"
+                                             BorderColor="Transparent">
+                                            <Label Text="Restock Now"
+                                             TextColor="White"
+                                             FontSize="11"
+                                             FontFamily="Poppins-Bold"/>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </Frame>
+                        </Grid>
+                    </ContentView>
+
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

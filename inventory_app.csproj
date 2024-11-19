@@ -73,6 +73,7 @@
 	  <None Remove="Resources\Images\product2.png" />
 	  <None Remove="Resources\Images\register_logo.png" />
 	  <None Remove="Resources\Images\splashscreen.png" />
+	  <None Remove="Resources\Images\view_product_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

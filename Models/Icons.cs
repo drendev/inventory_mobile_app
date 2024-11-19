@@ -20,6 +20,9 @@ namespace inventory_mobile_app.Models
         public static string EditIcon = "\ue3c9"; 
         public static string BackIcon = "\ue5c4";
         public static string CalendarIcon = "\ue935";
-        public static string TimeIcon = "\ue8b5";
+        public static string TimeIcon = "\ue8b5"; 
+        public static string LowStockIcon = "\uF33A";  
+        public static string OutOfStockIcon = "\ue5c9";
+        public static string ViewProductIcon = "\ue8f4";
     }
 }

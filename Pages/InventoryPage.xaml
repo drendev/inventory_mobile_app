@@ -48,37 +48,52 @@
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:ProductList">
                                     <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True" BackgroundColor="White">
-                                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" ColumnDefinitions="*,*">
                                             <!-- Product Image -->
                                             <Image Source="{Binding ImageUrl}" 
-                               Grid.Row="0" Grid.ColumnSpan="2"
-                               WidthRequest="100" HeightRequest="100" 
-                               VerticalOptions="Center" HorizontalOptions="Center" />
+                                               Grid.Row="0" Grid.ColumnSpan="2"
+                                               WidthRequest="100" HeightRequest="100" 
+                                               VerticalOptions="Center" HorizontalOptions="Center" />
 
                                             <!-- Product Name -->
                                             <Label Text="{Binding ProductName}"
-                               Grid.Row="1" Grid.ColumnSpan="2"
-                               FontAttributes="Bold" FontSize="14" 
-                               HorizontalOptions="Center" TextColor="#E76722" />
+                                               Grid.Row="1" Grid.ColumnSpan="2"
+                                               FontFamily="Poppins-ExtraBold" 
+                                               FontSize="14" 
+                                               HorizontalOptions="Center"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center"
+                                               TextTransform="Uppercase" 
+                                               TextColor="#E76722" />
 
                                             <!-- Description -->
                                             <Label Text="{Binding Description}" 
-                               Grid.Row="2" Grid.Column="0"
-                               FontSize="12" TextColor="#4F4F4F" 
-                               VerticalOptions="Start" HorizontalOptions="Start" />
+                                           Grid.Row="2" Grid.ColumnSpan="2"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F" 
+                                           VerticalOptions="Start" 
+                                           HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="Center"
+                                            FontFamily="Poppins-SemiBold"
+                                           TextTransform="Uppercase"/>
 
                                             <!-- Stock -->
-                                            <Label Text="{Binding Stock}" 
-                               Grid.Row="2" Grid.Column="1"
-                               FontSize="12" TextColor="#4F4F4F" 
-                               VerticalOptions="Start" HorizontalOptions="End" />
+                                            <Label Text="{Binding Stock,  StringFormat='QUANTITY: {0}'}" 
+                                           Grid.Row="3" Grid.ColumnSpan="2"
+                                           FontSize="12" 
+                                           TextColor="#4F4F4F" 
+                                            HorizontalOptions="Center"
+                                            FontFamily="Poppins-Bold" />
 
                                             <!-- In-Stock Indicator -->
                                             <Label Text="IN-STOCK" 
-                                               Grid.Row="3" Grid.ColumnSpan="2"
+                                               Grid.Row="4" Grid.ColumnSpan="2"
                                                FontSize="14" 
                                                TextColor="#80AA04" 
-                                               HorizontalOptions="Center">
+                                               HorizontalOptions="Center"
+                                             HorizontalTextAlignment="Center"
+                                               FontFamily="Poppins-Bold">
                                                 <Label.Triggers>
                                                     <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="0">
                                                         <DataTrigger.Setters>
@@ -111,585 +126,585 @@
                                                         </DataTrigger.Setters>
                                                     </DataTrigger>
                                                     <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="5">
-                                                    <DataTrigger.Setters>
-                                                        <Setter Property="Text" Value="LOW STOCK" />
-                                                        <Setter Property="TextColor" Value="Orange" />
-                                                    </DataTrigger.Setters>
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="LOW STOCK" />
+                                                            <Setter Property="TextColor" Value="Orange" />
+                                                        </DataTrigger.Setters>
                                                     </DataTrigger>
                                                 </Label.Triggers>
                                             </Label>
 
                                             <!-- View Button -->
                                             <Button Text="VIEW" 
-                                BackgroundColor="#E76722"
-                                TextColor="White"
-                                FontSize="13"
-                                FontAttributes="Bold"
-                                WidthRequest="65"
-                                HeightRequest="25"
-                                Padding="3"
-                                Margin="5"
-                                CornerRadius="5" 
-                                HorizontalOptions="Center"
-                                Grid.Row="4" Grid.ColumnSpan="2"
-                                Clicked="OnViewProductClicked" />
+                                            BackgroundColor="#E76722"
+                                            TextColor="White"
+                                            FontSize="13"
+                                            FontAttributes="Bold"
+                                            WidthRequest="65"
+                                            HeightRequest="25"
+                                            Padding="3"
+                                            Margin="5"
+                                            CornerRadius="5" 
+                                            HorizontalOptions="Center"
+                                            Grid.Row="5" Grid.ColumnSpan="2"
+                                            Clicked="OnViewProductClicked" />
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </ScrollView>
 
+        <!-- View Product Modal -->
+        <ContentView x:Name="ViewProductModal" 
+          WidthRequest="350" 
+          HeightRequest="590"
+          Margin="0,40,0,0"
+          IsVisible="False" 
+          VerticalOptions="CenterAndExpand" 
+          HorizontalOptions="CenterAndExpand">
+            <Frame 
+                Padding="15" 
+                CornerRadius="10"
+                WidthRequest="350"
+                HeightRequest="590"
+                BackgroundColor="White"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="#E1DDDD">
+                <StackLayout Spacing="0">
+                    <HorizontalStackLayout Spacing="10">
+                        <!-- Close Icon Label -->
+                        <Label Text="{x:Static model:Icons.CloseIcon}"
+                  Style="{StaticResource MaterialIcon}"
+                  TextColor="Gray"
+                  FontSize="30"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Start"
+                  Margin="0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCloseViewModalClicked" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
 
-                    <!-- View Product Modal -->
-                    <ContentView x:Name="ViewProductModal" 
-                    WidthRequest="350" 
-                    HeightRequest="590"
-                    Margin="0,130,0,0"
-                    IsVisible="False" 
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand">
-                        <Frame 
-                      Padding="15" 
-                      CornerRadius="10"
-                      WidthRequest="350"
-                      HeightRequest="590"
-                      BackgroundColor="White"
-                      VerticalOptions="CenterAndExpand"
-                      HasShadow="True"
-                      BorderColor="White">
-                            <StackLayout Spacing="0">
-                                <HorizontalStackLayout Spacing="10">
-                                    <!-- Close Icon Label -->
-                                    <Label Text="{x:Static model:Icons.CloseIcon}"
-                                    Style="{StaticResource MaterialIcon}"
-                                    TextColor="Gray"
-                                    FontSize="30"
-                                    VerticalOptions="Start"
-                                    HorizontalOptions="Start"
-                                    Margin="0">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnCloseViewModalClicked" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </HorizontalStackLayout>
+                    <!-- Product Image -->
+                    <Image Source="product2.png" 
+                       WidthRequest="230" 
+                       HeightRequest="230" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" />
 
-                                <!-- Product Image -->
-                                <Image Source="product2.png" 
-                             WidthRequest="230" 
-                             HeightRequest="230" 
-                             VerticalOptions="Center" 
-                             HorizontalOptions="Center" />
+                    <!-- Product Name -->
+                    <Label Text="PRODUCT NAME" 
+                       FontSize="22"
+                       FontFamily="Poppins-ExtraBold"
+                       TextColor="#E76722"
+                       Margin="5"
+                       HorizontalOptions="Center" />
 
-                                <!-- Product Name -->
-                                <Label Text="PRODUCT NAME" 
-                             FontSize="22"
-                             FontFamily="Poppins-ExtraBold"
-                             TextColor="#E76722"
-                             Margin="5"
-                             HorizontalOptions="Center" />
+                    <!-- Product Description -->
+                    <Label Text="PRODUCT DESCRIPTION" 
+                       FontSize="16"
+                       FontFamily="Poppins-SemiBold"
+                       TextColor="#4F4F4F"
+                       Margin="0,-5,0,5"
+                       HorizontalOptions="Center"/>
 
-                                <!-- Product Description -->
-                                <Label Text="PRODUCT DESCRIPTION" 
-                             FontSize="16"
-                             FontFamily="Poppins-SemiBold"
-                             TextColor="#4F4F4F"
-                             Margin="0,-5,0,5"
-                             HorizontalOptions="Center"/>
+                    <!-- Product ID -->
+                    <Label Text="PRODUCT ID: 1209849" 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Product ID -->
-                                <Label Text="PRODUCT ID: 1209849" 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <!-- Buying Price -->
+                    <Label Text="BUYING PRICE: PHP 150" 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Buying Price -->
-                                <Label Text="BUYING PRICE: PHP 150" 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <!-- Selling Price -->
+                    <Label Text="SELLING PRICE: PHP 200" 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Selling Price -->
-                                <Label Text="SELLING PRICE: PHP 200" 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <!-- Quantity -->
+                    <Label Text="QUANTITY: 28" 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Quantity -->
-                                <Label Text="QUANTITY: 28" 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <!-- Availability -->
+                    <Label Text="AVAILABILITY: IN STOCK" 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Availability -->
-                                <Label Text="AVAILABILITY: IN STOCK" 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <!-- Expiration -->
+                    <Label Text="EXPIRATION DATE: 11/27/2026 " 
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       TextColor="#4F4F4F"
+                       Margin="10,0,0,0"
+                       HorizontalOptions="Start" />
 
-                                <!-- Expiration -->
-                                <Label Text="EXPIRATION DATE: 11/27/2026 " 
-                             FontSize="16"
-                             FontFamily="Poppins-Bold"
-                             TextColor="#4F4F4F"
-                             Margin="10,0,0,0"
-                             HorizontalOptions="Start" />
+                    <HorizontalStackLayout Spacing="5" Margin="10,5" HorizontalOptions="Center">
 
-                                <HorizontalStackLayout Spacing="5" Margin="10" HorizontalOptions="Center">
-
-                                    <!-- Edit Button -->
-                                    <Button x:Name="EditProductButton"
-                             Text="EDIT" 
-                             BackgroundColor="#80AA04"
-                             TextColor="White"
-                             FontSize="18"
-                             FontFamily="Poppins-Bold"
-                             WidthRequest="120"
-                             HeightRequest="40"
-                             Padding="5"
-                             Margin="5"
-                             CornerRadius="10" 
-                             HorizontalOptions="Start" 
-                             Clicked="OnEditProductClicked" />
+                        <!-- Edit Button -->
+                        <Button x:Name="EditProductButton"
+                       Text="EDIT" 
+                       BackgroundColor="#80AA04"
+                       TextColor="White"
+                       FontSize="18"
+                       FontFamily="Poppins-Bold"
+                       WidthRequest="120"
+                       HeightRequest="40"
+                       Padding="5"
+                       Margin="5"
+                       CornerRadius="10" 
+                       HorizontalOptions="Start" 
+                       Clicked="OnEditProductClicked" />
 
                                     <!-- Remove Button -->
                                     <Button Text="REMOVE" 
-                             BackgroundColor="#E74922"
-                             TextColor="White"
-                             FontSize="18"
-                             FontFamily="Poppins-Bold"
-                             WidthRequest="120"
-                             HeightRequest="40"
-                             Padding="5"
-                             Margin="5"
-                             CornerRadius="10" 
-                             HorizontalOptions="End" 
-                             Clicked="OnRemoveProductClicked"/>
-                                </HorizontalStackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </ContentView>
+                       BackgroundColor="#E74922"
+                       TextColor="White"
+                       FontSize="18"
+                       FontFamily="Poppins-Bold"
+                       WidthRequest="120"
+                       HeightRequest="40"
+                       Padding="5"
+                       Margin="5"
+                       CornerRadius="10" 
+                       HorizontalOptions="End" 
+                       Clicked="OnRemoveProductClicked"/>
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </Frame>
+        </ContentView>
 
-                    <!-- Remove Product Modal -->
-                    <ContentView x:Name="RemoveProductModal" 
-                         WidthRequest="350" 
-                         HeightRequest="590"
-                         Margin="0,130,0,0"
-                         IsVisible="False" 
-                         VerticalOptions="StartAndExpand" 
-                         HorizontalOptions="CenterAndExpand">
+        <!-- Edit Product Modal -->
+        <ContentView x:Name="EditProductModal" 
+            WidthRequest="350" 
+            HeightRequest="590"
+            Margin="0,40,0,0"
+            IsVisible="False" 
+            VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand">
+
+            <Frame 
+              Padding="15" 
+              CornerRadius="10" 
+              WidthRequest="350" 
+              HeightRequest="590" 
+              BackgroundColor="White" 
+              VerticalOptions="CenterAndExpand"
+              HasShadow="True"
+              BorderColor="White">
 
 
-                        <Grid>
-                            <!-- Shadow -->
-                            <BoxView Style="{StaticResource ModalShadow}"/>
+                <ScrollView>
+                    <StackLayout Spacing="10" VerticalOptions="StartAndExpand">
+                        <HorizontalStackLayout Spacing="10">
+                            <!-- Close Icon Label -->
+                            <Label Text="{x:Static model:Icons.CloseIcon}"
+                             Style="{StaticResource MaterialIcon}"
+                             TextColor="Gray"
+                             FontSize="30"
+                             VerticalOptions="Start"
+                             HorizontalOptions="Start"
+                             Margin="0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCloseEditModalClicked" />
+                                </Label.GestureRecognizers>
+                            </Label>
 
-                            <!-- Modal Frame -->
-                            <Frame Padding="15" 
-                               CornerRadius="10" 
-                               WidthRequest="320" 
-                               HeightRequest="200"
-                               Margin="60"
-                               BackgroundColor="White" 
-                               VerticalOptions="StartAndExpand"
-                               HorizontalOptions="CenterAndExpand"
-                               BorderColor="White"
-                               HasShadow="True">
+                            <!-- Title Label -->
+                            <Label Text="EDIT PRODUCT" 
+                             FontSize="20" 
+                             FontFamily="Poppins-ExtraBold"
+                             HorizontalOptions="Center" 
+                             TextColor="#E76722"
+                             Margin="45,0,0,-10"/>
+                        </HorizontalStackLayout>
 
-                                <VerticalStackLayout>
-                                    <Label Text="REMOVE PRODUCT"
-                                     FontSize="24" 
-                                     FontFamily="Poppins-ExtraBold"
-                                     HorizontalOptions="Center" 
-                                     TextColor="#E76722"/>
-
-                                    <Label Text="Are you sure you want to remove the product from the inventory?"
-                                     FontSize="18" 
-                                     FontFamily="Poppins-SemiBold"
-                                     Padding="5"
-                                     HorizontalOptions="Center" 
-                                     VerticalOptions="Center"
-                                     TextColor="#4F4F4F"
-                                     HorizontalTextAlignment="Center"/>
-
-                                    <HorizontalStackLayout HorizontalOptions="Center">
-                                        <!-- Yes Button -->
-                                        <Button Text="YES" 
-                                         BackgroundColor="#80AA04"
-                                         TextColor="White"
-                                         FontSize="16"
-                                         FontFamily="Poppins-Bold"
-                                         WidthRequest="90"
-                                         HeightRequest="30"
-                                         Padding="3"
-                                         Margin="5"
-                                         CornerRadius="10" 
-                                         HorizontalOptions="Start" 
-                                         Clicked="OnYesRemoveClicked" />
-
-                                        <!-- Cancel Button -->
-                                        <Button Text="CANCEL" 
-                                         BackgroundColor="#E74922"
-                                         TextColor="White"
-                                         FontSize="16"
-                                         FontFamily="Poppins-Bold"
-                                         WidthRequest="90"
-                                         HeightRequest="30"
-                                         Padding="3"
-                                         Margin="5"
-                                         CornerRadius="10" 
-                                         HorizontalOptions="End" 
-                                         Clicked="OnCancelRemoveModalClicked"/>
-
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                            </Frame>
-
-                        </Grid>
-
-                    </ContentView>
-
-                    <!-- Remove Product Succesfully Modal -->
-                    <ContentView x:Name="RemoveProductSuccessfullyModal" 
-                     WidthRequest="350" 
-                     HeightRequest="590"
-                     Margin="0,130,0,0"
-                     IsVisible="False" 
-                     VerticalOptions="StartAndExpand" 
-                     HorizontalOptions="CenterAndExpand">
-
-                        <Grid>
-                            <!-- Shadow using BoxView -->
-                            <BoxView Style="{StaticResource ModalShadow}"/>
-
-                            <!-- Modal Frame -->
-                            <Frame Padding="15" 
-                   CornerRadius="10" 
-                   WidthRequest="320" 
-                   HeightRequest="200"
-                   Margin="60"
-                   BackgroundColor="White" 
-                   VerticalOptions="StartAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   BorderColor="White"
-                   HasShadow="True">
-
-                                <VerticalStackLayout>
-                                    <Label Text="REMOVED SUCCESFULLY"
-                         FontSize="22" 
-                         FontFamily="Poppins-ExtraBold"
-                         HorizontalOptions="Center" 
-                         HorizontalTextAlignment="Center"
-                         TextColor="#E76722"/>
-
-                                    <Label Text="Product has been remove from the inventory successfully."
-                         FontSize="18" 
-                         FontFamily="Poppins-SemiBold"
-                         Padding="5"
-                         HorizontalOptions="Center" 
+                        <!-- Product ID Entry (Read-Only) -->
+                        <HorizontalStackLayout Spacing="35" Margin="0,0,0,0">
+                            <Label Text="PRODUCT ID" 
+                         FontSize="13"
+                         FontFamily="Poppins-Bold"
                          VerticalOptions="Center"
-                         TextColor="#4F4F4F"
-                         HorizontalTextAlignment="Center"/>
-
-                                    <!-- Cancel Button -->
-                                    <Button Text="CLOSE" 
-                              BackgroundColor="#E74922"
-                              TextColor="White"
-                              FontSize="16"
-                              FontFamily="Poppins-Bold"
-                              WidthRequest="90"
-                              HeightRequest="30"
-                              Padding="3"
-                              Margin="5"
-                              CornerRadius="10" 
-                              HorizontalOptions="Center" 
-                              Clicked="OnCloseSuccessRemoveModalClicked"/>
-
-                                </VerticalStackLayout>
+                         TextColor="#0050A2"/>
+                            <Frame CornerRadius="10"
+                             BorderColor="Transparent"
+                             BackgroundColor="#EEEEEE" 
+                             Padding="0"
+                             HeightRequest="32" 
+                             VerticalOptions="Center">
+                                <Entry Text="test}" 
+                                 FontSize="13" 
+                                 FontFamily="Poppins-Regular"
+                                 HeightRequest="42" 
+                                 WidthRequest="180"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Margin="10,0"
+                                 IsEnabled="False"/>
                             </Frame>
-                        </Grid>
-                    </ContentView>
+                        </HorizontalStackLayout>
+
+                        <!-- Product Image Upload Placeholder -->
+                        <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+                            <Frame Padding="0" BorderColor="Gray" HasShadow="False" HeightRequest="80" WidthRequest="80" BackgroundColor="Transparent" Margin="70,0,0,0">
+                                <Grid>
+                                    <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
+                                     VerticalOptions="Start" HorizontalOptions="End"
+                                     IsVisible="True" />
+                                </Grid>
+                            </Frame>
+                            <Label Text="Upload Product Image Here" VerticalOptions="Center" HorizontalOptions="Center"
+                             FontAttributes="Bold" TextColor="Gray"
+                             Padding="10"
+                             FontSize="12"
+                             WidthRequest="120"
+                             IsVisible="True">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <!-- Image view to display the selected image -->
+                            <Image VerticalOptions="FillAndExpand" 
+                            HorizontalOptions="FillAndExpand" IsVisible="True" />
+                        </HorizontalStackLayout>
+
+                        <!-- Product Name Entry -->
+                        <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
+                            <Label Text="PRODUCT NAME" 
+                         FontSize="13"
+                         FontFamily="Poppins-Bold"
+                         VerticalOptions="Center"
+                         TextColor="#0050A2"/>
+                            <Frame CornerRadius="10"
+                             BorderColor="Transparent"
+                             BackgroundColor="#EEEEEE" 
+                             Padding="0"
+                             HeightRequest="32" 
+                             VerticalOptions="Center">
+                                <Entry x:Name="EditedProductNameEntry" 
+                                 Placeholder="Enter product name" 
+                                 FontSize="13" 
+                                 FontFamily="Poppins-Regular"
+                                 HeightRequest="42" 
+                                 WidthRequest="180"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Margin="10,0"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Product Description Entry -->
+                        <HorizontalStackLayout Spacing="28" Margin="0,10,0,0">
+                            <Label Text="DESCRIPTION" 
+                             FontSize="13"
+                             FontFamily="Poppins-Bold"
+                             VerticalOptions="Start"
+                             TextColor="#0050A2"/>
+                            <Frame CornerRadius="10"
+                             BorderColor="Transparent"
+                             BackgroundColor="#EEEEEE"
+                             Padding="0"
+                             WidthRequest="200" 
+                             VerticalOptions="Center">
+                                <Editor x:Name="EditedProductDescriptionEntry"
+                          Placeholder="Product Description" 
+                          FontSize="13" 
+                          FontFamily="Poppins-Regular" 
+                          HeightRequest="75"
+                          Margin="5,0"
+                          VerticalTextAlignment="Start"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Buying Price Entry -->
+                        <HorizontalStackLayout Spacing="24" Margin="0,5,0,0">
+                            <Label Text="BUYING PRICE" 
+                         FontSize="13"
+                         FontFamily="Poppins-Bold"
+                         VerticalOptions="Center"
+                         TextColor="#0050A2"/>
+                            <Frame CornerRadius="10"
+                         BorderColor="Transparent"
+                         BackgroundColor="#EEEEEE" 
+                         Padding="0"
+                         HeightRequest="32" 
+                         VerticalOptions="Center">
+                                <Entry x:Name="EditedBuyingPriceEntry"
+                             Placeholder="Enter Buying Price" 
+                             FontSize="13" 
+                             FontFamily="Poppins-Regular"
+                             HeightRequest="42" 
+                             WidthRequest="180"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Center"
+                             Margin="10,0"
+                             Keyboard="Numeric"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Selling Price Entry -->
+                        <HorizontalStackLayout Spacing="22" Margin="0,5,0,0">
+                            <Label Text="SELLING PRICE" 
+                             FontSize="13"
+                             FontFamily="Poppins-Bold"
+                             VerticalOptions="Center"
+                             TextColor="#0050A2"/>
+
+                            <Frame CornerRadius="10"
+                             BorderColor="Transparent"
+                             BackgroundColor="#EEEEEE" 
+                             Padding="0"
+                             HeightRequest="32" 
+                             VerticalOptions="Center">
+
+                                <Entry x:Name="EditedSellingPriceEntry"
+                                 Placeholder="Enter Selling Price" 
+                                 FontSize="13" 
+                                 FontFamily="Poppins-Regular"
+                                 HeightRequest="42" 
+                                 WidthRequest="180"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Margin="10,0"
+                                 Keyboard="Numeric"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Expiry Date Picker -->
+                        <HorizontalStackLayout Spacing="32" Margin="0,5,0,0">
+                            <Label Text="EXPIRY DATE" 
+                             FontSize="13"
+                             FontFamily="Poppins-Bold"
+                             VerticalOptions="Center"
+                             TextColor="#0050A2"/>
+                            <Frame CornerRadius="10"
+                             BorderColor="Transparent"
+                             BackgroundColor="#EEEEEE" 
+                             Padding="5,5,0,0"
+                             HeightRequest="32" 
+                             VerticalOptions="Center">
+
+                                <DatePicker
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="Center"
+                                  BackgroundColor="Transparent"
+                                  TextColor="Black"
+                                  HeightRequest="42"
+                                  WidthRequest="80"
+                                  FontSize="14" 
+                                  FontFamily="Poppins-Regular"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Quantity Entry -->
+                        <HorizontalStackLayout Spacing="45" Margin="0,5,0,0">
+                            <Label Text="QUANTITY" 
+                             FontSize="13"
+                             FontFamily="Poppins-Bold"
+                             VerticalOptions="Center"
+                             TextColor="#0050A2"/>
+
+                            <Frame CornerRadius="10"
+                                 BorderColor="Transparent"
+                                 BackgroundColor="#EEEEEE" 
+                                 Padding="0"
+                                 HeightRequest="32" 
+                                 VerticalOptions="Center">
+
+                                <Entry x:Name="EditedProductQuantityEntry" 
+                                 Placeholder="0" 
+                                 FontSize="13" 
+                                 FontFamily="Poppins-Bold"
+                                 HeightRequest="42" 
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="Center"
+                                 Margin="5,0"
+                                 Keyboard="Numeric"/>
+                            </Frame>
+                        </HorizontalStackLayout>
+
+                        <!-- Save Button -->
+                        <Button Text="SAVE EDIT" 
+                          BackgroundColor="#E76722" 
+                          TextColor="White" 
+                          CornerRadius="10"
+                          HeightRequest="35"
+                          FontSize="14" 
+                          FontFamily="Poppins-SemiBold"
+                          HorizontalOptions="Center" 
+                          Padding="10,2,10,0"
+                          Margin="0,15,0,0"
+                          />
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </ContentView>
 
 
-                    <!-- Edit Product Modal -->
-                    <ContentView x:Name="EditProductModal" 
+        <!-- Remove Product Modal -->
+        <ContentView x:Name="RemoveProductModal" 
+          WidthRequest="350" 
+          HeightRequest="590"
+          Margin="0,130,0,0"
+          IsVisible="False" 
+          VerticalOptions="StartAndExpand" 
+          HorizontalOptions="CenterAndExpand">
+
+
+            <Grid>
+                <!-- Shadow -->
+                <BoxView Style="{StaticResource ModalShadow}"/>
+
+                <!-- Modal Frame -->
+                <Frame Padding="15" 
+                    CornerRadius="10" 
+                    WidthRequest="320" 
+                    HeightRequest="200"
+                    Margin="60"
+                    BackgroundColor="White" 
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    BorderColor="White"
+                    HasShadow="True">
+
+                    <VerticalStackLayout>
+                        <Label Text="REMOVE PRODUCT"
+                              FontSize="24" 
+                              FontFamily="Poppins-ExtraBold"
+                              HorizontalOptions="Center" 
+                              TextColor="#E76722"/>
+
+                        <Label Text="Are you sure you want to remove the product from the inventory?"
+                          FontSize="18" 
+                          FontFamily="Poppins-SemiBold"
+                          Padding="5"
+                          HorizontalOptions="Center" 
+                          VerticalOptions="Center"
+                          TextColor="#4F4F4F"
+                          HorizontalTextAlignment="Center"/>
+
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <!-- Yes Button -->
+                            <Button Text="YES" 
+                      BackgroundColor="#80AA04"
+                      TextColor="White"
+                      FontSize="16"
+                      FontFamily="Poppins-Bold"
+                      WidthRequest="90"
+                      HeightRequest="30"
+                      Padding="3"
+                      Margin="5"
+                      CornerRadius="10" 
+                      HorizontalOptions="Start" 
+                      Clicked="OnYesRemoveClicked" />
+
+                            <!-- Cancel Button -->
+                            <Button Text="CANCEL" 
+                      BackgroundColor="#E74922"
+                      TextColor="White"
+                      FontSize="16"
+                      FontFamily="Poppins-Bold"
+                      WidthRequest="90"
+                      HeightRequest="30"
+                      Padding="3"
+                      Margin="5"
+                      CornerRadius="10" 
+                      HorizontalOptions="End" 
+                      Clicked="OnCancelRemoveModalClicked"/>
+
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </Grid>
+
+        </ContentView>
+
+        <!-- Remove Product Succesfully Modal -->
+        <ContentView x:Name="RemoveProductSuccessfullyModal" 
               WidthRequest="350" 
               HeightRequest="590"
               Margin="0,130,0,0"
               IsVisible="False" 
-              VerticalOptions="CenterAndExpand" 
+              VerticalOptions="StartAndExpand" 
               HorizontalOptions="CenterAndExpand">
 
-                        <Frame 
-                Padding="15" 
-                CornerRadius="10" 
-                WidthRequest="350" 
-                HeightRequest="590" 
-                BackgroundColor="White" 
-                VerticalOptions="CenterAndExpand"
-                HasShadow="True"
-                BorderColor="White">
+            <Grid>
+                <!-- Shadow using BoxView -->
+                <BoxView Style="{StaticResource ModalShadow}"/>
 
+                <!-- Modal Frame -->
+                <Frame Padding="15" 
+                    CornerRadius="10" 
+                    WidthRequest="320" 
+                    HeightRequest="200"
+                    Margin="60"
+                    BackgroundColor="White" 
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    BorderColor="White"
+                    HasShadow="True">
 
-                            <ScrollView>
-                                <StackLayout Spacing="10" VerticalOptions="StartAndExpand">
-                                    <HorizontalStackLayout Spacing="10">
-                                        <!-- Close Icon Label -->
-                                        <Label Text="{x:Static model:Icons.CloseIcon}"
-                                           Style="{StaticResource MaterialIcon}"
-                                           TextColor="Gray"
-                                           FontSize="30"
-                                           VerticalOptions="Start"
-                                           HorizontalOptions="Start"
-                                           Margin="0">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="OnCloseEditModalClicked" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                    <VerticalStackLayout>
+                        <Label Text="REMOVED SUCCESFULLY"
+                          FontSize="22" 
+                          FontFamily="Poppins-ExtraBold"
+                          HorizontalOptions="Center" 
+                          HorizontalTextAlignment="Center"
+                          TextColor="#E76722"/>
 
-                                        <!-- Title Label -->
-                                        <Label Text="EDIT PRODUCT" 
-                                           FontSize="20" 
-                                           FontFamily="Poppins-ExtraBold"
-                                           HorizontalOptions="Center" 
-                                           TextColor="#E76722"
-                                           Margin="45,0,0,-10"/>
-                                    </HorizontalStackLayout>
+                        <Label Text="Product has been remove from the inventory successfully."
+                          FontSize="18" 
+                          FontFamily="Poppins-SemiBold"
+                          Padding="5"
+                          HorizontalOptions="Center" 
+                          VerticalOptions="Center"
+                          TextColor="#4F4F4F"
+                          HorizontalTextAlignment="Center"/>
 
-                                    <!-- Product ID Entry (Read-Only) -->
-                                    <HorizontalStackLayout Spacing="35" Margin="0,0,0,0">
-                                        <Label Text="PRODUCT ID" 
-                                       FontSize="13"
-                                       FontFamily="Poppins-Bold"
-                                       VerticalOptions="Center"
-                                       TextColor="#0050A2"/>
-                                        <Frame CornerRadius="10"
-                           BorderColor="Transparent"
-                           BackgroundColor="#EEEEEE" 
-                           Padding="0"
-                           HeightRequest="32" 
-                           VerticalOptions="Center">
-                                            <Entry Text="test}" 
-                           FontSize="13" 
-                           FontFamily="Poppins-Regular"
-                           HeightRequest="42" 
-                           WidthRequest="180"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Center"
-                           Margin="10,0"
-                           IsEnabled="False"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
+                        <!-- Cancel Button -->
+                        <Button Text="CLOSE" 
+                       BackgroundColor="#E74922"
+                       TextColor="White"
+                       FontSize="16"
+                       FontFamily="Poppins-Bold"
+                       WidthRequest="90"
+                       HeightRequest="30"
+                       Padding="3"
+                       Margin="5"
+                       CornerRadius="10" 
+                       HorizontalOptions="Center" 
+                       Clicked="OnCloseSuccessRemoveModalClicked"/>
 
-                                    <!-- Product Image Upload Placeholder -->
-                                    <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
-                                        <Frame Padding="0" BorderColor="Gray" HasShadow="False" HeightRequest="80" WidthRequest="80" BackgroundColor="Transparent" Margin="70,0,0,0">
-                                            <Grid>
-                                                <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
-                               VerticalOptions="Start" HorizontalOptions="End"
-                               IsVisible="True" />
-                                            </Grid>
-                                        </Frame>
-                                        <Label Text="Upload Product Image Here" VerticalOptions="Center" HorizontalOptions="Center"
-                       FontAttributes="Bold" TextColor="Gray"
-                       Padding="10"
-                       FontSize="12"
-                       WidthRequest="120"
-                       IsVisible="True">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-
-                                        <!-- Image view to display the selected image -->
-                                        <Image VerticalOptions="FillAndExpand" 
-                       HorizontalOptions="FillAndExpand" IsVisible="True" />
-                                    </HorizontalStackLayout>
-
-                                    <!-- Product Name Entry -->
-                                    <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
-                                        <Label Text="PRODUCT NAME" 
-                                       FontSize="13"
-                                       FontFamily="Poppins-Bold"
-                                       VerticalOptions="Center"
-                                       TextColor="#0050A2"/>
-                                        <Frame CornerRadius="10"
-                                           BorderColor="Transparent"
-                                           BackgroundColor="#EEEEEE" 
-                                           Padding="0"
-                                           HeightRequest="32" 
-                                           VerticalOptions="Center">
-                                            <Entry x:Name="EditedProductNameEntry" 
-                                               Placeholder="Enter product name" 
-                                               FontSize="13" 
-                                               FontFamily="Poppins-Regular"
-                                               HeightRequest="42" 
-                                               WidthRequest="180"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="Center"
-                                               Margin="10,0"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Product Description Entry -->
-                                    <HorizontalStackLayout Spacing="28" Margin="0,10,0,0">
-                                        <Label Text="DESCRIPTION" 
-                                           FontSize="13"
-                                           FontFamily="Poppins-Bold"
-                                           VerticalOptions="Start"
-                                           TextColor="#0050A2"/>
-                                        <Frame CornerRadius="10"
-                                           BorderColor="Transparent"
-                                           BackgroundColor="#EEEEEE"
-                                           Padding="0"
-                                           WidthRequest="200" 
-                                           VerticalOptions="Center">
-                                            <Editor x:Name="EditedProductDescriptionEntry"
-                                        Placeholder="Product Description" 
-                                        FontSize="13" 
-                                        FontFamily="Poppins-Regular" 
-                                        HeightRequest="75"
-                                        Margin="5,0"
-                                        VerticalTextAlignment="Start"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Buying Price Entry -->
-                                    <HorizontalStackLayout Spacing="24" Margin="0,5,0,0">
-                                        <Label Text="BUYING PRICE" 
-                                       FontSize="13"
-                                       FontFamily="Poppins-Bold"
-                                       VerticalOptions="Center"
-                                       TextColor="#0050A2"/>
-                                        <Frame CornerRadius="10"
-                                       BorderColor="Transparent"
-                                       BackgroundColor="#EEEEEE" 
-                                       Padding="0"
-                                       HeightRequest="32" 
-                                       VerticalOptions="Center">
-                                            <Entry x:Name="EditedBuyingPriceEntry"
-                                           Placeholder="Enter Buying Price" 
-                                           FontSize="13" 
-                                           FontFamily="Poppins-Regular"
-                                           HeightRequest="42" 
-                                           WidthRequest="180"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="Center"
-                                           Margin="10,0"
-                                           Keyboard="Numeric"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Selling Price Entry -->
-                                    <HorizontalStackLayout Spacing="22" Margin="0,5,0,0">
-                                        <Label Text="SELLING PRICE" 
-                               FontSize="13"
-                               FontFamily="Poppins-Bold"
-                               VerticalOptions="Center"
-                               TextColor="#0050A2"/>
-
-                                        <Frame CornerRadius="10"
-                               BorderColor="Transparent"
-                               BackgroundColor="#EEEEEE" 
-                               Padding="0"
-                               HeightRequest="32" 
-                               VerticalOptions="Center">
-
-                                            <Entry x:Name="EditedSellingPriceEntry"
-                               Placeholder="Enter Selling Price" 
-                               FontSize="13" 
-                               FontFamily="Poppins-Regular"
-                               HeightRequest="42" 
-                               WidthRequest="180"
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center"
-                               Margin="10,0"
-                               Keyboard="Numeric"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Expiry Date Picker -->
-                                    <HorizontalStackLayout Spacing="32" Margin="0,5,0,0">
-                                        <Label Text="EXPIRY DATE" 
-                                   FontSize="13"
-                                   FontFamily="Poppins-Bold"
-                                   VerticalOptions="Center"
-                                   TextColor="#0050A2"/>
-                                        <Frame CornerRadius="10"
-                                   BorderColor="Transparent"
-                                   BackgroundColor="#EEEEEE" 
-                                   Padding="5,5,0,0"
-                                   HeightRequest="32" 
-                                   VerticalOptions="Center">
-
-                                            <DatePicker
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="Center"
-                                    BackgroundColor="Transparent"
-                                    TextColor="Black"
-                                    HeightRequest="42"
-                                    WidthRequest="80"
-                                    FontSize="14" 
-                                    FontFamily="Poppins-Regular"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Quantity Entry -->
-                                    <HorizontalStackLayout Spacing="45" Margin="0,5,0,0">
-                                        <Label Text="QUANTITY" 
-                               FontSize="13"
-                               FontFamily="Poppins-Bold"
-                               VerticalOptions="Center"
-                               TextColor="#0050A2"/>
-
-                                        <Frame CornerRadius="10"
-                               BorderColor="Transparent"
-                               BackgroundColor="#EEEEEE" 
-                               Padding="0"
-                               HeightRequest="32" 
-                               VerticalOptions="Center">
-
-                                            <Entry x:Name="EditedProductQuantityEntry" 
-                               Placeholder="0" 
-                               FontSize="13" 
-                               FontFamily="Poppins-Bold"
-                               HeightRequest="42" 
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="Center"
-                               Margin="5,0"
-                               Keyboard="Numeric"/>
-                                        </Frame>
-                                    </HorizontalStackLayout>
-
-                                    <!-- Save Button -->
-                                    <Button Text="SAVE EDIT" 
-                            BackgroundColor="#E76722" 
-                            TextColor="White" 
-                            CornerRadius="10"
-                            HeightRequest="35"
-                            FontSize="14" 
-                            FontFamily="Poppins-SemiBold"
-                            HorizontalOptions="Center" 
-                            Padding="10,2,10,0"
-                            Margin="0,15,0,0"
-                            />
-                                </StackLayout>
-                            </ScrollView>
-                        </Frame>
-                    </ContentView>
-                </Grid>
+                    </VerticalStackLayout>
+                </Frame>
             </Grid>
-        </ScrollView>
+        </ContentView>
+
 
         <pages:BottomNavBar Grid.Row="1" />
     </Grid>
