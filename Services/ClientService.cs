@@ -111,7 +111,7 @@ namespace inventory_mobile_app.Services
             }
         }
 
-        public async Task<ProductList> GetProductAsync(string productId)
+        public async Task<Product> GetProductAsync(string productId)
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
             if (serializedLoginResponseInStorage is null)
@@ -146,7 +146,7 @@ namespace inventory_mobile_app.Services
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Error", $"An error occurred while fetching products: {ex.Message}", "OK");
-                return new ProductList();
+                return new Product();
             }
         }
 
@@ -169,7 +169,37 @@ namespace inventory_mobile_app.Services
 
                 if (result.IsSuccessStatusCode)
                 {
-                    await Shell.Current.DisplayAlert("Alert", "Stock added successfully", "OK");
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while adding stock: {ex.Message}", "OK");
+                return false;
+            }
+        }
+
+        public async Task<bool> SoldStock(StockModel model)
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+                return false;
+            }
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var result = await httpClient.PostAsJsonAsync("/api/Product/removestock", model);
+
+                if (result.IsSuccessStatusCode)
+                {
                     return true;
                 }
 
