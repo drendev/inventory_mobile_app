@@ -124,7 +124,6 @@ public partial class ScanPage : ContentPage
         AddedProductSuccessfullyModal.IsVisible = false;
     }
 
-
     void OnSaveProductClicked(object sender, EventArgs e)
     {
         var productName = ProductNameEntry.Text;
