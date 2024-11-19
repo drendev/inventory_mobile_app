@@ -6,6 +6,7 @@
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             x:DataType="viewmodel:SettingsViewModel"
              xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
 
     <Grid RowDefinitions="*, Auto">
@@ -192,7 +193,7 @@
                                 BorderColor="White">
 
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnLogoutClicked" />
+                                    <TapGestureRecognizer Command="{Binding LogoutCommand}" />
                                 </Frame.GestureRecognizers>
 
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Spacing="100">
@@ -215,7 +216,8 @@
                                     TextColor="#4F4F4F"
                                     VerticalOptions="Center"
                                     HorizontalOptions="StartAndExpand"
-                                    HorizontalTextAlignment="Center" />
+                                    HorizontalTextAlignment="Center"
+                                    />
 
                                 </StackLayout>
 

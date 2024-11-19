@@ -8,6 +8,7 @@ namespace inventory_mobile_app
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(Category), typeof(Category));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));

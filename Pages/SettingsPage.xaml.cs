@@ -5,10 +5,10 @@ using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class SettingsPage : ContentPage
 {
-    public SettingsPage()
+    public SettingsPage(SettingsViewModel settingsViewModel)
     {
         InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = settingsViewModel;
     }
 
     private async void OnLogoutClicked(object sender, EventArgs e)

@@ -10,16 +10,6 @@ namespace inventory_mobile_app.ViewModels
 {
     public partial class ProductListViewModel : ObservableObject
     {
-        private string _stockStatus;
-        public string StockStatus
-        {
-            get => _stockStatus;
-            set
-            {
-                SetProperty(ref _stockStatus, value);
-            }
-        }
-
         private readonly ClientService clientService;
 
         // ObservableCollection to store products
@@ -52,11 +42,6 @@ namespace inventory_mobile_app.ViewModels
                     // Add the products to the ObservableCollection
                     foreach (var product in response)
                     {
-                        StockStatus = product.Stock == 0
-                        ? "Out of Stock"
-                        : product.Stock < 5
-                            ? "Low Stock"
-                            : "In Stock";
                         Products.Add(product);
                     }
                 }

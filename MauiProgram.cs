@@ -56,6 +56,8 @@ namespace inventory_mobile_app
             builder.Services.AddSingleton<ScannerViewModel>();
             builder.Services.AddSingleton<ScanPage>();
             builder.Services.AddSingleton<Scan>();
+            builder.Services.AddSingleton<SettingsViewModel>();
+            builder.Services.AddSingleton<SettingsPage>();
 
             builder.Services.AddTransient<ProductListViewModel>();
 
