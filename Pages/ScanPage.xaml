@@ -8,7 +8,10 @@
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
-             xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
+             xmlns:pages="clr-namespace:inventory_mobile_app.Pages"
+             x:DataType="viewmodel:ScannerViewModel"
+             HideSoftInputOnTapped="True"
+             >
 
 
     <Grid RowDefinitions="*, Auto">
@@ -56,30 +59,13 @@
                     </Frame>
                 </Grid>
 
-                <Grid Grid.Row="1" VerticalOptions="Center">
-                    <Button x:Name="ScanButton"
-                    Text="SCAN" 
-                    BackgroundColor="#E76722"  
-                    TextColor="White" 
-                    CornerRadius="10"
-                    HeightRequest="38"
-                    WidthRequest="150"
-                    FontSize="16"
-                    Padding="6"
-                    FontFamily="Poppins-SemiBold"
-                    HorizontalOptions="Center"
-                    VerticalOptions="End"
-                    Margin="0,20,0,20" 
-                    Clicked="OnScanProductClicked"/>
-                </Grid>
-
             </Grid>
         </ScrollView>
 
         <!-- Scan Product Modal -->
         <ContentView x:Name="ScanProductModal" 
         Margin="0,60,0,0"
-        IsVisible="False" 
+        IsVisible="{Binding IsProduct}"
         VerticalOptions="CenterAndExpand" 
         HorizontalOptions="CenterAndExpand">
             <Frame 
@@ -116,7 +102,7 @@
                  HorizontalOptions="Center" />
 
                     <!-- Product Name -->
-                    <Label Text="PRODUCT NAME" 
+                    <Label Text="{Binding Product.ProductName}" 
                  FontSize="22"
                  FontFamily="Poppins-ExtraBold"
                  TextColor="#E76722"
@@ -124,7 +110,7 @@
                  HorizontalOptions="Center" />
 
                     <!-- Product Description -->
-                    <Label Text="PRODUCT DESCRIPTION" 
+                    <Label Text="{Binding Product.Description, StringFormat='DESCRIPTION: {0}'}" 
                  FontSize="16"
                  FontFamily="Poppins-SemiBold"
                  TextColor="#4F4F4F"
@@ -132,7 +118,7 @@
                  HorizontalOptions="Center"/>
 
                     <!-- Product ID -->
-                    <Label Text="PRODUCT ID: 1209849" 
+                    <Label Text="{Binding Product.ProductId, StringFormat='PRODUCT ID: {0}'}" 
                  FontSize="16"
                  FontFamily="Poppins-Bold"
                  TextColor="#4F4F4F"
@@ -140,7 +126,7 @@
                  HorizontalOptions="Center" />
 
                     <!-- CURRENT STOCK -->
-                    <Label Text="STOCK: 28" 
+                    <Label Text="{Binding Product.Stock, StringFormat='CURRENT STOCK: {0}'}" 
                  FontSize="16"
                  FontFamily="Poppins-Bold"
                  TextColor="#4F4F4F"
@@ -161,16 +147,16 @@
                          HeightRequest="32" 
                          VerticalOptions="Center">
 
-                            <Entry x:Name="StockQuantityEntry" 
-                            Placeholder="0" 
-                            FontSize="13" 
+                            <Entry x:Name="StockQuantityEntry"
+                            Text="{Binding StockModel.Stock}"
+                            Placeholder="0"
+                            FontSize="13"
                             FontFamily="Poppins-Bold"
                             HeightRequest="42" 
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="Center"
                             Margin="5,0"
                             Keyboard="Numeric"/>
-
                         </Frame>
                     </HorizontalStackLayout>
 
@@ -188,8 +174,8 @@
                          Padding="5"
                          Margin="5"
                          CornerRadius="10" 
-                         HorizontalOptions="Start" 
-                         Clicked="OnAddStockClicked"/>
+                         HorizontalOptions="Start"
+                         Command="{Binding AddStockCommand}"/>
 
                         <!-- Sold Button -->
                         <Button Text="SOLD STOCK" 
@@ -203,7 +189,7 @@
                          Margin="5"
                          CornerRadius="10" 
                          HorizontalOptions="End" 
-                         Clicked="OnSoldStockClicked"/>
+                         Command="{Binding SoldStockCommand}"/>
                     </HorizontalStackLayout>
                 </StackLayout>
             </Frame>
@@ -211,10 +197,10 @@
 
 
         <ContentView x:Name="AddStockModal" 
-             IsVisible="False"
              VerticalOptions="CenterAndExpand"
              HorizontalOptions="CenterAndExpand"
-             BackgroundColor="Transparent">
+             BackgroundColor="Transparent"
+             IsVisible="{Binding IsAddStock}">
             <Frame Padding="10" 
            CornerRadius="10" 
            WidthRequest="300" 
@@ -232,12 +218,20 @@
                    TextColor="#E76722"/>
 
                     <!-- Description Label -->
-                    <Label Text="Successfully added (1) stock of (Produyitycyuiyiyuiuiyut Name) to the inventory."
+                    <Label
+                        
                    FontSize="15" 
                    FontFamily="Poppins-SemiBold"
                    HorizontalOptions="Center" 
                    TextColor="#4F4F4F"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center">
+                        <Label.Text>
+                            <MultiBinding StringFormat="Successfully added ({0}) stock of ({1}) to the inventory.">
+                                <Binding Path="AddedStockQuantity" />
+                                <Binding Path="Product.ProductName" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
 
                     <!-- Close Button -->
                     <Button Text="CLOSE" 
@@ -258,7 +252,7 @@
 
         <!-- Sold Stock Success Modal -->
     <ContentView x:Name="SoldStockModal" 
-                 IsVisible="False"
+                 IsVisible="{Binding IsSoldStock}"
                  VerticalOptions="CenterAndExpand"
                  HorizontalOptions="CenterAndExpand"
                  BackgroundColor="Transparent">
@@ -276,14 +270,21 @@
                        HorizontalOptions="Center" 
                        TextColor="#E74922"/>
 
-                    <Label Text="Succesfully sold (1) stock of (Product Name) to the inventory."
+                    <Label
                        FontSize="15" 
                        FontFamily="Poppins-SemiBold"
                        HorizontalOptions="Center" 
                        TextColor="#4F4F4F"
-                       HorizontalTextAlignment="Center"/>
+                       HorizontalTextAlignment="Center">
+                        <Label.Text>
+                            <MultiBinding StringFormat="Succesfully sold ({0}) stock of ({1}) to the inventory.">
+                                <Binding Path="SoldStockQuantity" />
+                                <Binding Path="Product.ProductName" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
 
-                <!-- Close Button -->
+                    <!-- Close Button -->
                 <Button Text="CLOSE" 
                         BackgroundColor="#E74922"
                         TextColor="White"
@@ -512,7 +513,7 @@
                                     <Grid>
                                         <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
                              VerticalOptions="Start" HorizontalOptions="End"
-                             IsVisible="{Binding IsImagePlaceholderVisible}" />
+                              />
 
                                     </Grid>
                                 </Frame>
@@ -521,15 +522,15 @@
                       Padding="10"
                       FontSize="12"
                       WidthRequest="120"
-                      IsVisible="{Binding IsImagePlaceholderVisible}">
+                      >
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BrowseImageCommand}" />
+                                        <TapGestureRecognizer />
                                     </Label.GestureRecognizers>
                                 </Label>
 
                                 <!-- Image view to display the selected image -->
-                                <Image Source="{Binding SelectedImageSource}" VerticalOptions="FillAndExpand" 
-                      HorizontalOptions="FillAndExpand" IsVisible="{Binding IsImageSelected}" />
+                                <Image VerticalOptions="FillAndExpand" 
+                      HorizontalOptions="FillAndExpand" IsVisible="False" />
                             </HorizontalStackLayout>
 
                             <!-- Product Name Entry -->
@@ -660,7 +661,6 @@
 
 
                                     <DatePicker x:Name="ExpiryDatePicker"
-                      Date="{Binding ExpiryDate}"
                       DateSelected="OnDateSelected"
                       HorizontalOptions="Center"
                       VerticalOptions="Center"

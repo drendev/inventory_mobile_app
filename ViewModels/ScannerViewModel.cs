@@ -7,13 +7,49 @@ namespace inventory_mobile_app.ViewModels
 {
     public partial class ScannerViewModel : ObservableObject
     {
+        private bool _isAddStock;
+        public bool IsAddStock
+        {
+            get => _isAddStock;
+            set
+            {
+                SetProperty(ref _isAddStock, value);
+            }
+        }
+
+        private bool _isSoldStock;
+        public bool IsSoldStock
+        {
+            get => _isSoldStock;
+            set
+            {
+                SetProperty(ref _isSoldStock, value);
+            }
+        }
+
+        private bool _isProduct;
+        public bool IsProduct
+        {
+            get => _isProduct;
+            set
+            {
+                SetProperty(ref _isProduct, value);
+            }
+        }
+
         private readonly ClientService clientService;
 
         [ObservableProperty]
         private StockModel stockModel;
 
         [ObservableProperty]
-        private ProductList productList = new ProductList();
+        private int? addedStockQuantity;
+
+        [ObservableProperty]
+        private int? soldStockQuantity;
+
+        [ObservableProperty]
+        private Product product = new Product();
 
         [ObservableProperty]
         private string productId;
@@ -37,7 +73,7 @@ namespace inventory_mobile_app.ViewModels
                 var response = await clientService.GetProductAsync(productId);
                 if (response != null)
                 {
-                    ProductList = response;
+                    Product = response;
                 }
             }
         }
@@ -54,10 +90,10 @@ namespace inventory_mobile_app.ViewModels
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", $"Found Product: {response.ProductName}", "OK");
-                ProductList = response;
-
+                Product = response;
+                IsProduct = true;
                 StockModel.ProductId = ProductId;
+                
             }
         }
 
@@ -67,14 +103,55 @@ namespace inventory_mobile_app.ViewModels
         {
             bool stockAdded = await clientService.AddStock(StockModel);
 
-            if (!stockAdded)
+            if (StockModel.Stock <= 0 || StockModel.Stock == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add stock", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Invalid Quantity", "Close");
+            }
+            else if (stockAdded)
+            {
+                await LoadProduct(StockModel.ProductId);
+                AddedStockQuantity = StockModel.Stock;
+                IsAddStock = true;
+                IsProduct = false;
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Success", "Stock added successfully", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add stock", "OK");
             }
+        }
+
+        [RelayCommand]
+
+        private async Task SoldStock()
+        {
+            bool stockSold = await clientService.SoldStock(StockModel);
+
+            if (StockModel.Stock <= 0 || StockModel.Stock == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Invalid Quantity", "Close");
+            }
+            else if (stockSold)
+            {
+                await LoadProduct(StockModel.ProductId);
+                SoldStockQuantity = StockModel.Stock;
+                IsSoldStock = true;
+                IsProduct = false;
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to sell stock", "OK");
+            }
+        }
+
+        public void ResetProperties()
+        {
+            IsAddStock = false;
+            IsSoldStock = false;
+            IsProduct = false;
+            AddedStockQuantity = 0; 
+            StockModel = new StockModel();
+            ProductId = string.Empty;
+            Product = new Product();
         }
     }
 }

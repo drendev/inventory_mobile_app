@@ -10,6 +10,6 @@ namespace inventory_mobile_app.Models
     {
         public bool Flag { get; set; }
         public string Message { get; set; }
-        public ProductList? Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

@@ -5,12 +5,14 @@ using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ScanPage : ContentPage
 {
+    private bool isScanning = true;
+
     public ScanPage(ScannerViewModel scannerViewModel)
     {
         InitializeComponent();
-        BindingContext = new MainViewModel();
-        ExpiryDatePicker.IsVisible = false;
+        BindingContext = scannerViewModel;
 
+        ExpiryDatePicker.IsVisible = false;
 
         RequestCameraPermission();
 
@@ -20,6 +22,8 @@ public partial class ScanPage : ContentPage
             AutoRotate = true,
             Formats = ZXing.Net.Maui.BarcodeFormat.Code128,
         };
+
+        barcodeReader.BarcodesDetected += BarcodeReader_BarcodesDetected;
     }
 
     // Barcode reader {Not fully functional}
@@ -27,38 +31,48 @@ public partial class ScanPage : ContentPage
     private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
     {
 
-        var first = e.Results[0];
+        if (!isScanning || e.Results == null)
+            return;
+
+        isScanning = false;
+
+        var firstResult = e.Results[0].Value;
 
         Dispatcher.DispatchAsync(async () =>
         {
-            await DisplayAlert("Barcode Result", first.Value, "OK");
-        }
-        );
+
+            if (BindingContext is ScannerViewModel viewModel)
+            {
+                await viewModel.ScannerViewProduct(firstResult);
+            }
+
+            await Task.Delay(2000);
+            isScanning = true;
+        });
     }
 
     void OnScanProductClicked(object sender, EventArgs e)
     {
         ScanProductModal.IsVisible = true;
-        ScanButton.IsEnabled = false;
     }
 
     private void OnCloseScanProductClicked(object sender, EventArgs e)
     {
-        ScanProductModal.IsVisible = false;
-        ScanButton.IsEnabled = true;
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
     void OnScanNotExistClicked(object sender, EventArgs e)
     {
         ScanNotExistModal.IsVisible = true;
-        ScanButton.IsEnabled = false; 
     }
 
     private void OnCloseScanNotExistClicked(object sender, EventArgs e)
     {
         ScanNotExistModal.IsVisible = false;
         AddedProductSuccessfullyModal.IsVisible = false;
-        ScanButton.IsEnabled = true; 
     }
 
     private void OnAddStockClicked(object sender, EventArgs e)
@@ -66,7 +80,6 @@ public partial class ScanPage : ContentPage
         AddStockModal.IsVisible = true;
         SoldStockModal.IsVisible = false;
         ScanProductModal.IsVisible = false;
-        ScanButton.IsEnabled = false; 
     }
 
     private void OnSoldStockClicked(object sender, EventArgs e)
@@ -74,19 +87,22 @@ public partial class ScanPage : ContentPage
         SoldStockModal.IsVisible = true;
         AddStockModal.IsVisible = false;
         ScanProductModal.IsVisible = false;
-        ScanButton.IsEnabled = false; 
     }
 
     private void OnCloseAddStockModalClicked(object sender, EventArgs e)
     {
-        AddStockModal.IsVisible = false;
-        ScanButton.IsEnabled = true;
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
-        private void OnCloseSoldStockModalClicked(object sender, EventArgs e)
+    private void OnCloseSoldStockModalClicked(object sender, EventArgs e)
     {
-        SoldStockModal.IsVisible = false;
-        ScanButton.IsEnabled = true; 
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
     void OnAddProductClicked(object sender, EventArgs e)
@@ -95,20 +111,17 @@ public partial class ScanPage : ContentPage
         ScanNotExistModal.IsVisible = false;
         ScanProductModal.IsVisible = false;
         AddedProductSuccessfullyModal.IsVisible = false;
-        ScanButton.IsEnabled = false; 
     }
 
     private void OnCloseModalClicked(object sender, EventArgs e)
     {
         AddProductModal.IsVisible = false;
         AddedProductSuccessfullyModal.IsVisible = false;
-        ScanButton.IsEnabled = true; 
     }
 
     private void OnCloseSuccessAddedClicked(object sender, EventArgs e)
     {
         AddedProductSuccessfullyModal.IsVisible = false;
-        ScanButton.IsEnabled = true; 
     }
 
 
