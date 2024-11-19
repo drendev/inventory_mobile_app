@@ -50,7 +50,7 @@
                                     <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True" BackgroundColor="White">
                                         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
                                             <!-- Product Image -->
-                                            <Image Source="product1.png" 
+                                            <Image Source="{Binding ImageUrl}" 
                                Grid.Row="0" Grid.ColumnSpan="2"
                                WidthRequest="100" HeightRequest="100" 
                                VerticalOptions="Center" HorizontalOptions="Center" />
@@ -75,9 +75,49 @@
 
                                             <!-- In-Stock Indicator -->
                                             <Label Text="IN-STOCK" 
-                               Grid.Row="3" Grid.ColumnSpan="2"
-                               FontSize="14" TextColor="#80AA04" 
-                               HorizontalOptions="Center" />
+                                               Grid.Row="3" Grid.ColumnSpan="2"
+                                               FontSize="14" 
+                                               TextColor="#80AA04" 
+                                               HorizontalOptions="Center">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="0">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="OUT OF STOCK" />
+                                                            <Setter Property="TextColor" Value="Red" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="1">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="LOW STOCK" />
+                                                            <Setter Property="TextColor" Value="Orange" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="2">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="LOW STOCK" />
+                                                            <Setter Property="TextColor" Value="Orange" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="3">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="LOW STOCK" />
+                                                            <Setter Property="TextColor" Value="Orange" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="4">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Text" Value="LOW STOCK" />
+                                                            <Setter Property="TextColor" Value="Orange" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Stock}" Value="5">
+                                                    <DataTrigger.Setters>
+                                                        <Setter Property="Text" Value="LOW STOCK" />
+                                                        <Setter Property="TextColor" Value="Orange" />
+                                                    </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
 
                                             <!-- View Button -->
                                             <Button Text="VIEW" 
@@ -111,10 +151,10 @@
                     HorizontalOptions="CenterAndExpand">
                         <Frame 
                       Padding="15" 
-                      CornerRadius="10" 
-                      WidthRequest="350" 
-                      HeightRequest="590" 
-                      BackgroundColor="White" 
+                      CornerRadius="10"
+                      WidthRequest="350"
+                      HeightRequest="590"
+                      BackgroundColor="White"
                       VerticalOptions="CenterAndExpand"
                       HasShadow="True"
                       BorderColor="White">

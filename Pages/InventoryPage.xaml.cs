@@ -12,6 +12,17 @@ public partial class InventoryPage : ContentPage
         BindingContext = productListViewModel;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Refresh the product list each time the page appears
+        if (BindingContext is ProductListViewModel viewModel)
+        {
+            viewModel.LoadProductList();  // This will reload the products from the service
+        }
+    }
+
     void OnEditProductClicked(object sender, EventArgs e)
     {
         EditProductModal.IsVisible = true;

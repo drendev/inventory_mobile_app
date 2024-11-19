@@ -1,6 +1,8 @@
 namespace inventory_mobile_app.Pages;
 using inventory_mobile_app.ViewModels;
+using System.Diagnostics;
 using ZXing;
+using ZXing.Net.Maui;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ScanPage : ContentPage
@@ -22,11 +24,46 @@ public partial class ScanPage : ContentPage
             AutoRotate = true,
             Formats = ZXing.Net.Maui.BarcodeFormat.Code128,
         };
-
         barcodeReader.BarcodesDetected += BarcodeReader_BarcodesDetected;
     }
 
-    // Barcode reader {Not fully functional}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Debug.WriteLine("CameraPage OnAppearing");
+        InitializeCamera();
+    }
+
+    private void InitializeCamera()
+    {
+        barcodeReader.IsVisible = true;
+        barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
+        {
+            TryHarder = true,
+            AutoRotate = true,
+            Formats = ZXing.Net.Maui.BarcodeFormat.Code128,
+        };
+
+        barcodeReader.BarcodesDetected += BarcodeReader_BarcodesDetected;
+        barcodeReader.CameraLocation = CameraLocation.Front;
+        barcodeReader.CameraLocation = CameraLocation.Rear;
+        barcodeReader.IsEnabled = true;
+        barcodeReader.IsDetecting = true;
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        Debug.WriteLine("CameraPage OnDisappearing");
+        DeinitializeCamera();
+    }
+
+    private void DeinitializeCamera()
+    {
+        barcodeReader.IsEnabled = false;
+        barcodeReader.IsDetecting = false;
+        barcodeReader.IsVisible = false;
+    }
 
     private void BarcodeReader_BarcodesDetected(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs e)
     {
@@ -50,6 +87,8 @@ public partial class ScanPage : ContentPage
             isScanning = true;
         });
     }
+
+
 
     void OnScanProductClicked(object sender, EventArgs e)
     {

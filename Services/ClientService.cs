@@ -73,7 +73,6 @@ namespace inventory_mobile_app.Services
             if (serializedLoginResponseInStorage is null)
             {
                 await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
-                return null;
             }
 
             string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;

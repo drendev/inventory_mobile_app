@@ -29,7 +29,6 @@ public partial class BottomNavBar : ContentView
             {
                 bottomNavBarViewModel.SelectedTab = selectedTab;
                 Debug.WriteLine($"SelectedTab updated to: {bottomNavBarViewModel.SelectedTab}");
-                await Task.Delay(150);
 
                 await Shell.Current.GoToAsync($"//{selectedTab}Page");
             }

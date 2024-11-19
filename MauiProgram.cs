@@ -51,12 +51,14 @@ namespace inventory_mobile_app
 
             builder.Services.AddSingleton<InventoryPage>();
 
-            builder.Services.AddSingleton<ProductListViewModel>();
             builder.Services.AddSingleton<Inventory>();
 
             builder.Services.AddSingleton<ScannerViewModel>();
             builder.Services.AddSingleton<ScanPage>();
             builder.Services.AddSingleton<Scan>();
+
+            builder.Services.AddTransient<ProductListViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
