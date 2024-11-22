@@ -13,7 +13,6 @@
              HideSoftInputOnTapped="True"
              >
 
-
     <Grid RowDefinitions="*, Auto">
         <ScrollView Grid.Row="0">
             <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -94,7 +93,7 @@
                     </HorizontalStackLayout>
 
                     <!-- Product Image -->
-                    <Image Source="product2.png" 
+                    <Image Source="{Binding Product.ImageUrl}" 
                  WidthRequest="180" 
                  HeightRequest="180" 
                  VerticalOptions="Center" 
