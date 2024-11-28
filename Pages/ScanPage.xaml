@@ -309,15 +309,15 @@
              WidthRequest="310" 
              HeightRequest="170" 
              Margin="0,90,0,0"
-             IsVisible="False" 
+             IsVisible="{Binding IsNewProduct}" 
              VerticalOptions="CenterAndExpand" 
              HorizontalOptions="CenterAndExpand">
             <Frame 
-               Padding="10" 
-               CornerRadius="10" 
-               WidthRequest="310" 
-               HeightRequest="170" 
-               BackgroundColor="White" 
+               Padding="10"
+               CornerRadius="10"
+               WidthRequest="310"
+               HeightRequest="200"
+               BackgroundColor="White"
                VerticalOptions="CenterAndExpand"
                HasShadow="True"
                BorderColor="White">
@@ -453,7 +453,6 @@
               HasShadow="True"
               BorderColor="White">
 
-
                     <ScrollView>
                         <StackLayout Spacing="10" VerticalOptions="StartAndExpand">
 
@@ -511,29 +510,18 @@
                                 </Frame>
                             </HorizontalStackLayout>
 
-                            <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center" >
-                                <Frame Padding="0" BorderColor="Gray" HasShadow="False" HeightRequest="80" WidthRequest="80" BackgroundColor="Transparent" Margin="70,0,0,0" >
-                                    <Grid>
-                                        <Image Source="placeholder_icon.png" WidthRequest="25" HeightRequest="25" 
-                             VerticalOptions="Start" HorizontalOptions="End"
-                              />
-
-                                    </Grid>
+                            <HorizontalStackLayout HorizontalOptions="Start" VerticalOptions="Center">
+                                <Frame Padding="0" BorderColor="Gray" HasShadow="False" HeightRequest="80" WidthRequest="80" BackgroundColor="Transparent" Margin="70,0,0,0">
+                                    <Image x:Name="PlaceholderImage" Source="placeholder_icon.png" WidthRequest="80" HeightRequest="80" 
+            VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFill"/>
                                 </Frame>
+
                                 <Label Text="Upload Product Image Here" VerticalOptions="Center" HorizontalOptions="Center"
-                      FontAttributes="Bold" TextColor="Gray"
-                      Padding="10"
-                      FontSize="12"
-                      WidthRequest="120"
-                      >
+        FontAttributes="Bold" TextColor="Gray" Padding="10" FontSize="12" WidthRequest="120">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer />
+                                        <TapGestureRecognizer Tapped="OnLabelTapped" />
                                     </Label.GestureRecognizers>
                                 </Label>
-
-                                <!-- Image view to display the selected image -->
-                                <Image VerticalOptions="FillAndExpand" 
-                      HorizontalOptions="FillAndExpand" IsVisible="False" />
                             </HorizontalStackLayout>
 
                             <!-- Product Name Entry -->
@@ -553,7 +541,8 @@
 
                                     <Entry x:Name="ProductNameEntry" 
                      Placeholder="Enter product name" 
-                     FontSize="13" 
+                     Text="{Binding Product.ProductName}"
+                     FontSize="13"
                      FontFamily="Poppins-Regular"
                      HeightRequest="42" 
                      WidthRequest="180"
@@ -580,14 +569,14 @@
                      WidthRequest="200" 
                      VerticalOptions="Center">
 
-                                    <Editor x:Name="ProductDescriptionEntry" 
+                                    <Editor x:Name="ProductDescriptionEntry"
+                      Text="{Binding Product.Description}"
                       Placeholder="Product Description" 
                       FontSize="13" 
                       FontFamily="Poppins-Regular" 
                       HeightRequest="75"
                       Margin="5,0"
                       VerticalTextAlignment="Start" />
-
                                 </Frame>
                             </HorizontalStackLayout>
 
@@ -606,7 +595,8 @@
                      HeightRequest="32" 
                      VerticalOptions="Center">
 
-                                    <Entry x:Name="BuyingPriceEntry" 
+                                    <Entry x:Name="BuyingPriceEntry"
+                     Text="{Binding Product.BasePrice}"
                      Placeholder="Enter Buying Price" 
                      FontSize="13" 
                      FontFamily="Poppins-Regular"
@@ -634,7 +624,8 @@
                      HeightRequest="32" 
                      VerticalOptions="Center">
 
-                                    <Entry x:Name="SellingPriceEntry" 
+                                    <Entry x:Name="SellingPriceEntry"
+                     Text="{Binding Product.SalePrice}"
                      Placeholder="Enter Selling Price" 
                      FontSize="13" 
                      FontFamily="Poppins-Regular"
@@ -664,14 +655,14 @@
 
 
                                     <DatePicker x:Name="ExpiryDatePicker"
-                      DateSelected="OnDateSelected"
+                      Date="{Binding Product.ExpiryDate}"
                       HorizontalOptions="Center"
                       VerticalOptions="Center"
                       BackgroundColor="Transparent"
                       TextColor="Black"
                       HeightRequest="42"
                       WidthRequest="80"
-                      FontSize="14" 
+                      FontSize="14"
                       FontFamily="Poppins-Regular"/>
                                 </Frame>
                             </HorizontalStackLayout>
@@ -691,7 +682,8 @@
                        HeightRequest="32" 
                        VerticalOptions="Center">
 
-                                    <Entry x:Name="ProductQuantityEntry" 
+                                    <Entry x:Name="ProductQuantityEntry"
+                      Text="{Binding Product.Stock}"
                       Placeholder="0" 
                       FontSize="13" 
                       FontFamily="Poppins-Bold"
@@ -706,7 +698,8 @@
 
 
                             <!-- Save Button -->
-                            <Button Text="SAVE PRODUCT" 
+                            <Button Text="SAVE PRODUCT"
+                          Command="{Binding AddProductCommand}"
                           BackgroundColor="#E76722" 
                           TextColor="White" 
                           CornerRadius="10"

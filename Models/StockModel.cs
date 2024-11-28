@@ -8,7 +8,7 @@ namespace inventory_mobile_app.Models
 {
     public class StockModel
     {
-        public string? ProductId { get; set; }
+        public string? Barcode { get; set; }
         public int? Stock { get; set; }
     }
 }

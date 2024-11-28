@@ -1,9 +1,13 @@
 namespace inventory_mobile_app.Pages;
+using CloudinaryDotNet.Actions;
+
+using CloudinaryDotNet;
 using inventory_mobile_app.ViewModels;
 using System.Diagnostics;
 using ZXing;
 using ZXing.Net.Maui;
 using static inventory_mobile_app.ViewModels.MainPageViewModel;
+using inventory_mobile_app.Models;
 
 public partial class ScanPage : ContentPage
 {
@@ -13,8 +17,6 @@ public partial class ScanPage : ContentPage
     {
         InitializeComponent();
         BindingContext = scannerViewModel;
-
-        ExpiryDatePicker.IsVisible = false;
 
         RequestCameraPermission();
 
@@ -110,8 +112,10 @@ public partial class ScanPage : ContentPage
 
     private void OnCloseScanNotExistClicked(object sender, EventArgs e)
     {
-        ScanNotExistModal.IsVisible = false;
-        AddedProductSuccessfullyModal.IsVisible = false;
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
     private void OnAddStockClicked(object sender, EventArgs e)
@@ -197,7 +201,125 @@ public partial class ScanPage : ContentPage
         }
     }
 
+    private async void OnLabelTapped(object sender, EventArgs e)
+    {
+        var selectedImage = await PickImageAsync();
 
+        if (selectedImage != null)
+        {
+            try
+            {
+                // Display the selected image locally
+                PlaceholderImage.Source = ImageSource.FromFile(selectedImage.FullPath);
+
+                // Convert the selected image to a stream
+                using var stream = await selectedImage.OpenReadAsync();
+
+                // Upload the image to Cloudinary
+                var uploadResult = await UploadImageToCloudinary(stream);
+
+                if (uploadResult != null)
+                {
+                    // Display a success message and optionally update your model with the URL
+                    await DisplayAlert("Success", "Image uploaded successfully", "OK");
+                    string imageUrl = uploadResult.SecureUrl?.ToString() ?? uploadResult.Url.ToString();
+
+                    if (BindingContext is ScannerViewModel viewModel)
+                    {
+                        viewModel.Product.ImageUrl = imageUrl;
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to upload image", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle errors during image selection or upload
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+        else
+        {
+            // Handle case where no image was selected
+            await DisplayAlert("Error", "No image selected or an error occurred.", "OK");
+        }
+    }
+
+    private async Task<ImageUploadResult> UploadImageToCloudinary(Stream imageStream)
+    {
+        try
+        {
+            // Initialize Cloudinary account details
+            var cloudinary = new Cloudinary(new Account("djz4hdunq", "171682539679361", "yli7gOBkqWJNJYISmw-X2jWxUhk"))
+            {
+                Api = { Secure = true }
+            };
+
+            // Define upload parameters
+            var uploadParams = new ImageUploadParams
+            {
+                File = new FileDescription("uploaded_image", imageStream),
+                PublicId = $"products/{Guid.NewGuid()}", // Optional: Unique public ID
+                UseFilename = true,
+                Overwrite = false
+            };
+
+            // Upload the image
+            var uploadResult = await Task.Run(() => cloudinary.Upload(uploadParams));
+
+            return uploadResult;
+        }
+        catch (Exception ex)
+        {
+            // Log or display error details
+            Console.WriteLine($"Error uploading image: {ex.Message}");
+            return null;
+        }
+    }
+
+    private async Task<FileResult> PickImageAsync()
+    {
+        try
+        {
+            // Ensure the device supports media picking
+            if (!MediaPicker.IsCaptureSupported)
+            {
+                await DisplayAlert("Error", "Image picking is not supported on this device.", "OK");
+                return null;
+            }
+
+            // Request permission if needed
+            var status = await Permissions.RequestAsync<Permissions.Photos>();
+            if (status != PermissionStatus.Granted)
+            {
+                await DisplayAlert("Permission Denied", "Permission to access photos is required.", "OK");
+                return null;
+            }
+
+            // Let the user pick a photo
+            var photo = await MediaPicker.PickPhotoAsync();
+
+            // Return the selected file or handle cancellation
+            return photo;
+        }
+        catch (FeatureNotSupportedException)
+        {
+            await DisplayAlert("Error", "Image picking is not supported on this device.", "OK");
+            return null;
+        }
+        catch (PermissionException)
+        {
+            await DisplayAlert("Permission Denied", "You have not granted permission to pick images.", "OK");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            return null;
+        }
+    }
 
     // Camera permission
     private async void RequestCameraPermission()

@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CloudinaryDotNet.Actions;
+using CloudinaryDotNet;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
@@ -14,6 +16,16 @@ namespace inventory_mobile_app.ViewModels
             set
             {
                 SetProperty(ref _isAddStock, value);
+            }
+        }
+
+        private bool _isNewProduct;
+        public bool IsNewProduct
+        {
+            get => _isNewProduct;
+            set
+            {
+                SetProperty(ref _isNewProduct, value);
             }
         }
 
@@ -52,7 +64,7 @@ namespace inventory_mobile_app.ViewModels
         private Product product = new Product();
 
         [ObservableProperty]
-        private string productId;
+        private string barcode;
 
         public ScannerViewModel(ClientService clientService)
         {
@@ -63,14 +75,14 @@ namespace inventory_mobile_app.ViewModels
 
         private async void Initialize()
         {
-            await LoadProduct(ProductId);
+            await LoadProduct(Barcode);
         }
 
-        private async Task LoadProduct(string productId)
+        private async Task LoadProduct(string barcode)
         {
-            if (!string.IsNullOrWhiteSpace(productId))
+            if (!string.IsNullOrWhiteSpace(barcode))
             {
-                var response = await clientService.GetProductAsync(productId);
+                var response = await clientService.GetProductAsync(barcode);
                 if (response != null)
                 {
                     Product = response;
@@ -78,22 +90,21 @@ namespace inventory_mobile_app.ViewModels
             }
         }
 
-        public async Task ScannerViewProduct(string scannedProductId)
+        public async Task ScannerViewProduct(string barcode)
         {
-            ProductId = scannedProductId;
+            Barcode = barcode;
 
-            var response = await clientService.GetProductAsync(ProductId);
+            var response = await clientService.GetProductAsync(Barcode);
 
             if (response == null)
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "Product Not Found", "OK");
+                IsNewProduct = true;
             }
             else
             {
                 Product = response;
                 IsProduct = true;
-                StockModel.ProductId = ProductId;
-                
+                StockModel.Barcode = Barcode;
             }
         }
 
@@ -109,7 +120,7 @@ namespace inventory_mobile_app.ViewModels
             }
             else if (stockAdded)
             {
-                await LoadProduct(StockModel.ProductId);
+                await LoadProduct(StockModel.Barcode);
                 AddedStockQuantity = StockModel.Stock;
                 IsAddStock = true;
                 IsProduct = false;
@@ -132,7 +143,7 @@ namespace inventory_mobile_app.ViewModels
             }
             else if (stockSold)
             {
-                await LoadProduct(StockModel.ProductId);
+                await LoadProduct(StockModel.Barcode);
                 SoldStockQuantity = StockModel.Stock;
                 IsSoldStock = true;
                 IsProduct = false;
@@ -143,15 +154,37 @@ namespace inventory_mobile_app.ViewModels
             }
         }
 
+        [RelayCommand]
+
+        private async Task AddProduct()
+        {
+            Product.Barcode = Barcode;
+            Product.ExpiryDate = DateOnly.FromDateTime(DateTime.Now);
+
+            bool addedSuccessfully = await clientService.AddProductAsync(Product);
+
+            if (addedSuccessfully)
+            {
+                IsProduct = true;
+                IsNewProduct = false;
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add product", "OK");
+            }
+        }
+
         public void ResetProperties()
         {
             IsAddStock = false;
             IsSoldStock = false;
             IsProduct = false;
-            AddedStockQuantity = 0; 
+            IsNewProduct = false;
+            AddedStockQuantity = 0;
             StockModel = new StockModel();
-            ProductId = string.Empty;
+            Barcode = string.Empty;
             Product = new Product();
         }
+
     }
 }

@@ -67,6 +67,38 @@ namespace inventory_mobile_app.Services
             return false;
         }
 
+        public async Task<bool> AddProductAsync(Product product)
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+            }
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var result = await httpClient.PostAsJsonAsync("/api/Product/add", product);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while adding product: {ex.Message}", "OK");
+                return false;
+            }
+        }
+
         public async Task<List<ProductList>> GetProductListsAsync()
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
@@ -110,7 +142,7 @@ namespace inventory_mobile_app.Services
             }
         }
 
-        public async Task<Product> GetProductAsync(string productId)
+        public async Task<Product> GetProductAsync(string barcode)
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
             if (serializedLoginResponseInStorage is null)
@@ -125,7 +157,7 @@ namespace inventory_mobile_app.Services
 
             try
             {
-                var response = await httpClient.GetStringAsync($"/api/Product/get/{productId}");
+                var response = await httpClient.GetStringAsync($"/api/Product/get/{barcode}");
 
                 var options = new JsonSerializerOptions
                 {
