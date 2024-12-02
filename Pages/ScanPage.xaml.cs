@@ -85,7 +85,6 @@ public partial class ScanPage : ContentPage
                 await viewModel.ScannerViewProduct(firstResult);
             }
 
-            await Task.Delay(2000);
             isScanning = true;
         });
     }
@@ -160,11 +159,19 @@ public partial class ScanPage : ContentPage
     {
         AddProductModal.IsVisible = false;
         AddedProductSuccessfullyModal.IsVisible = false;
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
     private void OnCloseSuccessAddedClicked(object sender, EventArgs e)
     {
         AddedProductSuccessfullyModal.IsVisible = false;
+        if (BindingContext is ScannerViewModel viewModel)
+        {
+            viewModel.ResetProperties();
+        }
     }
 
     void OnSaveProductClicked(object sender, EventArgs e)
@@ -184,7 +191,6 @@ public partial class ScanPage : ContentPage
             !string.IsNullOrWhiteSpace(productQuantity))
         {
             AddProductModal.IsVisible = false;
-            AddedProductSuccessfullyModal.IsVisible = true;
         }
         else
         {
@@ -220,8 +226,6 @@ public partial class ScanPage : ContentPage
 
                 if (uploadResult != null)
                 {
-                    // Display a success message and optionally update your model with the URL
-                    await DisplayAlert("Success", "Image uploaded successfully", "OK");
                     string imageUrl = uploadResult.SecureUrl?.ToString() ?? uploadResult.Url.ToString();
 
                     if (BindingContext is ScannerViewModel viewModel)
@@ -231,7 +235,7 @@ public partial class ScanPage : ContentPage
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Failed to upload image", "OK");
+                    await DisplayAlert("Error", "Image not valid please try again.", "OK");
                 }
             }
             catch (Exception ex)

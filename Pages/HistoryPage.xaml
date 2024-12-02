@@ -7,6 +7,7 @@
               Padding="0"
               xmlns:model="clr-namespace:inventory_mobile_app.Models"
               xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+              x:DataType="viewmodel:ReportListViewModel"
               xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
 
     <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -133,67 +134,102 @@
                             </Frame>
                         </VerticalStackLayout>
                     </Frame>
-
-                    <Frame HasShadow="True"
+                    <CollectionView ItemsSource="{Binding Reports}">
+                    <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Report">
+                                <Frame HasShadow="True"
                         BorderColor="#FFFFFF" 
                         CornerRadius="10" 
                         Padding="13" 
-                        Margin="0" 
+                        Margin="0,0,0,10" 
                         BackgroundColor="#FFFFFF">
-                        <StackLayout>
-                            <!-- Header -->
-                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                <Frame Grid.Column="1"
+                                    <StackLayout>
+                                        <!-- Header -->
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <Frame Grid.Column="1"
                                 BackgroundColor="#FFD8C2"
                                 Padding="8,5"
                                 CornerRadius="15"
                                 HasShadow="True"
                                 BorderColor="Transparent">
-                                    <Label Text="Stock Sold"
+                                                <Label Text="SOLD STOCK"
                                     TextColor="#EE5100"
                                     FontSize="11"
-                                    FontFamily="Poppins-Medium"/>
-                                </Frame>
-                                <Label Text="11:12" 
+                                    FontFamily="Poppins-Medium">
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding ReportType}" Value="ADD STOCK">
+                                                            <DataTrigger.Setters>
+                                                                <Setter Property="Text" Value="ADD STOCK" />
+                                                                <Setter Property="TextColor" Value="#80AA04" />
+                                                            </DataTrigger.Setters>
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </Frame>
+                                            <Label Text="{Binding Created}" 
                                 HorizontalOptions="EndAndExpand" 
                                 VerticalOptions="Center"
                                 FontFamily="Poppins-Medium"/>
-                            </StackLayout>
+                                        </StackLayout>
 
-                            <!-- Product Name -->
-                            <Label Text="Product Name" 
+                                        <!-- Product Name -->
+                                        <Label Text="{Binding ProductName}"
                                 FontFamily="Poppins-Bold" 
                                 FontSize="16" 
                                 TextColor="Black" 
                                 Margin="0,5,0,0" />
 
-                            <!-- Adjusted By and Date -->
-                            <Label Text="Adjusted By: Gene" 
+                                        <!-- Adjusted By and Date -->
+                                        <Label Text="{Binding Username, StringFormat='Adjusted by: {0}'}" 
                                 FontSize="14" 
                                 TextColor="#4F4F4F"
                                    FontFamily="Poppins-Medium"/>
-                            <Label Text="Date: 11/13/2024" 
+                                        <Label Text="{Binding Date}" 
                                     FontSize="14" 
                                     TextColor="#4F4F4F"
                                    FontFamily="Poppins-Medium"/>
 
-                            <BoxView Color="#D3D3D3" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,5,0,0" />
-                            
-                            <!-- Stock Changes -->
-                            <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
-                                <Label Text="-10 Units" 
-                                FontSize="16" 
-                                FontFamily="Poppins-Bold" 
-                                TextColor="#EE5100" />
-                                <Label Text="Current: 95 Units" 
-                                FontSize="16" 
-                                HorizontalOptions="EndAndExpand" 
-                                VerticalOptions="Center"
-                                FontFamily="Poppins-Bold"/>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
+                                        <BoxView Color="#D3D3D3" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,5,0,0" />
 
+                                        <!-- Stock Changes -->
+                                        <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
+                                            <Label FontSize="16" 
+                                                FontFamily="Poppins-Bold">
+                                                <Label.Triggers>
+                                                    <!-- Trigger for Add Stock -->
+                                                    <DataTrigger TargetType="Label" 
+                                                         Binding="{Binding ReportType}" 
+                                                         Value="ADD STOCK">
+                                                        <Setter Property="Text" 
+                                                            Value="{Binding Quantity, StringFormat='+ {0} Units'}" />
+                                                        <Setter Property="TextColor" 
+                                                            Value="#00C853" />
+                                                        <!-- Green color -->
+                                                    </DataTrigger>
+
+                                                    <!-- Trigger for Sold Stock -->
+                                                    <DataTrigger TargetType="Label" 
+                                                        Binding="{Binding ReportType}"
+                                                        Value="SOLD STOCK">
+                                                        <Setter Property="Text"
+                                                            Value="{Binding Quantity, StringFormat='- {0} Units'}" />
+                                                        <Setter Property="TextColor" 
+                                                            Value="#EE5100" />
+                                                        <!-- Orange color -->
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <Label Text="{Binding CurrentStock, StringFormat='Current: {0} Units'}" 
+                                                FontSize="16" 
+                                                HorizontalOptions="EndAndExpand"
+                                                VerticalOptions="Center"
+                                                FontFamily="Poppins-Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

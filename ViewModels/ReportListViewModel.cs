@@ -2,60 +2,46 @@
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace inventory_mobile_app.ViewModels
 {
-    public partial class ProductListViewModel : ObservableObject
+    public partial class ReportListViewModel: ObservableObject
     {
         private readonly ClientService clientService;
 
-        // ObservableCollection to store products
-        public ObservableCollection<ProductList> Products { get; set; } = [];
-        public ICommand ViewProductCommand { get; }
+        public ObservableCollection<Report> Reports { get; set; } = [];
 
-        public ProductListViewModel(ClientService clientService)
+        public ReportListViewModel(ClientService clientService)
         {
             this.clientService = clientService;
-            ViewProductCommand = new Command<ProductList>(OnViewProduct);
             Initialize();
         }
 
-        private async void OnViewProduct(ProductList product)
-        {
-            if (product != null)
-            {
-                // Navigate to the product detail page, passing the product
-                await Shell.Current.GoToAsync("ProductViewPage", true,
-                    new Dictionary<string, object> { { "Product", product } });
-            }
-        }
-
-        // Initialize async method
         private async void Initialize()
         {
-            await LoadProductList();
+            await LoadReportList();
         }
 
-        public async Task LoadProductList()
+        public async Task LoadReportList()
         {
             try
             {
                 // Fetch the product list from the service
-                var response = await clientService.GetProductListsAsync();
+                var response = await clientService.GetReportListAsync();
 
                 // Clear existing products
-                Products.Clear();
+                Reports.Clear();
 
                 if (response != null && response.Any())
                 {
+                    var sortedReports = response
+                        .OrderByDescending(report => report.Date.ToDateTime(report.Created))
+                        .ToList();
+
                     // Add the products to the ObservableCollection
-                    foreach (var product in response)
+                    foreach (var report in sortedReports)
                     {
-                        Products.Add(product);
+                        Reports.Add(report);
                     }
                 }
                 else

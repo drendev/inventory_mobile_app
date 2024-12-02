@@ -8,6 +8,7 @@
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
              x:DataType="viewmodel:ProductListViewModel"
+             xmlns:vm="clr-namespace:inventory_mobile_app.ViewModels"
              xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
 
     <Grid RowDefinitions="*, Auto">
@@ -150,7 +151,8 @@
                                             CornerRadius="5" 
                                             HorizontalOptions="Center"
                                             Grid.Row="5" Grid.ColumnSpan="2"
-                                            Clicked="OnViewProductClicked" />
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductListViewModel}}, Path=ViewProductCommand}" 
+                                            CommandParameter="{Binding .}"/>
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
@@ -162,6 +164,7 @@
         </ScrollView>
 
         <!-- View Product Modal -->
+        
         <ContentView x:Name="ViewProductModal" 
           WidthRequest="350" 
           HeightRequest="590"

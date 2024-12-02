@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
+using System.Text.Json;
 
 namespace inventory_mobile_app.ViewModels
 {
@@ -16,6 +17,26 @@ namespace inventory_mobile_app.ViewModels
             set
             {
                 SetProperty(ref _isAddStock, value);
+            }
+        }
+
+        private bool _isClickedAdd;
+        public bool IsClickedAdd
+        {
+            get => _isClickedAdd;
+            set
+            {
+                SetProperty(ref _isClickedAdd, value);
+            }
+        }
+
+        private bool _isAddProductSuccess;
+        public bool IsAddProductSuccess
+        {
+            get => _isAddProductSuccess;
+            set
+            {
+                SetProperty(ref _isAddProductSuccess, value);
             }
         }
 
@@ -64,13 +85,18 @@ namespace inventory_mobile_app.ViewModels
         private Product product = new Product();
 
         [ObservableProperty]
+        private RecordReportModel recordReportModel;
+
+        [ObservableProperty]
         private string barcode;
 
         public ScannerViewModel(ClientService clientService)
         {
             this.clientService = clientService;
             StockModel = new();
+            RecordReportModel = new();
             Initialize();
+            GetUserNameFromSecuredStorage();
         }
 
         private async void Initialize()
@@ -108,15 +134,35 @@ namespace inventory_mobile_app.ViewModels
             }
         }
 
+        private async void GetUserNameFromSecuredStorage()
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage != null)
+            {
+                RecordReportModel.UserName = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.UserName!;
+                return;
+            }
+        }
         [RelayCommand]
 
         private async Task AddStock()
         {
             bool stockAdded = await clientService.AddStock(StockModel);
 
+            RecordReportModel.ReportType = "ADD STOCK";
+            RecordReportModel.ProductName = Product.ProductName;
+            RecordReportModel.Quantity = StockModel.Stock;
+            RecordReportModel.CurrentStock = Product.Stock + StockModel.Stock;
+
+            bool recordReport = await clientService.RecordReport(RecordReportModel);
+
             if (StockModel.Stock <= 0 || StockModel.Stock == null)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Invalid Quantity", "Close");
+            }
+            else if(!recordReport)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Recording Reports Failed", "Close");
             }
             else if (stockAdded)
             {
@@ -137,13 +183,26 @@ namespace inventory_mobile_app.ViewModels
         {
             bool stockSold = await clientService.SoldStock(StockModel);
 
+            RecordReportModel.ReportType = "SOLD STOCK";
+            RecordReportModel.ProductName = Product.ProductName;
+            RecordReportModel.Quantity = StockModel.Stock;
+            RecordReportModel.CurrentStock = Product.Stock - StockModel.Stock;
+
+            bool recordReport = await clientService.RecordReport(RecordReportModel);
+
+
             if (StockModel.Stock <= 0 || StockModel.Stock == null)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Invalid Quantity", "Close");
             }
+            else if (!recordReport)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to record report", "Close");
+            }
             else if (stockSold)
             {
                 await LoadProduct(StockModel.Barcode);
+                
                 SoldStockQuantity = StockModel.Stock;
                 IsSoldStock = true;
                 IsProduct = false;
@@ -165,17 +224,27 @@ namespace inventory_mobile_app.ViewModels
 
             if (addedSuccessfully)
             {
-                IsProduct = true;
-                IsNewProduct = false;
+                IsAddProductSuccess = true;
+                IsClickedAdd = false;
             }
-            else
+            else if(addedSuccessfully == false)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to add product", "OK");
             }
         }
 
+        [RelayCommand]
+
+        private Task OnClickAddProduct()
+        {
+            IsClickedAdd = true;
+            IsNewProduct = false;
+            return Task.CompletedTask;
+        }
+
         public void ResetProperties()
         {
+            IsAddProductSuccess = false;
             IsAddStock = false;
             IsSoldStock = false;
             IsProduct = false;
@@ -184,6 +253,7 @@ namespace inventory_mobile_app.ViewModels
             StockModel = new StockModel();
             Barcode = string.Empty;
             Product = new Product();
+            RecordReportModel = new RecordReportModel();
         }
 
     }

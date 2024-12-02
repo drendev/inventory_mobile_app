@@ -78,8 +78,6 @@ public partial class InventoryPage : ContentPage
         EditProductButton.IsEnabled = true;
     }
 
-   
-
     void OnSaveEditProductClicked(object sender, EventArgs e)
     {
         var editedProductName = EditedProductNameEntry.Text;

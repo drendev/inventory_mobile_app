@@ -26,13 +26,18 @@ namespace inventory_mobile_app
 
             builder.Services.AddHttpClient("custom-httpclient", httpClient =>
             {
-                var baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://217.15.170.62" : "https://217.15.170.62";
-                httpClient.BaseAddress = new Uri(baseAddress);
+                httpClient.BaseAddress = new Uri("https://217.15.170.62");
             })
             .ConfigurePrimaryHttpMessageHandler(() =>
             {
                 var handler = new HttpClientHandler();
-                handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+                if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
+                {
+                    // Only disable certificate validation in development environments
+#if DEBUG
+                    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+#endif
+                }
                 return handler;
             });
 
@@ -60,7 +65,10 @@ namespace inventory_mobile_app
             builder.Services.AddSingleton<SettingsPage>();
 
             builder.Services.AddTransient<ProductListViewModel>();
-
+            builder.Services.AddTransient<ProductViewPage>();
+            builder.Services.AddTransient<ProductViewModel>();
+            builder.Services.AddTransient<HistoryPage>();
+            builder.Services.AddTransient<ReportListViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

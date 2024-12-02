@@ -19,6 +19,7 @@ namespace inventory_mobile_app
             Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
             Routing.RegisterRoute(nameof(Inventory), typeof(Inventory));
             Routing.RegisterRoute(nameof(BottomNavBar), typeof(BottomNavBar));
+            Routing.RegisterRoute(nameof(ProductViewPage), typeof(ProductViewPage));
 
         }
     }

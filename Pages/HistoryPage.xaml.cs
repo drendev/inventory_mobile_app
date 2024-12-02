@@ -4,10 +4,21 @@ namespace inventory_mobile_app.Pages;
 
 public partial class HistoryPage : ContentPage
 {
-	public HistoryPage()
+	public HistoryPage(ReportListViewModel reportListViewModel)
 	{
 		InitializeComponent();
-        BindingContext = App.MainViewModel;
+        BindingContext = reportListViewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Refresh the report list each time the page appears
+        if (BindingContext is ReportListViewModel viewModel)
+        {
+            viewModel.LoadReportList();  
+        }
     }
 
     private async void OnViewStocksClicked(object sender, EventArgs e)

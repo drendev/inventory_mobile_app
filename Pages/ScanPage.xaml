@@ -353,8 +353,8 @@
                           Padding="3"
                           CornerRadius="5" 
                           HorizontalOptions="Center" 
-                          Clicked="OnAddProductClicked"
-                           />
+                          Command="{Binding ClickAddProductCommand}"
+                          />
 
                     <!-- Cancel Button -->
                     <Button Text="CANCEL" 
@@ -380,7 +380,7 @@
         WidthRequest="320" 
         HeightRequest="180"
         Margin="0,190,0,0"
-        IsVisible="False" 
+        IsVisible="{Binding IsAddProductSuccess}"
         VerticalOptions="CenterAndExpand" 
         HorizontalOptions="CenterAndExpand"
         BackgroundColor="Transparent">
@@ -436,7 +436,7 @@
             WidthRequest="350" 
             HeightRequest="590"
             Margin="0,100,0,0"
-            IsVisible="False" 
+            IsVisible="{Binding IsClickedAdd}" 
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand">
 
@@ -707,9 +707,8 @@
                           FontSize="14" 
                           FontFamily="Poppins-SemiBold"
                           HorizontalOptions="Center" 
-                                  Padding="8,2,8,0"
-                          Margin="0,15,0,0"
-                          Clicked="OnSaveProductClicked"/>
+                          Padding="8,2,8,0"
+                          Margin="0,15,0,0"/>
 
                         </StackLayout>
                     </ScrollView>

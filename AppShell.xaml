@@ -28,6 +28,7 @@
     <ShellContent Route="ViewStocksPage" ContentTemplate="{DataTemplate pages:ViewStocksPage}" />
     
     <ShellContent Route="Inventory" ContentTemplate="{DataTemplate pages:Inventory}" />
+    <ShellContent Route="ProductViewPage" ContentTemplate="{DataTemplate pages:ProductViewPage}" />
     <ShellContent Route="Scan" ContentTemplate="{DataTemplate pages:Scan}" />
 
 
