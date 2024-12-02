@@ -2,9 +2,6 @@
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace inventory_mobile_app.ViewModels

@@ -7,6 +7,7 @@
              Padding="0"
              xmlns:model="clr-namespace:inventory_mobile_app.Models"
              xmlns:viewmodel="clr-namespace:inventory_mobile_app.ViewModels"
+             x:DataType="viewmodel:DashboardViewModel"
              xmlns:pages="clr-namespace:inventory_mobile_app.Pages">
 
     <Grid RowDefinitions="*, Auto">
@@ -51,7 +52,7 @@
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                                    <Label Text="108"
+                                    <Label Text="{Binding Dashboard.TotalProducts}"
                                FontSize="32"
                                FontFamily="Poppins-SemiBold"
                                    Margin="0,-5"
@@ -71,7 +72,7 @@
                                 TextColor="#E76722"
                                 FontFamily="Poppins-Medium"
                                 FontSize="14"/>
-                                    <Label Text="4500"
+                                    <Label Text="{Binding Dashboard.TotalStocks}"
                                FontSize="32"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
@@ -91,7 +92,7 @@
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                                    <Label Text="9"
+                                    <Label Text="{Binding Dashboard.TopSelling}"
                                FontSize="30"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
@@ -116,7 +117,7 @@
                                TextColor="#E76722"
                                FontFamily="Poppins-Medium"
                                FontSize="14"/>
-                                    <Label Text="10"
+                                    <Label Text="{Binding Dashboard.LowStocksProducts}"
                                FontSize="30"
                                Margin="0,-5"
                                FontFamily="Poppins-SemiBold"
@@ -146,8 +147,7 @@
                                 <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
                                     <!-- Chart -->
                                     <GraphicsView Grid.Column="0"
-                                      x:Name="AvailabilityChart"
-                                      HeightRequest="130"/>
+                                      x:Name="AvailabilityChart"/>
 
                                     <!-- Legend -->
                                     <VerticalStackLayout Grid.Column="1" 
@@ -239,7 +239,7 @@
                                 <VerticalStackLayout Spacing="10">
                                     <!-- DELIMONDO -->
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <Label Text="DELIMONDO CORNED BEEF"
+                                        <Label Text="{Binding Dashboard.LowStockProduct}"
                                    Grid.Column="0"
                                    FontSize="14"
                                    TextColor="#666666"
@@ -260,7 +260,7 @@
 
                                     <!-- GARDENIA -->
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <Label Text="GARDENIA CLASSIC"
+                                        <Label Text="{Binding Dashboard.OutOfStockProduct}"
                                    Grid.Column="0"
                                    FontSize="14"
                                    TextColor="#666666"

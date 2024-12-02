@@ -388,6 +388,47 @@ namespace inventory_mobile_app.Services
             }
         }
 
+        // Dashboard
+
+        public async Task<Dashboard> GetDashboardAsync()
+        {
+            var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");
+            if (serializedLoginResponseInStorage is null)
+            {
+                await Shell.Current.DisplayAlert("Error", "No authentication token found.", "OK");
+                return null;
+            }
+
+            string token = JsonSerializer.Deserialize<LoginResponse>(serializedLoginResponseInStorage)!.AccessToken;
+            var httpClient = httpClientFactory.CreateClient("custom-httpclient");
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var response = await httpClient.GetStringAsync($"/api/Dashboard/get");
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var apiResponse = JsonSerializer.Deserialize<DashboardList>(response, options);
+
+                if (apiResponse.Dashboard == null)
+                {
+                    return null;
+                }
+
+
+                return apiResponse.Dashboard;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred while fetching products: {ex.Message}", "OK");
+                return new Dashboard();
+            }
+        }
+
         public async Task<Category[]> GetCategoriesData()
         {
             var serializedLoginResponseInStorage = await SecureStorage.Default.GetAsync("Authentication");

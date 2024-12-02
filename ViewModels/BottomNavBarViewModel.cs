@@ -30,15 +30,15 @@ namespace inventory_mobile_app.ViewModels
             }
         }
 
-        public bool IsHomeSelected => SelectedTab == "Home";
-        public bool IsInventorySelected => SelectedTab == "Inventory";
-        public bool IsScanSelected => SelectedTab == "Scan";
-        public bool IsHistorySelected => SelectedTab == "History";
-        public bool IsSettingsSelected => SelectedTab == "Settings";
+        public bool IsHomeSelected => SelectedTab == "HomePage";
+        public bool IsInventorySelected => SelectedTab == "InventoryPage";
+        public bool IsScanSelected => SelectedTab == "ScanPage";
+        public bool IsHistorySelected => SelectedTab == "HistoryPage";
+        public bool IsSettingsSelected => SelectedTab == "SettingsPage";
 
         public BottomNavBarViewModel()
         {
-            SelectedTab = "Home";
+            SelectedTab = "HomePage";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
