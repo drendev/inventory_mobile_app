@@ -51,7 +51,7 @@
                 <Frame Grid.Row="0" Grid.Column="0"
                   BackgroundColor="White"
                   CornerRadius="10"
-                  Padding="20,5,0,5"
+                  Padding="15,5,0,5"
                   HasShadow="True"
                   BorderColor="White">
                     <VerticalStackLayout Spacing="-5">
@@ -75,11 +75,12 @@
                 <Frame Grid.Row="0" Grid.Column="1"
               BackgroundColor="White"
               CornerRadius="10"
-              Padding="20,5,0,5"
+              Padding="15,5,0,5"
               HasShadow="True"
               BorderColor="White">
                     <VerticalStackLayout Spacing="-5">
-                        <Label Text="Sold This Day"
+                        <Label Text="Sold 
+                        Today"
                       TextColor="#4F4F4F"
                       FontFamily="Poppins-Medium"
                       FontSize="14"/>
@@ -99,7 +100,7 @@
                 <Frame Grid.Row="0" Grid.Column="2"
               BackgroundColor="White"
               CornerRadius="10"
-              Padding="20,5,0,5"
+              Padding="15,5,0,5"
               HasShadow="True"
               BorderColor="White">
                     <VerticalStackLayout Spacing="-5">
