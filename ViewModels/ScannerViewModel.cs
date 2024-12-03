@@ -170,7 +170,6 @@ namespace inventory_mobile_app.ViewModels
                 AddedStockQuantity = StockModel.Stock;
                 IsAddStock = true;
                 IsProduct = false;
-                RecordReportModel = new RecordReportModel();
             }
             else
             {
@@ -207,7 +206,6 @@ namespace inventory_mobile_app.ViewModels
                 SoldStockQuantity = StockModel.Stock;
                 IsSoldStock = true;
                 IsProduct = false;
-                RecordReportModel = new RecordReportModel();
             }
             else
             {
@@ -257,7 +255,6 @@ namespace inventory_mobile_app.ViewModels
             StockModel = new StockModel();
             Barcode = string.Empty;
             Product = new Product();
-            RecordReportModel = new RecordReportModel();
         }
 
     }
