@@ -222,7 +222,6 @@
                                             TextColor="#070707"
                                             FontFamily="Poppins-ExtraBold"/>
                                                 </VerticalStackLayout>
-                                                <VerticalStackLayout>
                                             </HorizontalStackLayout>
                                         </StackLayout>
                                     </Frame>
