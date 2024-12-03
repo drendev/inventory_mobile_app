@@ -23,6 +23,16 @@ public partial class InventoryPage : ContentPage
         }
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        if (BindingContext is ProductListViewModel viewModel)
+        {
+            viewModel.SearchText = string.Empty; // Clear the search text
+        }
+    }
+
     void OnEditProductClicked(object sender, EventArgs e)
     {
         EditProductModal.IsVisible = true;

@@ -125,6 +125,7 @@
                                 VerticalOptions="Center">
                                     <!-- SearchBar -->
                                     <SearchBar Placeholder="Search inventory..."
+                                       Text="{Binding SearchText}"
                                        BackgroundColor="Transparent"
                                        FontFamily="Poppins-Regular"
                                        FontSize="14"
@@ -134,7 +135,7 @@
                             </Frame>
                         </VerticalStackLayout>
                     </Frame>
-                    <CollectionView ItemsSource="{Binding Reports}">
+                    <CollectionView ItemsSource="{Binding FilteredReports}">
                     <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Report">
                                 <Frame HasShadow="True"

@@ -82,7 +82,7 @@
                            FontAttributes="Bold"
                            TextColor="#4F4F4F" 
                            VerticalOptions="Center" />
-                                <Label Text="11/12/2024" 
+                                <Label Text="{Binding CurrentDate}" 
                            FontSize="12" 
                            FontFamily="Poppins-SemiBold" 
                            TextColor="#4F4F4F" 
@@ -95,7 +95,7 @@
                            TextColor="#4F4F4F" 
                            VerticalOptions="Center"
                            Margin="10,0,0,0" />
-                                <Label Text="12:30" 
+                                <Label Text="{Binding CurrentTime}" 
                            FontSize="12" 
                            FontFamily="Poppins-SemiBold" 
                            TextColor="#4F4F4F" 
@@ -168,6 +168,7 @@
                             VerticalOptions="Center">
                             <!-- SearchBar -->
                             <SearchBar Placeholder="Search by item..."
+                                Text="{Binding SearchText}"
                                 BackgroundColor="Transparent"
                                 FontFamily="Poppins-Regular"
                                 FontSize="14"
@@ -177,7 +178,7 @@
                     </Frame>
 
                     <ContentView x:Name="AllItemsContent" IsVisible="True">
-                        <CollectionView ItemsSource="{Binding Products}">
+                        <CollectionView ItemsSource="{Binding FilteredProducts}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="model:ProductList">
                                     <Frame HasShadow="True"
@@ -291,37 +292,17 @@
                                  FontFamily="Poppins-Medium"/>
 
                                     <HorizontalStackLayout Spacing="20" Margin="0,5,0,0">
-                                        <VerticalStackLayout>
-                                            <Label Text="Current Stock"
+                                                    <VerticalStackLayout>
+                                                        <Label Text="Current Stock"
                                            FontSize="12" 
                                            TextColor="#4F4F4F"
                                            FontFamily="Poppins-Medium"/>
-                                            <Label Text="{Binding Stock,  StringFormat='{0} units'}"
+                                                        <Label Text="{Binding Stock,  StringFormat='{0} units'}"
                                             FontSize="14" 
                                             TextColor="#E76722"
                                             FontFamily="Poppins-ExtraBold"/>
-                                        </VerticalStackLayout>
-                                        <VerticalStackLayout>
-                                            <Label Text="Min. Required"
-                                           FontSize="12" 
-                                           TextColor="#4F4F4F"
-                                           FontFamily="Poppins-Medium"/>
-                                            <Label Text="15 units"
-                                           FontSize="14" 
-                                            TextColor="#070707"
-                                            FontFamily="Poppins-ExtraBold"/>
-                                        </VerticalStackLayout>
-                                        <VerticalStackLayout>
-                                            <Label Text="Last Updated" 
-                                       FontSize="12" 
-                                        TextColor="#4F4F4F"
-                                        FontFamily="Poppins-Medium"/>
-                                            <Label Text="11/12/2024"
-                                           FontSize="14" 
-                                            TextColor="#070707"
-                                            FontFamily="Poppins-ExtraBold"/>
-                                        </VerticalStackLayout>
-                                    </HorizontalStackLayout>
+                                                    </VerticalStackLayout>
+                                                </HorizontalStackLayout>
                                 </StackLayout>
                             </Frame>
                             </DataTemplate>
@@ -398,28 +379,17 @@
                                             TextColor="#D40404"
                                             FontFamily="Poppins-ExtraBold"/>
                                         </VerticalStackLayout>
-                                        <VerticalStackLayout>
-                                            <Label Text="Min. Required"
+                                                    <VerticalStackLayout>
+                                                        <Label Text="Min. Required"
                                            FontSize="12" 
                                            TextColor="#4F4F4F"
                                            FontFamily="Poppins-Medium"/>
-                                            <Label Text="15 units"
+                                                        <Label Text="15 units"
                                            FontSize="14" 
                                             TextColor="#070707"
                                             FontFamily="Poppins-ExtraBold"/>
-                                        </VerticalStackLayout>
-                                        <VerticalStackLayout>
-                                            <Label Text="Last Updated" 
-                                               FontSize="12" 
-                                                TextColor="#4F4F4F"
-                                                FontFamily="Poppins-Medium"/>
-                                            <Label Text="11/12/2024"
-                                               FontSize="14" 
-                                                TextColor="#070707"
-                                                FontFamily="Poppins-ExtraBold"/>
-                                            
-                                        </VerticalStackLayout>
-                                    </HorizontalStackLayout>
+                                                    </VerticalStackLayout>
+                                                </HorizontalStackLayout>
                                     <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                                         <Frame Margin="0,2,0,0"
                                              BackgroundColor="#D40404"

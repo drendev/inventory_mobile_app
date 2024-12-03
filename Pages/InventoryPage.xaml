@@ -29,7 +29,7 @@
                                HorizontalOptions="End">
                             <SearchBar Placeholder="Search Product" 
                        Style="{StaticResource SearchBarStyle}"
-                             
+                       Text="{Binding SearchText}"
                        FontFamily="Poppins-Regular" />
                         </Frame>
 
@@ -45,7 +45,7 @@
 
 
                     <VerticalStackLayout Spacing="15" Margin="20,130,20,20">
-                        <CollectionView ItemsSource="{Binding Products}">
+                        <CollectionView ItemsSource="{Binding FilteredProducts}">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Orientation="Vertical" Span="2" />
                             </CollectionView.ItemsLayout>
