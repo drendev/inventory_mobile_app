@@ -42,8 +42,8 @@
            Margin="0,60,0,0"
            Clicked="OnViewStocksClicked"/>
             </Grid>
-            <Grid ColumnDefinitions="*,*" 
-         RowDefinitions="Auto,Auto"
+            <Grid ColumnDefinitions="*,*,*" 
+         RowDefinitions="Auto,Auto,Auto"
          ColumnSpacing="10"
          RowSpacing="10">
 
@@ -59,19 +59,19 @@
                       TextColor="#4F4F4F"
                       FontFamily="Poppins-Medium"
                       FontSize="14"/>
-                        <Label Text="5,400"
+                        <Label Text="{Binding Dashboard.TotalStocks}"
                       FontSize="32"
                       FontFamily="Poppins-Bold"
                        Margin="0,-5"
                       TextColor="#4F4F4F"/>
-                        <Label Text="24 Products"
+                        <Label Text="{Binding Dashboard.TotalProducts, StringFormat='{0} Products'}"
                       TextColor="#4F4F4F"
                       FontFamily="Poppins-Medium"
                       FontSize="12"/>
                     </VerticalStackLayout>
                 </Frame>
 
-                <!-- Weekly Stock -->
+                <!-- Sold Today -->
                 <Frame Grid.Row="0" Grid.Column="1"
               BackgroundColor="White"
               CornerRadius="10"
@@ -79,16 +79,40 @@
               HasShadow="True"
               BorderColor="White">
                     <VerticalStackLayout Spacing="-5">
-                        <Label Text="Weekly Stocks"
+                        <Label Text="Sold This Day"
                       TextColor="#4F4F4F"
                       FontFamily="Poppins-Medium"
                       FontSize="14"/>
-                        <Label Text="32,500"
+                        <Label Text="{Binding Dashboard.TodaySold}"
                       FontSize="32"
                       FontFamily="Poppins-Bold"
                        Margin="0,-5"
                       TextColor="#4F4F4F"/>
-                        <Label Text="156 Products"
+                        <Label Text="{Binding Dashboard.TodaySoldProducts, StringFormat='{0} Products'}"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="12"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Sold this week -->
+                <Frame Grid.Row="0" Grid.Column="2"
+              BackgroundColor="White"
+              CornerRadius="10"
+              Padding="20,5,0,5"
+              HasShadow="True"
+              BorderColor="White">
+                    <VerticalStackLayout Spacing="-5">
+                        <Label Text="Sold This Week"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="14"/>
+                        <Label Text="{Binding Dashboard.WeekSold}"
+                      FontSize="32"
+                      FontFamily="Poppins-Bold"
+                       Margin="0,-5"
+                      TextColor="#4F4F4F"/>
+                        <Label Text="{Binding Dashboard.WeekSoldProducts, StringFormat='{0} Products'}"
                       TextColor="#4F4F4F"
                       FontFamily="Poppins-Medium"
                       FontSize="12"/>

@@ -17,5 +17,9 @@ namespace inventory_mobile_app.Models
         public int OutOfStock { get; set; }
         public string? LowStockProduct { get; set; }
         public string? OutOfStockProduct { get; set; }
+        public int? WeekSold { get; set; }
+        public int? TodaySold { get; set; }
+        public int? TodaySoldProducts { get; set; }
+        public int? WeekSoldProducts { get; set; }
     }
 }
