@@ -40,6 +40,12 @@ public partial class ProductViewPage : ContentPage
         EditProductModal.IsVisible = false;
     }
 
+
+    private async void OnCloseIconTapped(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//InventoryPage");
+    }
+
     private async void OnLabelTapped(object sender, EventArgs e)
     {
         var selectedImage = await PickImageAsync();

@@ -19,220 +19,228 @@
             </HorizontalStackLayout>
         </Grid>
 
+        <VerticalStackLayout Padding="20">
+            <Grid>
+                <Label Text="HISTORY"
+               FontSize="24" 
+               FontFamily="Poppins-ExtraBold"
+               FontAttributes="Bold"
+               Margin="10,60,10,10"
+               TextColor="#E76722" />
+
+                <Button Text="VIEW STOCKS" 
+           BackgroundColor="#E76722"  
+           TextColor="White" 
+           CornerRadius="10"
+           HeightRequest="35"
+           WidthRequest="130"
+           FontSize="14"
+           Padding="6"
+           FontFamily="Poppins-SemiBold"
+           HorizontalOptions="End"
+           VerticalOptions="Start"
+           Margin="0,60,0,0"
+           Clicked="OnViewStocksClicked"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*" 
+         RowDefinitions="Auto,Auto"
+         ColumnSpacing="10"
+         RowSpacing="10">
+
+                <!-- Current Stocks-->
+                <Frame Grid.Row="0" Grid.Column="0"
+                  BackgroundColor="White"
+                  CornerRadius="10"
+                  Padding="20,5,0,5"
+                  HasShadow="True"
+                  BorderColor="White">
+                    <VerticalStackLayout Spacing="-5">
+                        <Label Text="Current Stocks"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="14"/>
+                        <Label Text="5,400"
+                      FontSize="32"
+                      FontFamily="Poppins-Bold"
+                       Margin="0,-5"
+                      TextColor="#4F4F4F"/>
+                        <Label Text="24 Products"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="12"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Weekly Stock -->
+                <Frame Grid.Row="0" Grid.Column="1"
+              BackgroundColor="White"
+              CornerRadius="10"
+              Padding="20,5,0,5"
+              HasShadow="True"
+              BorderColor="White">
+                    <VerticalStackLayout Spacing="-5">
+                        <Label Text="Weekly Stocks"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="14"/>
+                        <Label Text="32,500"
+                      FontSize="32"
+                      FontFamily="Poppins-Bold"
+                       Margin="0,-5"
+                      TextColor="#4F4F4F"/>
+                        <Label Text="156 Products"
+                      TextColor="#4F4F4F"
+                      FontFamily="Poppins-Medium"
+                      FontSize="12"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+
+            <!-- Search Bar -->
+            <Grid>
+                <Frame BackgroundColor="White"
+            CornerRadius="10"
+            Padding="10"
+            HasShadow="True"
+            BorderColor="#E5E5E5"
+            VerticalOptions="Start"
+            Margin="0">
+                    <VerticalStackLayout Spacing="10">
+                        <!-- Label for Recent Stock Changes -->
+                        <Label Text="RECENT STOCK CHANGES"
+                FontSize="14"
+                FontFamily="Poppins-SemiBold"
+                TextColor="#4F4F4F"
+                HorizontalOptions="Start" />
+
+                        <!-- Search Bar -->
+                        <Frame BackgroundColor="#F5F5F5"
+                CornerRadius="10"
+                HeightRequest="30"
+                Padding="-10"
+                VerticalOptions="Start">
+                            <Grid ColumnDefinitions="Auto,*,Auto"
+                     VerticalOptions="Center">
+                                <SearchBar Placeholder="Search inventory..."
+                BackgroundColor="Transparent"
+                FontFamily="Poppins-Regular"
+                FontSize="14"
+                HorizontalOptions="FillAndExpand"
+                Margin="0" />
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
+
         <!-- Scrollable Content -->
-        <ScrollView Grid.Row="0">
-            <VerticalStackLayout Padding="20">
-                <Grid>
-                    <Label Text="HISTORY"
-                   FontSize="24" 
-                   FontFamily="Poppins-ExtraBold"
-                   FontAttributes="Bold"
-                   Margin="10,60,10,10"
-                   TextColor="#E76722" />
+        <ScrollView Grid.Row="1" Padding="20,0,20,20">
+            <CollectionView ItemsSource="{Binding Reports}" 
+            VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Report">
+                        <Frame HasShadow="True"
+                    BorderColor="#FFFFFF" 
+                    CornerRadius="10" 
+                    Padding="13" 
+                    Margin="0,0,0,10" 
+                    BackgroundColor="#FFFFFF">
+                            <StackLayout>
+                                <!-- Header -->
+                                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                    <Frame Grid.Column="1"
+                            BackgroundColor="#FFD8C2"
+                            Padding="8,5"
+                            CornerRadius="15"
+                            HasShadow="True"
+                            BorderColor="Transparent">
+                                        <Frame.Triggers>
+                                            <!-- Trigger for changing the background color -->
+                                            <DataTrigger TargetType="Frame" Binding="{Binding ReportType}" Value="ADD STOCK">
+                                                <Setter Property="BackgroundColor" Value="#D9F4CF" />
+                                                <!-- Green Background -->
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Label Text="STOCK SOLD"
+                                TextColor="#EE5100"
+                                FontSize="11"
+                                FontFamily="Poppins-SemiBold">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding ReportType}" Value="ADD STOCK">
+                                                    <DataTrigger.Setters>
+                                                        <Setter Property="Text" Value="STOCK ADDED" />
+                                                        <Setter Property="TextColor" Value="#80AA04" />
+                                                    </DataTrigger.Setters>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Frame>
+                                    <Label Text="{Binding Created}" 
+                            HorizontalOptions="EndAndExpand" 
+                            VerticalOptions="Center"
+                            FontFamily="Poppins-Medium"/>
+                                </StackLayout>
 
-                    <Button Text="VIEW STOCKS" 
-               BackgroundColor="#E76722"  
-               TextColor="White" 
-               CornerRadius="10"
-               HeightRequest="35"
-               WidthRequest="130"
-               FontSize="14"
-               Padding="6"
-               FontFamily="Poppins-SemiBold"
-               HorizontalOptions="End"
-               VerticalOptions="Start"
-               Margin="0,60,0,0"
-               Clicked="OnViewStocksClicked"/>
-                </Grid>
+                                <!-- Product Name -->
+                                <Label Text="{Binding ProductName}"
+                            FontFamily="Poppins-Bold" 
+                            FontSize="16" 
+                            TextColor="Black" 
+                            Margin="0,5,0,0" />
 
-                <VerticalStackLayout Spacing="15" Padding="0,0,0,10">
-                    <Grid ColumnDefinitions="*,*" 
-                    RowDefinitions="Auto,Auto"
-                    ColumnSpacing="10"
-                    RowSpacing="0">
-
-                        <!-- Current Stocks-->
-                        <Frame Grid.Row="0" Grid.Column="0"
-                         BackgroundColor="White"
-                         CornerRadius="10"
-                         Padding="20,5,0,5"
-                         HasShadow="True"
-                         BorderColor="White">
-                            <VerticalStackLayout Spacing="-5">
-                                <Label Text="Current Stocks"
-                                 TextColor="#4F4F4F"
-                                 FontFamily="Poppins-Medium"
-                                 FontSize="14"/>
-                                <Label Text="5,400"
-                                 FontSize="32"
-                                 FontFamily="Poppins-Bold"
-                                  Margin="0,-5"
-                                 TextColor="#4F4F4F"/>
-                                <Label Text="24 Products"
-                                 TextColor="#4F4F4F"
-                                 FontFamily="Poppins-Medium"
-                                 FontSize="12"/>
-                            </VerticalStackLayout>
-                        </Frame>
-
-                        <!-- Weekly Stock -->
-                        <Frame Grid.Row="0" Grid.Column="1"
-                         BackgroundColor="White"
-                         CornerRadius="10"
-                         Padding="20,5,0,5"
-                         HasShadow="True"
-                         BorderColor="White">
-                            <VerticalStackLayout Spacing="-5">
-                                <Label Text="Weekly Stocks"
-                                 TextColor="#4F4F4F"
-                                 FontFamily="Poppins-Medium"
-                                 FontSize="14"/>
-                                <Label Text="32,500"
-                                 FontSize="32"
-                                 FontFamily="Poppins-Bold"
-                                  Margin="0,-5"
-                                 TextColor="#4F4F4F"/>
-                                <Label Text="156 Products"
-                                 TextColor="#4F4F4F"
-                                 FontFamily="Poppins-Medium"
-                                 FontSize="12"/>
-                            </VerticalStackLayout>
-                        </Frame>
-                    </Grid>
-                    <!-- Search Bar -->
-                    <Frame BackgroundColor="White"
-                       CornerRadius="10"
-                       Padding="10"
-                       HasShadow="True"
-                       BorderColor="#E5E5E5"
-                       VerticalOptions="Start"
-                       Margin="0">
-                        <VerticalStackLayout Spacing="5">
-                            <!-- Label for Recent Stock Changes -->
-                            <Label Text="RECENT STOCK CHANGES"
-                               FontSize="14"
-                               FontFamily="Poppins-SemiBold"
-                               TextColor="#4F4F4F"
-                               HorizontalOptions="Start" />
-
-                            <!-- Search Bar -->
-                            <Frame BackgroundColor="#F5F5F5"
-                               CornerRadius="10"
-                               HeightRequest="30"
-                               Padding="-10"
-                               VerticalOptions="Start">
-                                <Grid ColumnDefinitions="Auto,*,Auto"
-                                VerticalOptions="Center">
-                                    <!-- SearchBar -->
-                                    <SearchBar Placeholder="Search inventory..."
-                                       Text="{Binding SearchText}"
-                                       BackgroundColor="Transparent"
-                                       FontFamily="Poppins-Regular"
-                                       FontSize="14"
-                                       HorizontalOptions="FillAndExpand"
-                                       Margin="0" />
-                                </Grid>
-                            </Frame>
-                        </VerticalStackLayout>
-                    </Frame>
-                    <CollectionView ItemsSource="{Binding FilteredReports}">
-                    <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="model:Report">
-                                <Frame HasShadow="True"
-                        BorderColor="#FFFFFF" 
-                        CornerRadius="10" 
-                        Padding="13" 
-                        Margin="0,0,0,10" 
-                        BackgroundColor="#FFFFFF">
-                                    <StackLayout>
-                                        <!-- Header -->
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
-                                            <Frame Grid.Column="1"
-                                BackgroundColor="#FFD8C2"
-                                Padding="8,5"
-                                CornerRadius="15"
-                                HasShadow="True"
-                                BorderColor="Transparent">
-                                                <Label Text="SOLD STOCK"
-                                    TextColor="#EE5100"
-                                    FontSize="11"
-                                    FontFamily="Poppins-Medium">
-                                                    <Label.Triggers>
-                                                        <DataTrigger TargetType="Label" Binding="{Binding ReportType}" Value="ADD STOCK">
-                                                            <DataTrigger.Setters>
-                                                                <Setter Property="Text" Value="ADD STOCK" />
-                                                                <Setter Property="TextColor" Value="#80AA04" />
-                                                            </DataTrigger.Setters>
-                                                        </DataTrigger>
-                                                    </Label.Triggers>
-                                                </Label>
-                                            </Frame>
-                                            <Label Text="{Binding Created}" 
-                                HorizontalOptions="EndAndExpand" 
-                                VerticalOptions="Center"
-                                FontFamily="Poppins-Medium"/>
-                                        </StackLayout>
-
-                                        <!-- Product Name -->
-                                        <Label Text="{Binding ProductName}"
-                                FontFamily="Poppins-Bold" 
-                                FontSize="16" 
-                                TextColor="Black" 
-                                Margin="0,5,0,0" />
-
-                                        <!-- Adjusted By and Date -->
-                                        <Label Text="{Binding Username, StringFormat='Adjusted by: {0}'}" 
+                                <!-- Adjusted By and Date -->
+                                <Label Text="{Binding Username, StringFormat='Adjusted by: {0}'}" 
+                            FontSize="14" 
+                            TextColor="#4F4F4F"
+                               FontFamily="Poppins-Medium"/>
+                                <Label Text="{Binding Date, StringFormat='Date: {0}'}" 
                                 FontSize="14" 
                                 TextColor="#4F4F4F"
-                                   FontFamily="Poppins-Medium"/>
-                                        <Label Text="{Binding Date}" 
-                                    FontSize="14" 
-                                    TextColor="#4F4F4F"
-                                   FontFamily="Poppins-Medium"/>
+                               FontFamily="Poppins-Medium"/>
 
-                                        <BoxView Color="#D3D3D3" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,5,0,0" />
+                                <BoxView Color="#D3D3D3" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,5,0,0" />
 
-                                        <!-- Stock Changes -->
-                                        <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
-                                            <Label FontSize="16" 
-                                                FontFamily="Poppins-Bold">
-                                                <Label.Triggers>
-                                                    <!-- Trigger for Add Stock -->
-                                                    <DataTrigger TargetType="Label" 
-                                                         Binding="{Binding ReportType}" 
-                                                         Value="ADD STOCK">
-                                                        <Setter Property="Text" 
-                                                            Value="{Binding Quantity, StringFormat='+ {0} Units'}" />
-                                                        <Setter Property="TextColor" 
-                                                            Value="#00C853" />
-                                                        <!-- Green color -->
-                                                    </DataTrigger>
+                                <!-- Stock Changes -->
+                                <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+                                    <Label FontSize="16" 
+                                            FontFamily="Poppins-Bold">
+                                        <Label.Triggers>
+                                            <!-- Trigger for Add Stock -->
+                                            <DataTrigger TargetType="Label" 
+                                                     Binding="{Binding ReportType}" 
+                                                     Value="ADD STOCK">
+                                                <Setter Property="Text" 
+                                                        Value="{Binding Quantity, StringFormat='+ {0} Units'}" />
+                                                <Setter Property="TextColor" 
+                                                        Value="#80AA04" />
+                                                <!-- Green color -->
+                                            </DataTrigger>
 
-                                                    <!-- Trigger for Sold Stock -->
-                                                    <DataTrigger TargetType="Label" 
-                                                        Binding="{Binding ReportType}"
-                                                        Value="SOLD STOCK">
-                                                        <Setter Property="Text"
-                                                            Value="{Binding Quantity, StringFormat='- {0} Units'}" />
-                                                        <Setter Property="TextColor" 
-                                                            Value="#EE5100" />
-                                                        <!-- Orange color -->
-                                                    </DataTrigger>
-                                                </Label.Triggers>
-                                            </Label>
-                                            <Label Text="{Binding CurrentStock, StringFormat='Current: {0} Units'}" 
-                                                FontSize="16" 
-                                                HorizontalOptions="EndAndExpand"
-                                                VerticalOptions="Center"
-                                                FontFamily="Poppins-Bold"/>
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </VerticalStackLayout>
+                                            <!-- Trigger for Sold Stock -->
+                                            <DataTrigger TargetType="Label" 
+                                                    Binding="{Binding ReportType}"
+                                                    Value="SOLD STOCK">
+                                                <Setter Property="Text"
+                                                        Value="{Binding Quantity, StringFormat='- {0} Units'}" />
+                                                <Setter Property="TextColor" 
+                                                        Value="#E76722" />
+                                                <!-- Orange color -->
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Label Text="{Binding CurrentStock, StringFormat='Current: {0} Units'}" 
+                                            FontSize="16" 
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="Center"
+                                            FontFamily="Poppins-Bold"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </ScrollView>
         <pages:BottomNavBar Grid.Row="2" />
     </Grid>

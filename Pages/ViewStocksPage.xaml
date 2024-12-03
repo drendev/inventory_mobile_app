@@ -252,20 +252,28 @@
                                 <StackLayout>
                                     <!-- Product Name -->
                                     <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,*,Auto">
-                                        <Label Text="{Binding ProductName}" 
-                                     FontFamily="Poppins-Bold" 
-                                     FontSize="18" 
-                                     TextColor="#070707" 
-                                     TextTransform="Uppercase"/>
-                                        <Label Text="{x:Static model:Icons.LowStockIcon}" 
-                                                Style="{StaticResource BootstrapIcon}" 
-                                                FontSize="16" 
-                                                TextColor="#E76722"
-                                                VerticalOptions="Center"
-                                                Margin="7,0,0,3"
-                                               Grid.Column="1" />
+                                                    <HorizontalStackLayout Grid.Column="0" Spacing="5" HorizontalOptions="Start" VerticalOptions="Center">
+                                                        <!-- Product Name -->
+                                                        <Label 
+                                                        Text="{Binding ProductName}" 
+                                                        FontFamily="Poppins-Bold" 
+                                                        FontSize="18" 
+                                                        TextColor="#070707" 
+                                                        TextTransform="Uppercase" 
+                                                        HorizontalOptions="Start" />
 
-                                        <!-- View Product Icon -->
+                                                        <!-- Low Stock Icon -->
+                                                        <Label 
+                                                        Text="{x:Static model:Icons.LowStockIcon}" 
+                                                        Style="{StaticResource BootstrapIcon}" 
+                                                        FontSize="16" 
+                                                        TextColor="#E76722"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Start" 
+                                                        Margin="7,0,0,3" />
+                                                    </HorizontalStackLayout>
+
+                                                    <!-- View Product Icon -->
                                         <Image 
                                         Source="view_product_icon.png" 
                                         HeightRequest="32" 
@@ -322,26 +330,29 @@
                              BackgroundColor="#FFFFFF">
 
                                 <StackLayout>
-                                    <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,*,Auto">
+                                    <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
                                         <!-- Product Name -->
-                                        <Label 
-                                        Text="{Binding ProductName}" 
-                                        FontFamily="Poppins-Bold" 
-                                        FontSize="18" 
-                                        TextColor="#070707" 
-                                        TextTransform="Uppercase" 
-                                        Grid.Column="0" />
+                                         <HorizontalStackLayout Grid.Column="0" Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                           <!-- Product Name -->
+                                           <Label 
+                                           Text="{Binding ProductName}" 
+                                           FontFamily="Poppins-Bold" 
+                                           FontSize="18" 
+                                           TextColor="#070707" 
+                                           TextTransform="Uppercase" 
+                                           HorizontalOptions="Start" />
 
-                                        <!-- Out of Stock Icon -->
-                                        <Label 
-                                        Text="{x:Static model:Icons.OutOfStockIcon}" 
-                                        Style="{StaticResource MaterialIcon}" 
-                                        FontSize="18" 
-                                        FontAttributes="Bold"
-                                        TextColor="#D40404"
-                                        VerticalOptions="Center"
-                                        Margin="5,0,0,5" 
-                                        Grid.Column="1" />
+                                           <!-- Out of Stock Icon -->
+                                            <Label 
+                                            Text="{x:Static model:Icons.OutOfStockIcon}" 
+                                            Style="{StaticResource MaterialIcon}" 
+                                            FontSize="18" 
+                                            FontAttributes="Bold"
+                                            TextColor="#D40404"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start" 
+                                            Margin="0,0,0,5" />
+                                         </HorizontalStackLayout>
 
                                         <!-- View Product Icon -->
                                         <Image 
@@ -350,7 +361,7 @@
                                         WidthRequest="32" 
                                         VerticalOptions="Center" 
                                         HorizontalOptions="End" 
-                                        Grid.Column="2" />
+                                        Grid.Column="3" />
                                     </Grid>
                                     <!-- Product ID -->
                                                 <Label Text="{Binding ProductId, StringFormat='ID: {0}'}" 

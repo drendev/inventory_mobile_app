@@ -22,26 +22,26 @@
           VerticalOptions="CenterAndExpand" 
           HorizontalOptions="CenterAndExpand">
             <Frame 
-    Padding="15" 
-    CornerRadius="10"
-    WidthRequest="350"
-    HeightRequest="590"
-    BackgroundColor="White"
-    VerticalOptions="CenterAndExpand"
-    HasShadow="True"
-    BorderColor="#E1DDDD">
+                Padding="15" 
+                CornerRadius="10"
+                WidthRequest="350"
+                HeightRequest="590"
+                BackgroundColor="White"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="#E1DDDD">
                     <StackLayout Spacing="0">
                         <HorizontalStackLayout Spacing="10">
                             <!-- Close Icon Label -->
                             <Label Text="{x:Static model:Icons.CloseIcon}"
-      Style="{StaticResource MaterialIcon}"
-      TextColor="Gray"
-      FontSize="30"
-      VerticalOptions="Start"
-      HorizontalOptions="Start"
-      Margin="0">
+                              Style="{StaticResource MaterialIcon}"
+                              TextColor="Gray"
+                              FontSize="30"
+                              VerticalOptions="Start"
+                              HorizontalOptions="Start"
+                              Margin="0">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer />
+                                <TapGestureRecognizer Tapped="OnCloseIconTapped" />
                                 </Label.GestureRecognizers>
                             </Label>
                         </HorizontalStackLayout>
@@ -102,52 +102,60 @@
            HorizontalOptions="Start" />
 
                         <!-- Availability -->
-                    <Label Text="IN-STOCK" 
+                    <HorizontalStackLayout Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="Start" Margin="10,0,0,0" Spacing="5">
+                        <Label Text="AVAILABILITY: " 
+                       FontSize="16" 
+                       TextColor="#4F4F4F" 
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center"
+                       FontFamily="Poppins-Bold"/>
+                        <Label Text="IN-STOCK" 
                        Grid.Row="4" Grid.ColumnSpan="2"
-                       FontSize="14" 
+                       FontSize="16" 
                        TextColor="#80AA04" 
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
                        FontFamily="Poppins-Bold">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="0">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="OUT OF STOCK" />
-                                    <Setter Property="TextColor" Value="Red" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="1">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="LOW STOCK" />
-                                    <Setter Property="TextColor" Value="Orange" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="2">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="LOW STOCK" />
-                                    <Setter Property="TextColor" Value="Orange" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="3">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="LOW STOCK" />
-                                    <Setter Property="TextColor" Value="Orange" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="4">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="LOW STOCK" />
-                                    <Setter Property="TextColor" Value="Orange" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="5">
-                                <DataTrigger.Setters>
-                                    <Setter Property="Text" Value="LOW STOCK" />
-                                    <Setter Property="TextColor" Value="Orange" />
-                                </DataTrigger.Setters>
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="0">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="OUT OF STOCK" />
+                                        <Setter Property="TextColor" Value="Red" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="1">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="LOW STOCK" />
+                                        <Setter Property="TextColor" Value="Orange" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="2">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="LOW STOCK" />
+                                        <Setter Property="TextColor" Value="Orange" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="3">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="LOW STOCK" />
+                                        <Setter Property="TextColor" Value="Orange" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="4">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="LOW STOCK" />
+                                        <Setter Property="TextColor" Value="Orange" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Product.Stock}" Value="5">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Text" Value="LOW STOCK" />
+                                        <Setter Property="TextColor" Value="Orange" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </HorizontalStackLayout>
 
                     <!-- Expiration -->
                     <Label Text="{Binding Product.ExpiryDate, StringFormat='EXPIRATION DATE: {0}'}" 
