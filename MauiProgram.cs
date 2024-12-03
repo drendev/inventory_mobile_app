@@ -71,6 +71,8 @@ namespace inventory_mobile_app
             builder.Services.AddTransient<ReportListViewModel>();
             builder.Services.AddTransient<DashboardViewModel>();
             builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<StocksViewModel>();
+            builder.Services.AddTransient<ViewStocksPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

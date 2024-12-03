@@ -4,9 +4,10 @@ using static inventory_mobile_app.ViewModels.MainPageViewModel;
 
 public partial class ViewStocksPage : ContentPage
 {
-    public ViewStocksPage()
+    public ViewStocksPage(StocksViewModel stocksViewModel)
     {
         InitializeComponent();
+        BindingContext = stocksViewModel;
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
@@ -14,6 +15,18 @@ public partial class ViewStocksPage : ContentPage
         await Shell.Current.GoToAsync("//HistoryPage");
 
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Refresh the product list each time the page appears
+        if (BindingContext is StocksViewModel viewModel)
+        {
+            viewModel.LoadProductList();  // This will reload the products from the service
+        }
+    }
+
     private void OnTabClicked(object sender, EventArgs e)
     {
         if (sender is Button button)
