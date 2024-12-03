@@ -170,6 +170,7 @@ namespace inventory_mobile_app.ViewModels
                 AddedStockQuantity = StockModel.Stock;
                 IsAddStock = true;
                 IsProduct = false;
+                RecordReportModel = new RecordReportModel();
             }
             else
             {
@@ -206,6 +207,7 @@ namespace inventory_mobile_app.ViewModels
                 SoldStockQuantity = StockModel.Stock;
                 IsSoldStock = true;
                 IsProduct = false;
+                RecordReportModel = new RecordReportModel();
             }
             else
             {
@@ -226,6 +228,8 @@ namespace inventory_mobile_app.ViewModels
             {
                 IsAddProductSuccess = true;
                 IsClickedAdd = false;
+                IsNewProduct = false;
+                Product = new Product();
             }
             else if(addedSuccessfully == false)
             {
