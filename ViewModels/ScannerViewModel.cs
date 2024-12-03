@@ -5,6 +5,8 @@ using CommunityToolkit.Mvvm.Input;
 using inventory_mobile_app.Models;
 using inventory_mobile_app.Services;
 using System.Text.Json;
+using Plugin.LocalNotification;
+using Plugin.LocalNotification.AndroidOption;
 
 namespace inventory_mobile_app.ViewModels
 {
@@ -206,6 +208,41 @@ namespace inventory_mobile_app.ViewModels
                 SoldStockQuantity = StockModel.Stock;
                 IsSoldStock = true;
                 IsProduct = false;
+
+                if (Product.Stock <= 5 && Product.Stock > 0)
+                {
+                    // Show local notification
+                    var request = new NotificationRequest
+                    {
+                        Title = "Low Stock Warning",
+                        Description = $"{Product.ProductName} stock is low (only {Product.Stock} left).",
+                        BadgeNumber = 42,
+                        CategoryType = NotificationCategoryType.Service,
+                        Android = new AndroidOptions
+                        {
+                            Priority = AndroidPriority.High,
+                        }
+                    };
+
+                    LocalNotificationCenter.Current.Show(request);
+                }
+                else if (Product.Stock == 0)
+                {
+                    // Show local notification
+                    var request = new NotificationRequest
+                    {
+                        Title = "Out of Stock Warning",
+                        Description = $"{Product.ProductName} is out of stock.",
+                        BadgeNumber = 42,
+                        CategoryType = NotificationCategoryType.Reminder,
+                        Android = new AndroidOptions
+                        {
+                            Priority = AndroidPriority.High
+                        }
+                    };
+
+                    LocalNotificationCenter.Current.Show(request);
+                }
             }
             else
             {
@@ -256,6 +293,5 @@ namespace inventory_mobile_app.ViewModels
             Barcode = string.Empty;
             Product = new Product();
         }
-
     }
 }

@@ -3,6 +3,7 @@ using inventory_mobile_app.Pages.Auth;
 using inventory_mobile_app.Services;
 using inventory_mobile_app.ViewModels;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 using ZXing.Net.Maui.Controls;
 
 namespace inventory_mobile_app
@@ -15,6 +16,7 @@ namespace inventory_mobile_app
             builder
                 .UseMauiApp<App>()
                 .UseBarcodeReader()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -22,7 +24,6 @@ namespace inventory_mobile_app
                     fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialIcon");
                     fonts.AddFont("bootstrap-icons.ttf", "BootstrapIcon");
                 });
-
 
             builder.Services.AddHttpClient("custom-httpclient", httpClient =>
             {
